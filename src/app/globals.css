@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cloud-native Dreamy Theme */
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: 2rem;
+  --radius-md: 1.5rem;
+  --radius-sm: 1rem;
+}
+
+@layer base {
+  :root {
+    --background: 220 33% 3%;
+    --foreground: 0 0% 100%;
+    
+    --card: 220 33% 5%;
+    --card-foreground: 0 0% 100%;
+ 
+    --popover: 220 33% 5%;
+    --popover-foreground: 0 0% 100%;
+ 
+    --primary: 161 72% 40%;
+    --primary-foreground: 0 0% 0%;
+ 
+    --secondary: 189 94% 43%;
+    --secondary-foreground: 0 0% 0%;
+ 
+    --muted: 220 33% 15%;
+    --muted-foreground: 215 16% 75%;
+ 
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 0%;
+ 
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+ 
+    --border: 220 33% 20%;
+    --input: 220 33% 15%;
+    --ring: 161 72% 40%;
+  }
+
+  * {
+    @apply border-border outline-none;
+  }
+  
+  body {
+    @apply text-foreground bg-[#05070a];
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    @apply font-black tracking-tight;
+    color: #FCD34D;
+    text-shadow: 0 0 30px rgba(252, 211, 77, 0.2);
+  }
+}
+
+/* =============================================
+   CUSTOM CSS CLASSES (Pure CSS to avoid @apply issues)
+   ============================================= */
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2rem;
+  padding: 1.5rem;
+  transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-glass:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(252, 211, 77, 0.4);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(252, 211, 77, 0.05);
+}
+
+.btn-emerald {
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #000 !important;
+  font-weight: 700;
+  box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);
+  padding: 1rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 300ms ease;
+}
+
+.btn-emerald:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.6);
+}
+
+.btn-cyan {
+  border-radius: 9999px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  color: #06B6D4 !important;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 300ms ease;
+}
+
+.btn-cyan:hover {
+  background-color: rgba(6, 182, 212, 0.2);
+  transform: scale(1.05);
+}
+
+.glow-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.glow-warm {
+  background: radial-gradient(circle, #F59E0B 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+}
+
+.glow-cool {
+  background: radial-gradient(circle, #3B82F6 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+}
+
+.image-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 3rem;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+}
+
+.badge-teal {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.code-box {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  font-family: monospace;
+  color: #34d399;
+}
+
+/* Page Container - Flexible 85% width */
+.page-container {
+  width: 85%;
+  max-width: 120rem; /* ~1920px equivalent, but in rem */
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .page-container {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
