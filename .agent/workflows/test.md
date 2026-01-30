@@ -1,5 +1,5 @@
 ---
-description: Test generation and test running command. Creates and executes tests for code.
+description: Chạy kiểm thử, tự động hóa, đảm bảo chất lượng
 ---
 
 # /test - Test Generation and Execution

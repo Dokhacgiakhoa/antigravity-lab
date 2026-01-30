@@ -1,5 +1,5 @@
 ---
-description: Deployment command for production releases. Pre-flight checks and deployment execution.
+description: Triển khai Production, kiểm tra an toàn, phát hành
 ---
 
 # /deploy - Production Deployment

@@ -1,5 +1,5 @@
 ---
-description: Create project plan using project-planner agent. No code writing - only plan file generation.
+description: Lập kế hoạch, phân rã tác vụ, project-planner
 ---
 
 # /plan - Project Planning Mode

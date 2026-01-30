@@ -1,5 +1,5 @@
 ---
-description: Create new application command. Triggers App Builder skill and starts interactive dialogue with user.
+description: Khởi tạo dự án mới, xây dựng nền móng, App Builder
 ---
 
 # /create - Create Application

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function GuidePage() {
   return (
-    <div className="page-container mt-32 space-y-32 pb-32">
+    <div className="page-container mt-12 space-y-20 pb-24">
       {/* Header */}
       <section className="text-center space-y-8">
         <motion.div
@@ -124,7 +124,7 @@ export default function GuidePage() {
       </section>
 
       {/* Agents Reference */}
-      <section className="max-w-6xl mx-auto space-y-12 py-20 border-t border-white/5">
+      <section className="max-w-6xl mx-auto space-y-12 pt-20 border-t border-white/5">
         <div className="text-center space-y-4">
           <h2 className="text-3xl md:text-4xl font-black text-white">20 Specialist Agents</h2>
           <p className="text-white/40">Đội ngũ chuyên gia AI sẵn sàng tham gia dự án của bạn.</p>
@@ -146,7 +146,7 @@ export default function GuidePage() {
       </section>
 
       {/* Skills Reference */}
-      <section className="max-w-6xl mx-auto space-y-12 py-20 border-t border-white/5">
+      <section className="max-w-6xl mx-auto space-y-12 pt-20 border-t border-white/5">
         <div className="text-center space-y-4">
           <h2 className="text-3xl md:text-4xl font-black text-white">40+ Kỹ năng (Skills)</h2>
           <p className="text-white/40">Các module kiến thức chuyên sâu được nạp tự động.</p>
@@ -162,7 +162,7 @@ export default function GuidePage() {
       </section>
 
       {/* Workflows Reference */}
-      <section className="max-w-6xl mx-auto space-y-12 py-20 border-t border-white/5">
+      <section className="max-w-6xl mx-auto space-y-12 pt-20 border-t border-white/5">
         <div className="text-center space-y-4">
           <h2 className="text-3xl md:text-4xl font-black text-white">11 Workflows</h2>
           <p className="text-white/40">Quy trình chuẩn hóa kích hoạt bằng Slash Command.</p>
@@ -181,22 +181,22 @@ export default function GuidePage() {
       </section>
 
       {/* CLI Reference */}
-      <section className="max-w-4xl mx-auto space-y-12 py-20 border-t border-white/5">
+      <section className="max-w-4xl mx-auto space-y-12 pt-20 border-t border-white/5">
         <div className="text-center space-y-4">
           <h2 className="text-3xl md:text-4xl font-black text-white">CLI Reference</h2>
           <p className="text-white/40">Các lệnh quản lý Antigravity Kit.</p>
         </div>
         <div className="space-y-4">
           <div className="card-glass p-6 flex items-center justify-between">
-            <code className="text-emerald-400 font-mono font-bold">ag-kit init</code>
+            <code className="text-emerald-400 font-mono font-bold">npx antigravity-ide</code>
             <span className="text-white/60">Khởi tạo thư mục .agent vào dự án (Tải templates mới nhất)</span>
           </div>
           <div className="card-glass p-6 flex items-center justify-between">
-            <code className="text-emerald-400 font-mono font-bold">ag-kit update</code>
+            <code className="text-emerald-400 font-mono font-bold">npx antigravity-ide update</code>
             <span className="text-white/60">Cập nhật Kit lên phiên bản mới nhất (Ghi đè .agent)</span>
           </div>
           <div className="card-glass p-6 flex items-center justify-between">
-            <code className="text-emerald-400 font-mono font-bold">ag-kit status</code>
+            <code className="text-emerald-400 font-mono font-bold">npx antigravity-ide status</code>
             <span className="text-white/60">Kiểm tra phiên bản và trạng thái các Agents/Skills</span>
           </div>
         </div>

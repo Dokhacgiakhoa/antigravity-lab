@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
 const nunito = Nunito_Sans({ subsets: ["latin", "vietnamese"] });
 
 export const metadata: Metadata = {
-  title: "AntiGravity Lab - Hướng dẫn Tiếng Việt",
-  description: "Trang hướng dẫn sử dụng Google AntiGravity Agentic IDE bằng Tiếng Việt.",
+  title: "Google Antigravity - Bộ não AI Agent tối thượng",
+  description: "Bộ sưu tập hoàn chỉnh các Rules, Skills và Workflows dành cho AI Agent hiện đại. Phát triển bởi Dokhacgiakhoa.",
 };
 
 export default function RootLayout({
@@ -39,10 +39,10 @@ export default function RootLayout({
           <footer className="w-full py-12 border-t border-white/5 bg-black/20 backdrop-blur-md">
             <div className="max-w-5xl mx-auto px-6 flex flex-col items-center justify-between gap-6 md:flex-row">
               <p className="text-sm text-white/40">
-                © 2026 AntiGravity Lab. Cảm hứng từ chủ nghĩa siêu thực vũ trụ.
+                © 2026 Google Antigravity. Phát triển với ❤️ bởi Dokhacgiakhoa.
               </p>
               <div className="flex gap-6">
-                <a href="https://github.com/vudovn/antigravity-kit" target="_blank" className="text-white/40 hover:text-[#FCD34D] transition-colors">GitHub</a>
+                <a href="https://github.com/Dokhacgiakhoa/google-antigravity" target="_blank" className="text-white/40 hover:text-[#FCD34D] transition-colors">GitHub</a>
                 <a href="#" className="text-white/40 hover:text-[#FCD34D] transition-colors">Cộng đồng</a>
               </div>
             </div>

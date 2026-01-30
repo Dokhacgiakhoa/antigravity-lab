@@ -1,0 +1,60 @@
+
+> antigravity-lab@1.0.0 dev
+> next dev
+
+▲ Next.js 16.1.5 (Turbopack)
+- Local:         http://localhost:6789
+- Network:       http://192.168.2.210:6789
+
+✓ Starting...
+✓ Ready in 1888ms
+ GET / 200 in 2.1s (compile: 1756ms, render: 304ms)
+ GET /grid-texture.png 404 in 929ms (compile: 192ms, render: 737ms)
+✓ Compiled in 228ms
+ GET / 200 in 183ms (compile: 58ms, render: 126ms)
+ GET /tutorial 200 in 176ms (compile: 119ms, render: 57ms)
+ GET /blackhole.webm 404 in 289ms (compile: 15ms, render: 274ms)
+ GET / 200 in 151ms (compile: 69ms, render: 82ms)
+ GET /guide 200 in 154ms (compile: 99ms, render: 55ms)
+✓ Compiled in 414ms
+ GET /grid-texture.png 404 in 78ms (compile: 12ms, render: 66ms)
+ GET /tutorial 200 in 40ms (compile: 10ms, render: 30ms)
+ GET /blackhole.webm 404 in 129ms (compile: 11ms, render: 117ms)
+ GET /guide 200 in 75ms (compile: 22ms, render: 53ms)
+ GET /concepts 200 in 109ms (compile: 84ms, render: 25ms)
+ GET /guide 200 in 159ms (compile: 20ms, render: 138ms)
+✓ Compiled in 381ms
+ GET /grid-texture.png 404 in 62ms (compile: 10ms, render: 52ms)
+✓ Compiled in 153ms
+✓ Compiled in 322ms
+✓ Compiled in 393ms
+✓ Compiled in 247ms
+ GET /tutorial 200 in 505ms (compile: 222ms, render: 283ms)
+ GET /blackhole.webm 404 in 283ms (compile: 23ms, render: 260ms)
+ GET / 200 in 276ms (compile: 199ms, render: 77ms)
+ GET /tutorial 200 in 48ms (compile: 10ms, render: 39ms)
+ GET /blackhole.webm 404 in 147ms (compile: 15ms, render: 131ms)
+✓ Compiled in 817ms
+✓ Compiled in 909ms
+ GET /grid-texture.png 404 in 744ms (compile: 432ms, render: 312ms)
+ GET / 200 in 102ms (compile: 80ms, render: 22ms)
+ GET /tutorial 200 in 92ms (compile: 62ms, render: 29ms)
+ GET /blackhole.webm 404 in 81ms (compile: 8ms, render: 73ms)
+ GET /guide 200 in 163ms (compile: 117ms, render: 47ms)
+ GET /tutorial 200 in 30ms (compile: 5ms, render: 25ms)
+ GET /blackhole.webm 404 in 85ms (compile: 10ms, render: 76ms)
+ GET / 200 in 28ms (compile: 4ms, render: 25ms)
+ GET /tutorial 200 in 31ms (compile: 6ms, render: 25ms)
+ GET /blackhole.webm 404 in 99ms (compile: 9ms, render: 91ms)
+ GET /concepts 200 in 85ms (compile: 58ms, render: 27ms)
+ GET /tutorial 200 in 19ms (compile: 3ms, render: 15ms)
+ GET /blackhole.webm 404 in 67ms (compile: 8ms, render: 59ms)
+✓ Compiled in 188ms
+✓ Compiled in 122ms
+✓ Compiled in 110ms
+ GET /guide 200 in 48ms (compile: 13ms, render: 35ms)
+ GET /tutorial 200 in 121ms (compile: 81ms, render: 40ms)
+ GET /blackhole.webm 404 in 78ms (compile: 11ms, render: 68ms)
+✓ Compiled in 249ms
+✓ Compiled in 176ms
+✓ Compiled in 127ms

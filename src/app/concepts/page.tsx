@@ -73,7 +73,7 @@ export default function ConceptsPage() {
   })).filter(group => group.items.length > 0);
 
   return (
-    <div className="page-container mt-24 space-y-12 pb-24 h-[calc(100vh-6rem)] min-h-[800px] flex flex-col">
+    <div className="page-container mt-12 space-y-12 pb-24 h-[calc(100vh-6rem)] min-h-[800px] flex flex-col">
       {/* Search Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-white/5">
         <div>

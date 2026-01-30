@@ -29,10 +29,10 @@ export function Navbar() {
     <div className="fixed top-8 left-0 right-0 z-50 flex justify-center px-10 pointer-events-none">
       <nav 
         className={cn(
-          "pointer-events-auto relative flex items-center h-16 rounded-full border transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-3xl px-3",
+          "pointer-events-auto relative flex items-center h-16 rounded-full border transition-all duration-700 shadow-[0_20px_80px_rgba(0,0,0,0.6)] backdrop-blur-[40px] px-3",
           // FIXED WIDTH: No more width changes on scroll
-          "w-full max-w-5xl bg-white/5 border-white/10",
-          scrolled && "bg-black/80 border-white/20"
+          "w-full max-w-5xl bg-white/[0.03] border-white/10",
+          scrolled && "bg-black/40 border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_20px_rgba(252,211,77,0.1)]"
         )}
       >
         <div className="flex w-full items-center justify-between relative px-2">
@@ -42,7 +42,7 @@ export function Navbar() {
               <Rocket className="h-5 w-5 text-black" />
             </div>
             <span className="hidden lg:inline-block font-black text-[#FCD34D] text-sm">
-              AntiGravity Lab
+              Google Antigravity
             </span>
           </Link>
 
@@ -82,7 +82,7 @@ export function Navbar() {
 
           {/* Right Section Actions */}
           <div className="flex items-center gap-3 z-20 flex-shrink-0">
-            <Link href="https://github.com/vudovn/antigravity-kit" target="_blank" className="hidden sm:block">
+            <Link href="https://github.com/Dokhacgiakhoa/google-antigravity" target="_blank" className="hidden sm:block">
               <div className="p-2.5 bg-white/5 hover:bg-white/10 rounded-full border border-white/10 transition-colors">
                 <Github className="h-4 w-4 text-white/80" />
               </div>

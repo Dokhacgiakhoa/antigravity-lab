@@ -3,16 +3,17 @@
 import { 
   Download, Settings, User, Palette, Cpu, Monitor, Globe, FileText, 
   CheckCircle, AlertCircle, Info, Zap, Chrome, Terminal, Rocket,
-  ArrowRight, ShieldCheck, Laptop, ChevronRight, PlayCircle
+  ArrowRight, ShieldCheck, Laptop, ChevronRight, PlayCircle, Brain
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { TerminalBlock } from "@/components/ui/terminal-block";
+import { cn } from "@/lib/utils";
 
 export default function TutorialPage() {
   return (
-    <div className="page-container mt-24 space-y-24 pb-24">
+    <div className="page-container mt-12 space-y-20 pb-24">
       {/* Header Section */}
       <section className="text-center space-y-8">
         <motion.div
@@ -21,7 +22,7 @@ export default function TutorialPage() {
            className="inline-flex items-center gap-2 bg-[#FCD34D]/10 border border-[#FCD34D]/20 px-6 py-2 rounded-full text-[#FCD34D] text-xs font-black tracking-widest uppercase"
         >
           <Rocket className="h-4 w-4" />
-          Lộ trình nhiệm vụ
+          Quy trình cài đặt
         </motion.div>
         
         <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight">
@@ -72,8 +73,8 @@ export default function TutorialPage() {
               name="Windows" 
               color="emerald" 
               downloads={[
-                { label: "Windows (x64)", url: "https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/1.15.8-5724687216017408/windows-x64/Antigravity.exe" },
-                { label: "Windows (ARM64)", url: "https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/1.15.8-5724687216017408/windows-arm64/Antigravity.exe" }
+                { label: "Tải bản Windows (x64)", url: "https://github.com/Dokhacgiakhoa/google-antigravity/releases" },
+                { label: "Tải bản Windows (ARM64)", url: "https://github.com/Dokhacgiakhoa/google-antigravity/releases" }
               ]}
               steps={["Phiên bản v2.1.0-beta", "Windows 10 trở lên", "Cài đặt tự động"]} 
             />
@@ -83,8 +84,8 @@ export default function TutorialPage() {
               name="macOS" 
               color="cyan" 
               downloads={[
-                { label: "Apple Silicon", url: "https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/1.15.8-5724687216017408/darwin-arm/Antigravity.dmg" },
-                { label: "Intel Chip", url: "https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/1.15.8-5724687216017408/darwin-x64/Antigravity.dmg" }
+                { label: "Apple Silicon (M1/M2/M3)", url: "https://github.com/Dokhacgiakhoa/google-antigravity/releases" },
+                { label: "Intel Chip (macOS)", url: "https://github.com/Dokhacgiakhoa/google-antigravity/releases" }
               ]}
               steps={["File .dmg vạn năng", "Hỗ trợ macOS 12+", "Đã xác thực Gatekeeper"]} 
             />
@@ -94,7 +95,7 @@ export default function TutorialPage() {
               name="Linux" 
               color="gold" 
               downloads={[
-                { label: "Tải gói cài đặt", url: "https://antigravity.google/download/linux" }
+                { label: "Tải bản Linux", url: "https://github.com/Dokhacgiakhoa/google-antigravity/releases" }
               ]}
               steps={["Ubuntu / Debian (.deb)", "Fedora / RedHat (.rpm)", "Hỗ trợ binary trực tiếp"]} 
             />
@@ -104,7 +105,7 @@ export default function TutorialPage() {
         {/* Phase 2 Header */}
         <div className="text-center space-y-4 pt-12 border-t border-white/5">
           <div className="inline-block px-4 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-black uppercase tracking-widest border border-cyan-500/20">Phase 2</div>
-          <h2 className="text-3xl md:text-5xl font-black text-white">Cài đặt AntiGravity Kit</h2>
+          <h2 className="text-3xl md:text-5xl font-black text-white">Khởi tạo Dự án & Skill</h2>
         </div>
 
         {/* Step 2: Clone Kit */}
@@ -138,7 +139,7 @@ export default function TutorialPage() {
              </div>
 
              <TerminalBlock 
-               command={`npx @vudovn/ag-kit init`} 
+               command={`npx antigravity-ide`} 
              />
              <SetupBox icon={<ShieldCheck />} title="Tự động hoá" desc="Hệ thống sẽ tự động tải thư mục .agent và thiết lập môi trường làm việc chuẩn cho bạn." />
           </div>
@@ -146,10 +147,10 @@ export default function TutorialPage() {
           <div className="lg:col-span-5 space-y-8 lg:text-right flex flex-col items-end">
             <div className="flex items-center gap-6 flex-row-reverse">
               <div className="w-16 h-16 rounded-[2rem] bg-cyan-400 text-black flex items-center justify-center font-black text-3xl shadow-[0_0_30px_rgba(6,182,212,0.4)]">2</div>
-              <h3 className="text-2xl md:text-3xl font-black text-white">Cấu hình Kit</h3>
+              <h3 className="text-2xl md:text-3xl font-black text-white">Thiết lập Project</h3>
             </div>
             <p className="text-white/40 text-base leading-relaxed font-light max-w-md">
-              AntiGravity Kit chứa toàn bộ cấu hình, Prompt mẫu và các kỹ năng nâng cao giúp biến IDE thành siêu trợ lý.
+              Công cụ CLI giúp tự động hoá việc cấu hình dự án, nạp các Prompt mẫu và bộ kỹ năng chuyên sâu vào thư mục .agent.
             </p>
 
             <div className="w-full space-y-4 text-left">
@@ -180,9 +181,9 @@ export default function TutorialPage() {
                   <CheckCircle className="text-cyan-400 h-5 w-5" /> Bao gồm
                 </h4>
                 <ul className="space-y-3">
-                  <li className="text-white/60 text-sm flex items-center gap-2"><div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"/> .agent configuration</li>
-                  <li className="text-white/60 text-sm flex items-center gap-2"><div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"/> 40+ Skills & workflows</li>
-                  <li className="text-white/60 text-sm flex items-center gap-2"><div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"/> CLI Tool included</li>
+                  <li className="text-white/60 text-sm flex items-center gap-2"><div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"/> Cấu hình .agent chuẩn hóa</li>
+                  <li className="text-white/60 text-sm flex items-center gap-2"><div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"/> 40+ Skills & Workflows</li>
+                  <li className="text-white/60 text-sm flex items-center gap-2"><div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"/> Tích hợp sẵn công cụ CLI</li>
                 </ul>
              </div>
           </div>
@@ -193,15 +194,84 @@ export default function TutorialPage() {
           <div className="lg:col-span-12 flex flex-col items-center text-center space-y-12 mb-12">
              <div className="w-24 h-24 rounded-[3rem] bg-emerald-400 text-black flex items-center justify-center font-black text-5xl shadow-[0_0_40px_rgba(16,185,129,0.5)]">3</div>
              <div className="space-y-4">
-                <h2 className="text-4xl md:text-6xl font-black text-white">Hoàn tất!</h2>
-                <p className="text-white/40 text-lg font-light">Mở IDE và bắt đầu dự án đầu tiên của bạn.</p>
+                <h2 className="text-4xl md:text-6xl font-black text-white">Khởi động</h2>
+                <p className="text-white/40 text-lg font-light">Mở IDE và kết nối với trợ lý AI của bạn.</p>
              </div>
           </div>
           
           <div className="lg:col-span-12 grid md:grid-cols-3 gap-8">
-             <LaunchStep number="01" title="Mở Workspace" body="Mở thư mục antigravity-kit vừa tải về trong Google AntiGravity IDE." />
-             <LaunchStep number="02" title="Kiểm tra Agent" body="Mở panel Agent bên phải và xác nhận model Gemini 3 Pro đã sẵn sàng." />
-             <LaunchStep number="03" title="Hello World" body="Gõ lệnh /hello để đánh thức trợ lý của bạn." />
+             <LaunchStep number="01" title="Mở Workspace" body="Mở thư mục dự án vừa được khởi tạo trong Google AntiGravity IDE." />
+             <LaunchStep number="02" title="Kiểm tra Agent" body="Mở panel Agent và xác nhận model AI đã sẵn sàng hoạt động." />
+             <LaunchStep number="03" title="Kích hoạt" body="Gõ lời chào đầu tiên để AI bắt đầu quét cấu trúc dự án của bạn." />
+          </div>
+        </section>
+
+        {/* Phase 4 Header */}
+        <div className="text-center space-y-4 pt-12 border-t border-white/5">
+          <div className="inline-block px-4 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-black uppercase tracking-widest border border-purple-500/20">Phase 4</div>
+          <h2 className="text-3xl md:text-5xl font-black text-white">Nạp tư duy & Kích hoạt Agent</h2>
+        </div>
+
+        {/* Step 4: Mindset Config */}
+        <section className="relative grid lg:grid-cols-12 gap-12 items-start pb-12">
+          <div className="lg:col-span-5 space-y-8 flex flex-col items-start">
+            <div className="flex items-center gap-6">
+              <div className="w-16 h-16 rounded-[2rem] bg-purple-500 text-white flex items-center justify-center font-black text-3xl shadow-[0_0_30px_rgba(168,85,247,0.4)]">4</div>
+              <h3 className="text-2xl md:text-3xl font-black text-white">Cấu hình Rule</h3>
+            </div>
+            <p className="text-white/40 text-base leading-relaxed font-light max-w-md">
+              Để Agent thực sự hiểu dự án, bạn không chỉ tạo file mà phải yêu cầu nó <strong>quét và áp dụng</strong> các quy tắc này vào phiên làm việc hiện tại.
+            </p>
+
+            <div className="card-glass p-8 border-purple-400/20 bg-purple-400/5 text-left w-full space-y-4">
+               <h4 className="text-white font-bold flex items-center gap-2">
+                 <Brain className="text-purple-400 h-5 w-5" /> Quy trình nạp Mindset
+               </h4>
+               <ul className="space-y-4">
+                 <li className="flex gap-3">
+                   <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0"/>
+                   <p className="text-white/60 text-sm"><strong className="text-white">Thiết lập</strong>: Chỉnh sửa các yêu cầu trong <code className="text-purple-400">GEMINI.md</code> và thư mục <code className="text-purple-400">.agent/</code>.</p>
+                 </li>
+                 <li className="flex gap-3">
+                   <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0"/>
+                   <p className="text-white/60 text-sm"><strong className="text-white">Kích hoạt</strong>: Nhắn với Agent câu lệnh ở khung bên phải để nó nạp toàn bộ tư duy vừa cấu hình.</p>
+                 </li>
+               </ul>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 space-y-6">
+             <div className="card-glass p-6 border-emerald-500/20 bg-emerald-500/5 space-y-4 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-3">
+                   <div className="flex gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-500/40 animate-pulse" />
+                      <span className="text-[10px] text-emerald-400/60 font-mono tracking-widest uppercase">Input Command</span>
+                   </div>
+                </div>
+                <h4 className="text-white/40 font-black text-xs uppercase tracking-widest">Gửi lệnh cho Agent</h4>
+                <div className="bg-black/60 p-5 rounded-xl border border-white/5 font-mono text-emerald-400 text-sm md:text-base leading-relaxed shadow-inner">
+                   {`"Hãy đọc toàn bộ file quy tắc trong thư mục .agent và nội dung GEMINI.md, sau đó nạp tư duy này vào phiên làm việc hiện tại của bạn."`}
+                </div>
+                <div className="flex items-center gap-2 text-[10px] text-white/20 italic">
+                   <Info className="w-3 h-3" />
+                   AI sẽ xác nhận "Mindset Loaded" sau khi đọc xong.
+                </div>
+             </div>
+
+             <div className="card-glass p-1 font-mono text-[10px] overflow-hidden border-white/5 opacity-60">
+                <div className="bg-black/20 p-4 rounded-xl">
+                   <div className="space-y-1">
+                      <p className="text-purple-400/80"># GEMINI.md Content</p>
+                      <p className="text-white/40">- Role: Senior Principal Engineer</p>
+                      <p className="text-white/40">- Mindset: Systems thinking, regression-aware</p>
+                   </div>
+                </div>
+             </div>
+
+             <div className="flex items-center gap-4 p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/10">
+                <CheckCircle className="text-emerald-400 h-6 w-6 flex-shrink-0" />
+                <p className="text-white/60 text-sm">Sau bước này, Agent sẽ hoạt động với 100% công suất và đúng "nhân cách" bạn mong muốn.</p>
+             </div>
           </div>
         </section>
       </div>
@@ -305,6 +375,4 @@ function ReqCard({ label, value, detail }: { label: string, value: string, detai
   );
 }
 
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(" ");
-}
+

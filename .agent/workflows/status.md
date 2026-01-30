@@ -1,5 +1,5 @@
 ---
-description: Display agent and project status. Progress tracking and status board.
+description: Trạng thái dự án, tiến độ Agent, dashboard
 ---
 
 # /status - Show Status

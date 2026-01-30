@@ -1,5 +1,5 @@
 ---
-description: Coordinate multiple agents for complex tasks. Use for multi-perspective analysis, comprehensive reviews, or tasks requiring different domain expertise.
+description: Điều phối Agent, giải quyết phức tạp, đa cấu trúc
 ---
 
 # Multi-Agent Orchestration
