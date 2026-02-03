@@ -1,5 +1,5 @@
 ---
-description: Khởi tạo dự án mới, xây dựng nền móng, App Builder
+description: Muốn tạo tính năng mới từ A-Z? Dùng cái này.
 ---
 
 # /create - Create Application

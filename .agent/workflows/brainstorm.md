@@ -1,5 +1,5 @@
 ---
-description: Lên ý tưởng, cấu trúc dự án, khám phá phương án
+description: Bí ý tưởng? Dùng cái này để AI gợi ý.
 ---
 
 # /brainstorm - Structured Idea Exploration

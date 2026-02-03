@@ -1,5 +1,5 @@
 ---
-description: Gỡ lỗi hệ thống, điều tra vấn đề, sửa lỗi
+description: Gặp lỗi khó sửa? Để AI soi log và sửa giúp bạn.
 ---
 
 # /debug - Systematic Problem Investigation

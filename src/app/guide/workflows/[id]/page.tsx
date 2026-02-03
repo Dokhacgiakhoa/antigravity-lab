@@ -1,0 +1,170 @@
+"use client";
+
+import { use } from "react";
+import { motion } from "framer-motion";
+import { ArrowLeft, Terminal, CheckCircle2, PlayCircle, StepForward, AlertTriangle, ListChecks } from "lucide-react";
+import Link from "next/link";
+import { workflowGuides } from "@/data/guide-content";
+import { notFound } from "next/navigation";
+
+export default function WorkflowDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
+  const guide = workflowGuides[id as keyof typeof workflowGuides];
+
+  if (!guide) {
+    notFound();
+  }
+
+  return (
+    <div className="page-container mt-12 pb-24 space-y-12 max-w-5xl mx-auto">
+      <Link href="/guide/workflows" className="inline-flex items-center gap-2 text-white/40 hover:text-white transition-colors group">
+        <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+        Back to Workflows
+      </Link>
+
+      {/* Header */}
+      <section className="space-y-6">
+        <div className="flex items-center gap-4">
+          <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-4xl">
+            {guide.icon}
+          </div>
+          <div>
+            <div className="flex items-center gap-3">
+               <h1 className="text-4xl font-black text-white">{guide.title}</h1>
+               <code className="bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-full text-sm font-black border border-cyan-500/20">
+                  {guide.command}
+               </code>
+            </div>
+            <p className="text-white/40 text-lg mt-1">{guide.description}</p>
+          </div>
+        </div>
+      </section>
+
+      <div className="grid lg:grid-cols-3 gap-12">
+        {/* Left Column: Purpose & Rules */}
+        <div className="lg:col-span-2 space-y-12">
+          {/* Purpose */}
+          <section className="space-y-4">
+             <h2 className="text-2xl font-black text-white border-l-4 border-cyan-500 pl-4 uppercase tracking-wider">Mục đích</h2>
+             <div className="card-glass p-6 bg-white/[0.02]">
+                <p className="text-white/70 leading-relaxed text-lg italic">
+                   "{guide.purpose}"
+                </p>
+             </div>
+          </section>
+
+          {/* Steps */}
+          <section className="space-y-6">
+             <h2 className="text-2xl font-black text-white border-l-4 border-cyan-500 pl-4 uppercase tracking-wider">Các bước thực hiện</h2>
+             <div className="space-y-4">
+                {guide.steps.map((step: any) => (
+                   <motion.div 
+                     key={step.step}
+                     initial={{ opacity: 0, x: -20 }}
+                     whileInView={{ opacity: 1, x: 0 }}
+                     viewport={{ once: true }}
+                     className="flex gap-6 items-start group"
+                   >
+                      <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-500/10 group-hover:border-cyan-500/40 transition-all font-black text-white/40 group-hover:text-cyan-400">
+                         {step.step}
+                      </div>
+                      <div className="pt-1 space-y-1 border-b border-white/5 pb-4 md:flex-1">
+                         <h3 className="text-lg font-black text-white">{step.title}</h3>
+                         <p className="text-white/40 text-sm">{step.desc}</p>
+                      </div>
+                   </motion.div>
+                ))}
+             </div>
+          </section>
+
+          {/* Extra Content (Phases for Debug/Orchestrate) */}
+          {guide.phases && (
+             <section className="space-y-6">
+                <h2 className="text-2xl font-black text-white border-l-4 border-cyan-500 pl-4 uppercase tracking-wider">Quy trình chi tiết</h2>
+                <div className="grid md:grid-cols-2 gap-4">
+                   {guide.phases.map((phase: any, idx: number) => (
+                      <div key={idx} className="card-glass p-6 bg-black/40 border-white/5 space-y-3">
+                         <div className="flex items-center gap-2 text-cyan-400 font-black text-sm uppercase">
+                            <span className="opacity-40">Phase {idx + 1}:</span>
+                            {phase.title || phase.name}
+                         </div>
+                         <p className="text-white/60 text-xs">{phase.desc}</p>
+                         <ul className="space-y-1.5 pt-2 border-t border-white/5">
+                            {(phase.items || phase.agents || []).map((item: any, i: number) => (
+                               <li key={i} className="text-[11px] text-white/40 flex items-center gap-2">
+                                  <div className="w-1 h-1 rounded-full bg-cyan-400/40" />
+                                  {typeof item === 'string' ? item : item.name || item}
+                               </li>
+                            ))}
+                         </ul>
+                      </div>
+                   ))}
+                </div>
+             </section>
+          )}
+        </div>
+
+        {/* Right Column: Rules, Examples, Output */}
+        <div className="space-y-8">
+           {/* Critical Rules */}
+           {guide.criticalRules && (
+              <section className="card-glass p-6 bg-red-500/5 border-red-500/10 space-y-4">
+                 <div className="flex items-center gap-2 text-red-400 font-black uppercase text-sm">
+                    <AlertTriangle className="h-4 w-4" />
+                    Bắt buộc tuân thủ
+                 </div>
+                 <ul className="space-y-3">
+                    {guide.criticalRules.map((rule: string, idx: number) => (
+                       <li key={idx} className="text-xs text-white/60 flex gap-2">
+                          <span className="text-red-400">•</span>
+                          {rule}
+                       </li>
+                    ))}
+                 </ul>
+              </section>
+           )}
+
+           {/* Examples */}
+           <section className="card-glass p-6 bg-cyan-500/5 border-cyan-500/10 space-y-4">
+              <div className="flex items-center gap-2 text-cyan-400 font-black uppercase text-sm">
+                 <Terminal className="h-4 w-4" />
+                 Ví dụ lệnh
+              </div>
+              <div className="space-y-3">
+                 {guide.examples.map((ex: any, idx: number) => (
+                    <div key={idx} className="space-y-1.5 p-3 bg-black/40 rounded border border-white/5 font-mono text-[11px] leading-tight">
+                       <div className="text-cyan-400/80">$ {typeof ex === 'string' ? ex : ex.command}</div>
+                       {ex.output && <div className="text-white/20"># Output: {ex.output}</div>}
+                    </div>
+                 ))}
+              </div>
+           </section>
+
+           {/* Output Info */}
+           {guide.output && (
+              <section className="card-glass p-6 bg-emerald-500/5 border-emerald-500/10 space-y-4">
+                 <div className="flex items-center gap-2 text-emerald-400 font-black uppercase text-sm">
+                    <ListChecks className="h-4 w-4" />
+                    Sản phẩm đầu ra
+                 </div>
+                 <div className="space-y-3">
+                    <div className="p-3 bg-black/40 rounded border border-white/5 flex flex-col gap-1">
+                       <span className="text-[10px] text-white/20 uppercase font-bold">Vị trí</span>
+                       <code className="text-xs text-emerald-400/80 truncate">{guide.output.location}</code>
+                    </div>
+                    <ul className="space-y-1.5">
+                       {guide.output.content.map((c: string, i: number) => (
+                          <li key={i} className="text-xs text-white/60 flex items-center gap-2">
+                             <CheckCircle2 className="h-3 w-3 text-emerald-400" />
+                             {c}
+                          </li>
+                       ))}
+                    </ul>
+                 </div>
+              </section>
+           )}
+        </div>
+      </div>
+    </div>
+  );
+}

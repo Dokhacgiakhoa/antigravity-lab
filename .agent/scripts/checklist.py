@@ -125,6 +125,38 @@ def run_script(name: str, script_path: Path, project_path: str, url: Optional[st
         print_error(f"{name}: ERROR - {str(e)}")
         return {"name": name, "passed": False, "output": "", "error": str(e), "skipped": False}
 
+def run_system_checks(project_path: Path) -> List[dict]:
+    """Run internal system integrity checks"""
+    print_header("🛡️  SYSTEM INTEGRITY")
+    results = []
+    
+    checks = [
+        (".gitattributes", "Cross-platform consistency"),
+        (".editorconfig", "Editor configuration"),
+        ("package.json", "Project manifest"),
+        ("README.md", "Documentation")
+    ]
+    
+    for filename, desc in checks:
+        file_path = project_path / filename
+        exists = file_path.exists() and file_path.is_file()
+        
+        result = {
+            "name": f"System Check: {filename}",
+            "passed": exists,
+            "output": f"Found {filename}" if exists else f"Missing {filename}",
+            "skipped": False
+        }
+        
+        if exists:
+            print_success(f"Found {filename} ({desc})")
+        else:
+            print_error(f"Missing {filename} ({desc})")
+            
+        results.append(result)
+        
+    return results
+
 def print_summary(results: List[dict]):
     """Print final summary report"""
     print_header("📊 CHECKLIST SUMMARY")
@@ -186,6 +218,9 @@ Examples:
     print(f"URL: {args.url if args.url else 'Not provided (performance checks skipped)'}")
     
     results = []
+    
+    # Run System Checks (P0)
+    results.extend(run_system_checks(project_path))
     
     # Run core checks
     print_header("📋 CORE CHECKS")

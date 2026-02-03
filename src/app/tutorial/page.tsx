@@ -1,13 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { 
   Download, Settings, User, Palette, Cpu, Monitor, Globe, FileText, 
   CheckCircle, AlertCircle, Info, Zap, Chrome, Terminal, Rocket,
-  ArrowRight, ShieldCheck, Laptop, ChevronRight, PlayCircle, Brain
+  ArrowRight, ShieldCheck, Laptop, ChevronRight, PlayCircle, Brain,
+  Layers, Database, Sparkles
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import WorkflowExplorer from "./WorkflowExplorer";
 import { TerminalBlock } from "@/components/ui/terminal-block";
 import { cn } from "@/lib/utils";
 
@@ -105,85 +108,135 @@ export default function TutorialPage() {
         {/* Phase 2 Header */}
         <div className="text-center space-y-4 pt-12 border-t border-white/5">
           <div className="inline-block px-4 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-black uppercase tracking-widest border border-cyan-500/20">Phase 2</div>
-          <h2 className="text-3xl md:text-5xl font-black text-white">Khởi tạo Dự án & Skill</h2>
+          <h2 className="text-3xl md:text-5xl font-black text-white">Khởi tạo & Cấu hình</h2>
         </div>
 
         {/* Step 2: Clone Kit */}
         <section className="relative grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-7 order-last lg:order-first grid gap-6">
-             <div className="card-glass p-6 border-cyan-400/20 bg-cyan-400/5 space-y-4">
-               <h4 className="text-white font-bold text-lg flex items-center gap-2">
-                 <Info className="w-5 h-5 text-cyan-400" />
-                 Hướng dẫn chạy lệnh
-               </h4>
-               <ol className="space-y-4 text-white/70 text-sm leading-relaxed">
-                 <li className="flex gap-4 items-start">
-                   <span className="flex-shrink-0 w-6 h-6 rounded-full bg-cyan-400/20 text-cyan-400 flex items-center justify-center font-bold text-xs mt-0.5">1</span>
-                   <span>
-                     Mở Terminal trong Google AntiGravity bằng cách nhấn tổ hợp phím <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-xs border border-white/20">Ctrl</kbd> + <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-xs border border-white/20">`</kbd> (phím bên trái số 1).
-                   </span>
-                 </li>
-                 <li className="flex gap-4 items-start">
-                   <span className="flex-shrink-0 w-6 h-6 rounded-full bg-cyan-400/20 text-cyan-400 flex items-center justify-center font-bold text-xs mt-0.5">2</span>
-                   <span>
-                     Sao chép dòng lệnh bên dưới, dán vào cửa sổ Terminal vừa hiện ra và nhấn phím <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-xs border border-white/20">Enter</kbd>.
-                   </span>
-                 </li>
-                 <li className="flex gap-4 items-start">
-                   <span className="flex-shrink-0 w-6 h-6 rounded-full bg-cyan-400/20 text-cyan-400 flex items-center justify-center font-bold text-xs mt-0.5">3</span>
-                   <span>
-                     Chờ khoảng 1-2 phút để hệ thống tự động tải và cài đặt các tài nguyên cần thiết.
-                   </span>
-                 </li>
-               </ol>
+          <div className="lg:col-span-7 order-last lg:order-first flex flex-col gap-8">
+             {/* Main Command - New Project */}
+             <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                   <div className="w-8 h-8 rounded-full bg-cyan-400/20 flex items-center justify-center text-cyan-400 font-bold border border-cyan-400/30">1</div>
+                   <div>
+                      <h4 className="text-white font-bold text-lg">Khởi tạo Dự án mới (Khuyên dùng)</h4>
+                      <p className="text-white/40 text-xs">Tự động cấu trúc thư mục, cài đặt môi trường và .agent</p>
+                   </div>
+                </div>
+                <TerminalBlock command="npx antigravity-ide my_project" />
              </div>
 
-             <TerminalBlock 
-               command={`npx antigravity-ide`} 
-             />
-             <SetupBox icon={<ShieldCheck />} title="Tự động hoá" desc="Hệ thống sẽ tự động tải thư mục .agent và thiết lập môi trường làm việc chuẩn cho bạn." />
+             {/* Secondary Command - Existing Project */}
+             <div className="space-y-3">
+                 <div className="flex items-center gap-3">
+                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/60 font-bold border border-white/10">2</div>
+                   <div>
+                      <h4 className="text-white font-bold text-lg">Tích hợp vào Dự án có sẵn</h4>
+                      <p className="text-white/40 text-xs">Chạy tại thư mục gốc để nạp Brain vào dự án hiện tại</p>
+                   </div>
+                </div>
+                <TerminalBlock command="npx antigravity-ide" />
+             </div>
+
+             {/* Third Command - Update */}
+             <div className="space-y-3">
+                 <div className="flex items-center gap-3">
+                   <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold border border-purple-500/30">3</div>
+                   <div>
+                      <h4 className="text-white font-bold text-lg">Cập nhật Hệ thống</h4>
+                      <p className="text-white/40 text-xs">Đồng bộ Skill & Rule mới nhất mà không mất cấu hình</p>
+                   </div>
+                </div>
+                <TerminalBlock command="npx antigravity-ide update" />
+             </div>
+             
+             <div className="p-5 rounded-2xl bg-[#FCD34D]/5 border border-[#FCD34D]/20 space-y-4">
+                <h5 className="text-[#FCD34D] font-bold text-sm flex items-center gap-2">
+                   <Info className="w-4 h-4"/> Quy trình Setup Wizard
+                </h5>
+                <div className="space-y-3">
+                  <div className="flex gap-3 items-start">
+                    <span className="text-[#FCD34D] font-mono text-[10px] border border-[#FCD34D]/30 px-1.5 rounded mt-0.5">01</span>
+                    <div className="space-y-1">
+                      <strong className="text-white text-xs block">Quy mô (Project Scale)</strong>
+                      <p className="text-white/50 text-[10px] leading-relaxed">
+                         <span className="text-white/70">Solo-Ninja:</span> Tối ưu tốc độ cho cá nhân. <br/>
+                         <span className="text-white/70">Software-Factory:</span> Kích hoạt quy trình Audit & Compliance nghiêm ngặt.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 items-start">
+                    <span className="text-[#FCD34D] font-mono text-[10px] border border-[#FCD34D]/30 px-1.5 rounded mt-0.5">02</span>
+                     <div className="space-y-1">
+                      <strong className="text-white text-xs block">Danh tính (Agent Identity)</strong>
+                      <p className="text-white/50 text-[10px] leading-relaxed">
+                         Đặt tên riêng cho trợ lý (ví dụ: <em>Jarvis</em>) để tạo sự kết nối chặt chẽ và cá nhân hóa trải nghiệm.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 items-start">
+                    <span className="text-[#FCD34D] font-mono text-[10px] border border-[#FCD34D]/30 px-1.5 rounded mt-0.5">03</span>
+                     <div className="space-y-1">
+                      <strong className="text-white text-xs block">Lĩnh vực (Domain Strategy)</strong>
+                      <p className="text-white/50 text-[10px] leading-relaxed">
+                         Nạp bộ kiến thức chuyên ngành (Fintech, E-commerce, Edtech...) giúp Agent hiểu sâu ngữ cảnh kinh doanh.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 items-start">
+                    <span className="text-[#FCD34D] font-mono text-[10px] border border-[#FCD34D]/30 px-1.5 rounded mt-0.5">04</span>
+                     <div className="space-y-1">
+                      <strong className="text-white text-xs block">Engine Mode</strong>
+                      <p className="text-white/50 text-[10px] leading-relaxed">
+                         <span className="text-white/70">Standard:</span> Môi trường Node.js thuần (Web App). <br/>
+                         <span className="text-white/70">Advanced:</span> Tích hợp Python Runner (AI/Data Science).
+                      </p>
+                    </div>
+                  </div>
+                </div>
+             </div>
+          </div>
           </div>
           
           <div className="lg:col-span-5 space-y-8 lg:text-right flex flex-col items-end">
             <div className="flex items-center gap-6 flex-row-reverse">
               <div className="w-16 h-16 rounded-[2rem] bg-cyan-400 text-black flex items-center justify-center font-black text-3xl shadow-[0_0_30px_rgba(6,182,212,0.4)]">2</div>
-              <h3 className="text-2xl md:text-3xl font-black text-white">Thiết lập Project</h3>
+              <h3 className="text-2xl md:text-3xl font-black text-white">Khởi tạo Project</h3>
             </div>
             <p className="text-white/40 text-base leading-relaxed font-light max-w-md">
-              Công cụ CLI giúp tự động hoá việc cấu hình dự án, nạp các Prompt mẫu và bộ kỹ năng chuyên sâu vào thư mục .agent.
+              Sử dụng CLI thế hệ mới để tương tác trực tiếp với Setup Wizard. Tùy chỉnh danh tính Agent và phạm vi hoạt động.
             </p>
-
-            <div className="w-full space-y-4 text-left">
-                <h4 className="text-white font-bold flex items-center gap-2 justify-end">
-                   Video hướng dẫn <PlayCircle className="text-cyan-400 h-5 w-5" />
-                </h4>
-                <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-cyan-400/20 shadow-2xl group cursor-pointer">
-                  <div className="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-cyan-400/20 backdrop-blur-sm flex items-center justify-center border border-cyan-400/50 group-hover:scale-110 transition-transform">
-                       <PlayCircle className="w-8 h-8 text-cyan-400 fill-cyan-400/20" />
-                    </div>
-                  </div>
-                  {/* Placeholder using BackgroundVideo - In real app, replace with YouTube/Video component */}
-                  <video 
-                    autoPlay 
-                    muted 
-                    loop 
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover opacity-60"
-                  >
-                     <source src="/blackhole.webm" type="video/webm" />
-                  </video>
-                </div>
-             </div>
 
              <div className="card-glass p-8 border-cyan-400/20 bg-cyan-400/5 text-left w-full space-y-4">
                 <h4 className="text-white font-bold flex items-center gap-2">
-                  <CheckCircle className="text-cyan-400 h-5 w-5" /> Bao gồm
+                  <Sparkles className="text-cyan-400 h-5 w-5" /> Tính năng Wizard
                 </h4>
-                <ul className="space-y-3">
-                  <li className="text-white/60 text-sm flex items-center gap-2"><div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"/> Cấu hình .agent chuẩn hóa</li>
-                  <li className="text-white/60 text-sm flex items-center gap-2"><div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"/> 40+ Skills & Workflows</li>
-                  <li className="text-white/60 text-sm flex items-center gap-2"><div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"/> Tích hợp sẵn công cụ CLI</li>
+                <ul className="space-y-4">
+                  <li className="text-white/60 text-sm flex gap-3">
+                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0"/> 
+                    <div>
+                      <strong className="text-white block mb-1">Scale-Adaptive Selection</strong>
+                      Chọn quy mô: Solo-Ninja (Cá nhân), Agile-Squad (Nhóm) hoặc Software-Factory (Doanh nghiệp).
+                    </div>
+                  </li>
+                  <li className="text-white/60 text-sm flex gap-3">
+                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0"/> 
+                    <div>
+                      <strong className="text-white block mb-1">Context Injection</strong>
+                      Đặt tên cho Agent (ví dụ: Jarvis) và xác định lĩnh vực hoạt động (Fintech, Edtech...).
+                    </div>
+                  </li>
+                  <li className="text-white/60 text-sm flex gap-3">
+                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0"/> 
+                    <div>
+                      <strong className="text-white block mb-1">Engine Modes</strong>
+                      Tùy chọn Standard (Node.js) cho Web App hoặc Advanced (Python) cho Data Science.
+                    </div>
+                  </li>
                 </ul>
              </div>
           </div>
@@ -286,6 +339,8 @@ export default function TutorialPage() {
           <ReqCard label="Ổ cứng khả dụng" value="2 GB" detail="Khuyên dùng SSD" />
         </div>
       </section>
+      
+      <WorkflowExplorer />
       
       {/* Final CTA */}
       <section className="text-center py-20 relative">

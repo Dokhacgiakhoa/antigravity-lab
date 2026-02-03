@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
 const nunito = Nunito_Sans({ subsets: ["latin", "vietnamese"] });
 
 export const metadata: Metadata = {
-  title: "Google Antigravity - Bộ não AI Agent tối thượng",
-  description: "Bộ sưu tập hoàn chỉnh các Rules, Skills và Workflows dành cho AI Agent hiện đại. Phát triển bởi Dokhacgiakhoa.",
+  title: "Google Antigravity - Hệ điều hành Trí tuệ cho AI Engineers",
+  description: "Khung vận hành (Orchestration Framework) giúp biến AI thành Đội ngũ Chuyên gia chuyên nghiệp. Quy trình chuẩn PDCA.",
 };
 
 export default function RootLayout({

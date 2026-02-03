@@ -26,7 +26,8 @@ export function BackgroundVideo() {
        </div>
        
        {/* Overlay for better text readability */}
-       <div className="absolute inset-0 bg-gradient-to-b from-[#05070a]/80 via-[#05070a]/40 to-[#05070a]/90" />
+       {/* Overlay for better text readability and Google Blue tint */}
+       <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-[#4285F4]/10 to-black/95" />
        
        {/* Dot texture overlay */}
        <div className="absolute inset-0 bg-[url('/grid-texture.png')] opacity-10" />

@@ -1,5 +1,5 @@
 ---
-description: Triển khai Production, kiểm tra an toàn, phát hành
+description: Code xong rồi? Đẩy lên Server/Vercel thôi.
 ---
 
 # /deploy - Production Deployment

@@ -58,3 +58,23 @@
 ✓ Compiled in 249ms
 ✓ Compiled in 176ms
 ✓ Compiled in 127ms
+✓ Compiled in 141ms
+ GET /tutorial 200 in 789ms (compile: 216ms, render: 573ms)
+ GET /blackhole.webm 404 in 188ms (compile: 15ms, render: 173ms)
+ GET /grid-texture.png 404 in 253ms (compile: 23ms, render: 2Terminate batch job (Y/N)? 
+✓ Compiled in 557ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /blackhole.webm 404 in 184ms (compile: 31ms, render: 153ms)
+ GET /tutorial 200 in 1447ms (compile: 238ms, render: 1208ms)
+ GET /grid-texture.png 404 in 117ms (compile: 10ms, render: 107ms)
+✓ Compiled in 165ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 270ms
+ GET /blackhole.webm 404 in 115ms (compile: 13ms, render: 101ms)
+ GET /tutorial 200 in 816ms (compile: 124ms, render: 692ms)
+ GET /grid-texture.png 404 in 102ms (compile: 11ms, render: 91ms)
+ GET /tutorial 200 in 95ms (compile: 5ms, render: 90ms)
+ GET /blackhole.webm 404 in 313ms (compile: 44ms, render: 269ms)
+ GET /grid-texture.png 404 in 325ms (compile: 158ms, render: 166ms)
+✓ Compiled in 422ms
+ GET /grid-texture.png 404 in 88ms (compile: 17ms, render: 71ms)

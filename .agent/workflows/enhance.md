@@ -1,5 +1,5 @@
 ---
-description: Cập nhật tính năng, phát triển lặp lại, nâng cấp app
+description: Muốn sửa màu, thêm nút, sửa logic nhỏ? Vào đây.
 ---
 
 # /enhance - Update Application

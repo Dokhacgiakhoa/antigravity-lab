@@ -1,5 +1,5 @@
 ---
-description: Chạy kiểm thử, tự động hóa, đảm bảo chất lượng
+description: Sợ bug khi sửa code? Viết test tự động.
 ---
 
 # /test - Test Generation and Execution

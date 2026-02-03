@@ -1,5 +1,5 @@
 ---
-description: Trạng thái dự án, tiến độ Agent, dashboard
+description: Dự án đang đến đâu rồi? Xem Dashboard báo cáo.
 ---
 
 # /status - Show Status

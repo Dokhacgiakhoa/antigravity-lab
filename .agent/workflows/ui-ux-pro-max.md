@@ -1,5 +1,9 @@
 ---
-description: Thiết kế UI/UX, Premium, giao diện cao cấp
+domain: UI/UX
+dna_ref: .shared/ui-ux-pro-max/AESTHETICS.md
+skill_ref: .agent/skills/ui-ux-pro-max-skill/SKILL.md
+rule_ref: rules/frontend.md
+description: Muốn giao diện đẹp (Linear/Magic UI)? Bấm vào đây.
 ---
 
 

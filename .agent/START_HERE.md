@@ -2,7 +2,7 @@
 
 **Welcome to your AI-powered development workspace!**
 
-This project is configured with **550+ AI skills** and intelligent agent routing.
+This project is configured with **26 Master Skills (600+ capabilities)** and intelligent agent routing.
 
 ---
 
@@ -17,14 +17,15 @@ If you're reading this in an AI chat (Claude, Gemini, etc.), **you're good to go
 Type this in your AI chat:
 
 ```
-Read .agent/rules/GEMINI.md and activate all rules and skills
+wake up [agent-name]
 ```
+*(Check .agent/GEMINI.md for the default name or use the one you set during installation)*
 
 The AI will:
-- ✅ Load GEMINI.md (master ruleset)
-- ✅ Enable intelligent agent routing
-- ✅ Activate Socratic Gate for better decisions
-- ✅ Load 550+ specialized skills
+- ✅ Load **GEMINI.md** (Identity & language protocol)
+- ✅ Enable **Scale-Adaptive Architecture**
+- ✅ Activate **Scientific Linkage** (DNA - Rules - Skills)
+- ✅ Load **600+ specialized capabilities**
 
 ---
 
@@ -33,38 +34,33 @@ The AI will:
 ### **Automatic Skill Activation**
 
 The AI will automatically:
-1. Analyze your requests
-2. Select the best specialist agent(s)
-3. Ask clarifying questions when needed
-4. Apply best practices from loaded skills
+1. Analyze your requests.
+2. Select the best specialist agent(s) (Intelligent Routing).
+3. Ask clarifying questions when needed (Socratic Gate).
+4. Apply best practices from the 26 Master Skills.
 
-### **Example:**
+### **PDCA Cycle (Standard Operating Procedure)**
 
-```
-You: "Create a login page"
-
-AI: 🤖 Applying knowledge of @security-auditor + @frontend-specialist...
-
-Before I start, let me ask:
-1. OAuth or traditional email/password?
-2. Need 2FA support?
-3. Dark mode required?
-```
+AI follows a rigorous flow:
+1. **Plan**: Outline the task and create a checklist.
+2. **Do**: Execute the implementation.
+3. **Check**: Verify results against the plan.
+4. **Act**: Refactor, optimize, and finalize.
 
 ---
 
 ## 📋 Available Resources
 
 ### Core Files:
-- `GEMINI.md` - Master ruleset (ALWAYS active)
-- `ARCHITECTURE.md` - System architecture
-- `SKILLS.md` - Complete skills inventory (550+)
+- `GEMINI.md` - Agent Identity & Operational Mode.
+- `ARCHITECTURE.md` - System layout and data flow.
+- `RESOURCES.md` - Important repository links.
 
-### Workflows:
-- `/create` - Create new features
-- `/brainstorm` - Design before coding
-- `/debug` - Systematic debugging
-- `/test` - Generate and run tests
+### Workflows (Slash Commands):
+- `/plan` - Project Planner (Mission Strategy).
+- `/create` - Foundation Builder.
+- `/orchestrate` - Multi-agent coordination.
+- `/ui-ux-pro-max` - Premium Design system.
 
 ---
 
@@ -72,9 +68,9 @@ Before I start, let me ask:
 
 **Type these questions to verify AI is working correctly:**
 
-1. **"What skills do you have?"** → Should list categories
-2. **"How do you handle new feature requests?"** → Should mention Socratic Gate
-3. **"Create a button component"** → Should auto-select frontend-specialist
+1. **"What is your identity?"** → Should confirm the name in GEMINI.md.
+2. **"How do you handle feature requests?"** → Should mention PDCA or Planning.
+3. **"Show me your master skills."** → Should list categories from the .agent/skills folder.
 
 ---
 
@@ -84,23 +80,14 @@ Before I start, let me ask:
 
 **Try this:**
 ```
-Please read and apply rules from .agent/rules/GEMINI.md
+Please read and apply rules from .agent/GEMINI.md and .agent/rules/
 ```
 
-### AI Asks Too Many/Few Questions?
+### AI Communication Language?
 
-**Check if Socratic Gate is active:**
-```
-Are you using the Socratic Gate from GEMINI.md?
-```
-
----
-
-## 🎓 Learn More
-
-- **Skills Inventory**: See `SKILLS.md` for all 550+ skills
-- **Gemini Guide**: See `GEMINI.md` for Gemini-specific setup
-- **Architecture**: See `ARCHITECTURE.md` for system overview
+The system is configured for **"Vỏ Việt - Lõi Anh"**:
+- Giao tiếp với người dùng bằng **Tiếng Việt**.
+- Code và Technical comments bằng **Tiếng Anh**.
 
 ---
 
