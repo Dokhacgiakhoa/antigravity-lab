@@ -23,7 +23,7 @@ interface LinkageProps {
 export function LinkageSection({ data }: LinkageProps) {
   return (
     <section className="w-full py-24 px-4 bg-black/40 border-y border-white/5">
-      <div className="w-[90%] max-w-7xl mx-auto text-center space-y-16">
+      <div className="w-[90%] max-w-7xl mx-auto text-center space-y-8">
         <SectionHeading 
           badge={data.badge}
           title={data.title.main}

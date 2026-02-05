@@ -16,6 +16,7 @@ export const navigation = {
       ]
     },
     { name: "Thuật ngữ", href: "/dictionaries" },
+    { name: "Dự án mẫu", href: "/samples" },
   ],
   footer: [
     {

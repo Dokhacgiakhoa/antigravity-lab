@@ -14,7 +14,7 @@ export function SmartAllocation() {
                 <div className="absolute bottom-[20%] right-[20%] w-96 h-96 bg-[#34A853] rounded-full blur-[150px]" />
             </div>
 
-            <div className="w-[90%] max-w-7xl mx-auto space-y-20 relative z-10">
+            <div className="w-[90%] max-w-7xl mx-auto space-y-10 relative z-10">
                 <SectionHeading 
                     badge="Smart Allocation Logic"
                     title="ĐA DẠNG HÓA"

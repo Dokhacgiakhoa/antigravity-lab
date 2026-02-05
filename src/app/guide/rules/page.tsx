@@ -21,6 +21,21 @@ export default function RulesPage() {
     "🔄": FileText
   };
 
+  const colorMap: Record<string, { color: string; bg: string; border: string; glow: string }> = {
+    "GEMINI": { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", glow: "group-hover:border-blue-500/40" },
+    "security": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "group-hover:border-red-500/40" },
+    "malware-protection": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "group-hover:border-red-500/40" },
+    "error-logging": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "group-hover:border-yellow-500/40" },
+    "docs-update": { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "group-hover:border-emerald-500/40" },
+    "debug": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "group-hover:border-yellow-500/40" },
+    "frontend": { color: "text-cyan-400", bg: "bg-cyan-500/10", border: "border-cyan-500/20", glow: "group-hover:border-cyan-500/40" },
+    "backend": { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", glow: "group-hover:border-blue-500/40" },
+    "business": { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "group-hover:border-emerald-500/40" },
+    "compliance": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "group-hover:border-red-500/40" },
+    "architecture-review": { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", glow: "group-hover:border-blue-500/40" },
+    "system-update": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "group-hover:border-yellow-500/40" },
+  };
+
   return (
     <div className="page-container mt-24 pb-24 space-y-12">
       <div className="text-center space-y-4">
@@ -41,31 +56,43 @@ export default function RulesPage() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
         {rulesList.map((rule, idx) => {
           const Icon = iconMap[rule.icon] || FileText;
+          const googleColors = [
+            { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "group-hover:border-red-500/40" },
+            { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "group-hover:border-yellow-500/40" },
+            { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "group-hover:border-emerald-500/40" },
+            { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", glow: "group-hover:border-blue-500/40" },
+          ];
+          const theme = googleColors[idx % googleColors.length];
+          
           return (
             <Link key={rule.id} href={`/guide/rules/${rule.id}`}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: Math.min(idx * 0.05, 1) }}
-                className="card-glass p-6 space-y-4 bg-gradient-to-br from-white/[0.03] to-transparent hover:from-white/[0.05] group border border-white/5 hover:border-red-500/20 transition-all h-full"
+                className={`card-glass p-8 space-y-6 bg-gradient-to-br from-white/[0.03] to-transparent hover:from-white/[0.05] group border ${theme.border} ${theme.glow} transition-all h-full rounded-3xl pb-10 relative overflow-hidden`}
               >
-                <div className="flex items-start justify-between">
-                  <div className="w-12 h-12 bg-red-500/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Icon className="h-6 w-6 text-red-400" />
+                <div className={`absolute top-0 right-0 w-32 h-32 ${theme.bg} blur-[60px] opacity-0 group-hover:opacity-30 transition-opacity`} />
+                
+                <div className="flex items-start justify-between relative z-10">
+                  <div className={`w-14 h-14 ${theme.bg} border ${theme.border} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg`}>
+                    <Icon className={`h-7 w-7 ${theme.color}`} />
                   </div>
-                  <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border border-red-500/20 text-red-400 bg-red-500/5 uppercase tracking-wide`}>
+                  <span className={`text-[10px] font-black px-3 py-1 rounded-full border ${theme.border} ${theme.color} ${theme.bg} uppercase tracking-widest shadow-sm`}>
                     {rule.type}
                   </span>
                 </div>
-                <div>
-                  <h3 className="text-xl font-black text-white">{rule.name}</h3>
-                  <p className="text-white/60 text-sm leading-relaxed mt-2 italic line-clamp-3">
+                
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-black text-white italic tracking-tight">{rule.name}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed mt-3 font-medium line-clamp-3">
                     {rule.description}
                   </p>
                 </div>
-                <div className="mt-auto pt-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity">
-                   <span className="text-[10px] text-white/20 uppercase font-black tracking-widest">Chi tiết luật</span>
-                   <ArrowRight className="h-4 w-4 text-red-400" />
+
+                <div className="absolute bottom-6 left-8 right-8 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
+                   <span className="text-[10px] text-white/30 uppercase font-black tracking-[0.2em]">Constitution Audit</span>
+                   <ArrowRight className={`h-4 w-4 ${theme.color}`} />
                 </div>
               </motion.div>
             </Link>

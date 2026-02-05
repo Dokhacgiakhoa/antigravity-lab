@@ -2,79 +2,79 @@
 > antigravity-lab@1.0.0 dev
 > next dev
 
-▲ Next.js 16.1.5 (Turbopack)
-- Local:         http://localhost:6789
-- Network:       http://192.168.2.210:6789
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
 
-✓ Starting...
-✓ Ready in 1888ms
- GET / 200 in 2.1s (compile: 1756ms, render: 304ms)
- GET /grid-texture.png 404 in 929ms (compile: 192ms, render: 737ms)
-✓ Compiled in 228ms
- GET / 200 in 183ms (compile: 58ms, render: 126ms)
- GET /tutorial 200 in 176ms (compile: 119ms, render: 57ms)
- GET /blackhole.webm 404 in 289ms (compile: 15ms, render: 274ms)
- GET / 200 in 151ms (compile: 69ms, render: 82ms)
- GET /guide 200 in 154ms (compile: 99ms, render: 55ms)
-✓ Compiled in 414ms
- GET /grid-texture.png 404 in 78ms (compile: 12ms, render: 66ms)
- GET /tutorial 200 in 40ms (compile: 10ms, render: 30ms)
- GET /blackhole.webm 404 in 129ms (compile: 11ms, render: 117ms)
- GET /guide 200 in 75ms (compile: 22ms, render: 53ms)
- GET /concepts 200 in 109ms (compile: 84ms, render: 25ms)
- GET /guide 200 in 159ms (compile: 20ms, render: 138ms)
-✓ Compiled in 381ms
- GET /grid-texture.png 404 in 62ms (compile: 10ms, render: 52ms)
-✓ Compiled in 153ms
-✓ Compiled in 322ms
-✓ Compiled in 393ms
-✓ Compiled in 247ms
- GET /tutorial 200 in 505ms (compile: 222ms, render: 283ms)
- GET /blackhole.webm 404 in 283ms (compile: 23ms, render: 260ms)
- GET / 200 in 276ms (compile: 199ms, render: 77ms)
- GET /tutorial 200 in 48ms (compile: 10ms, render: 39ms)
- GET /blackhole.webm 404 in 147ms (compile: 15ms, render: 131ms)
-✓ Compiled in 817ms
-✓ Compiled in 909ms
- GET /grid-texture.png 404 in 744ms (compile: 432ms, render: 312ms)
- GET / 200 in 102ms (compile: 80ms, render: 22ms)
- GET /tutorial 200 in 92ms (compile: 62ms, render: 29ms)
- GET /blackhole.webm 404 in 81ms (compile: 8ms, render: 73ms)
- GET /guide 200 in 163ms (compile: 117ms, render: 47ms)
- GET /tutorial 200 in 30ms (compile: 5ms, render: 25ms)
- GET /blackhole.webm 404 in 85ms (compile: 10ms, render: 76ms)
- GET / 200 in 28ms (compile: 4ms, render: 25ms)
- GET /tutorial 200 in 31ms (compile: 6ms, render: 25ms)
- GET /blackhole.webm 404 in 99ms (compile: 9ms, render: 91ms)
- GET /concepts 200 in 85ms (compile: 58ms, render: 27ms)
- GET /tutorial 200 in 19ms (compile: 3ms, render: 15ms)
- GET /blackhole.webm 404 in 67ms (compile: 8ms, render: 59ms)
-✓ Compiled in 188ms
-✓ Compiled in 122ms
-✓ Compiled in 110ms
- GET /guide 200 in 48ms (compile: 13ms, render: 35ms)
- GET /tutorial 200 in 121ms (compile: 81ms, render: 40ms)
- GET /blackhole.webm 404 in 78ms (compile: 11ms, render: 68ms)
-✓ Compiled in 249ms
-✓ Compiled in 176ms
-✓ Compiled in 127ms
-✓ Compiled in 141ms
- GET /tutorial 200 in 789ms (compile: 216ms, render: 573ms)
- GET /blackhole.webm 404 in 188ms (compile: 15ms, render: 173ms)
- GET /grid-texture.png 404 in 253ms (compile: 23ms, render: 2Terminate batch job (Y/N)? 
-✓ Compiled in 557ms
-⚠ Fast Refresh had to perform a full reload due to a runtime error.
- GET /blackhole.webm 404 in 184ms (compile: 31ms, render: 153ms)
- GET /tutorial 200 in 1447ms (compile: 238ms, render: 1208ms)
- GET /grid-texture.png 404 in 117ms (compile: 10ms, render: 107ms)
-✓ Compiled in 165ms
-⚠ Fast Refresh had to perform a full reload due to a runtime error.
-✓ Compiled in 270ms
- GET /blackhole.webm 404 in 115ms (compile: 13ms, render: 101ms)
- GET /tutorial 200 in 816ms (compile: 124ms, render: 692ms)
- GET /grid-texture.png 404 in 102ms (compile: 11ms, render: 91ms)
- GET /tutorial 200 in 95ms (compile: 5ms, render: 90ms)
- GET /blackhole.webm 404 in 313ms (compile: 44ms, render: 269ms)
- GET /grid-texture.png 404 in 325ms (compile: 158ms, render: 166ms)
-✓ Compiled in 422ms
- GET /grid-texture.png 404 in 88ms (compile: 17ms, render: 71ms)
+ ✓ Starting...
+ ✓ Ready in 3.4s
+ ○ Compiling / ...
+ ⨯ Failed to find font override values for font `Nunito Sans`
+ ⨯ Failed to find font override values for font `Nunito Sans`
+ ✓ Compiled / in 6.8s (1421 modules)
+ GET / 200 in 7443ms
+ ✓ Compiled in 732ms (698 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 6.4s (1401 modules)
+ GET /grid-texture.png 404 in 6698ms
+ ✓ Compiled /favicon.ico in 262ms (747 modules)
+ GET /favicon.ico 200 in 353ms
+ GET / 200 in 125ms
+ GET /grid-texture.png 404 in 59ms
+ GET /favicon.ico 200 in 16ms
+ ○ Compiling /tutorial ...
+ ✓ Compiled /tutorial in 1154ms (1457 modules)
+ ✓ Compiled in 740ms (1436 modules)
+ ✓ Compiled /_not-found in 174ms (1425 modules)
+ GET /grid-texture.png 404 in 307ms
+ GET /grid-texture.png 404 in 30ms
+ ✓ Compiled in 1747ms (1439 modules)
+ GET /grid-texture.png 404 in 212ms
+ ✓ Compiled in 610ms (1436 modules)
+ ✓ Compiled /_not-found in 172ms (1425 modules)
+ GET /grid-texture.png 404 in 288ms
+ ✓ Compiled in 410ms (1439 modules)
+ GET /grid-texture.png 404 in 124ms
+ GET /tutorial 200 in 87ms
+ GET /grid-texture.png 404 in 20ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 905ms (760 modules)
+ GET /favicon.ico 200 in 1038ms
+ ✓ Compiled in 477ms (1471 modules)
+ GET /grid-texture.png 404 in 90ms
+ GET /tutorial 200 in 72ms
+ GET /grid-texture.png 404 in 25ms
+ GET /favicon.ico 200 in 39ms
+ ✓ Compiled in 390ms (1471 modules)
+ GET /grid-texture.png 404 in 78ms
+ ✓ Compiled in 591ms (1436 modules)
+ ✓ Compiled /_not-found in 192ms (1425 modules)
+ GET /grid-texture.png 404 in 336ms
+ GET /tutorial 200 in 119ms
+ GET /grid-texture.png 404 in 56ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1193ms (760 modules)
+ GET /favicon.ico 200 in 1571ms
+ ✓ Compiled in 723ms (1471 modules)
+ GET /grid-texture.png 404 in 285ms
+ ○ Compiling /guide ...
+ ✓ Compiled /guide in 1485ms (1445 modules)
+ ○ Compiling /guide/workflows/[id] ...
+ ✓ Compiled /guide/workflows/[id] in 530ms (1461 modules)
+ ✓ Compiled in 1539ms (1472 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 659ms (1461 modules)
+ GET /grid-texture.png 404 in 1040ms
+ ✓ Compiled in 297ms (1461 modules)
+ ✓ Compiled in 519ms (1461 modules)
+ ✓ Compiled in 1234ms (1472 modules)
+ ✓ Compiled /_not-found in 489ms (1461 modules)
+ GET /grid-texture.png 404 in 746ms
+ ✓ Compiled in 207ms (1461 modules)
+ ✓ Compiled in 313ms (1475 modules)
+ GET /grid-texture.png 404 in 74ms
+ ○ Compiling /guide/rules ...
+ ✓ Compiled /guide/rules in 1325ms (1485 modules)
+ ✓ Compiled /guide/rules/[id] in 486ms (1492 modules)
+ ✓ Compiled in 273ms (1458 modules)
+ ✓ Compiled in 930ms (1458 modules)
+ ✓ Compiled in 236ms (1458 modules)

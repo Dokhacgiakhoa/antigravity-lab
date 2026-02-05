@@ -5,7 +5,10 @@ import { Navbar } from "@/components/layout/Navbar";
 import { BackgroundVideo } from "@/components/ui/background-video";
 import { cn } from "@/lib/utils";
 
-const nunito = Nunito_Sans({ subsets: ["latin", "vietnamese"] });
+const nunito = Nunito_Sans({ 
+  subsets: ["latin", "vietnamese"],
+  adjustFontFallback: false
+});
 
 export const metadata: Metadata = {
   title: "Google Antigravity - Hệ điều hành Trí tuệ cho AI Engineers",

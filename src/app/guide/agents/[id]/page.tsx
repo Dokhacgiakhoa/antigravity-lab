@@ -1,15 +1,15 @@
 "use client";
 
-import { use } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Bot, BrainCircuit, CheckCircle2, Shield, Settings, Zap, Database, Cloud, Tablet, Gamepad, User, Laptop } from "lucide-react";
 import Link from "next/link";
 import { agentGuides } from "@/data/guide-content";
-import { notFound } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 
-export default function AgentDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
-  const guide = agentGuides[id as keyof typeof agentGuides];
+export default function AgentDetailPage() {
+  const params = useParams();
+  const id = params.id as string;
+  const guide = agentGuides[id as keyof typeof agentGuides] as any;
 
   if (!guide) {
     notFound();
@@ -26,8 +26,48 @@ export default function AgentDetailPage({ params }: { params: Promise<{ id: stri
     "🔧": Settings
   };
 
+  const agentThemeMap: Record<string, { color: string; bg: string; border: string; glow: string; bullet: string }> = {
+    // Plan - Red
+    "orchestrator": { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", glow: "border-blue-500", bullet: "bg-blue-500" },
+    "quality-inspector": { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "border-emerald-500", bullet: "bg-emerald-500" },
+    "project-planner": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "border-red-500", bullet: "bg-red-500" },
+    "product-manager": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "border-red-500", bullet: "bg-red-500" },
+    "product-owner": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "border-red-500", bullet: "bg-red-500" },
+    "documentation-writer": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "border-red-500", bullet: "bg-red-500" },
+    "seo-specialist": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "border-red-500", bullet: "bg-red-500" },
+    "explorer-agent": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "border-red-500", bullet: "bg-red-500" },
+    
+    // Do - Yellow
+    "frontend-specialist": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "border-yellow-500", bullet: "bg-yellow-500" },
+    "backend-specialist": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "border-yellow-500", bullet: "bg-yellow-500" },
+    "database-architect": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "border-yellow-500", bullet: "bg-yellow-500" },
+    "cloud-architect": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "border-yellow-500", bullet: "bg-yellow-500" },
+    "mobile-developer": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "border-yellow-500", bullet: "bg-yellow-500" },
+    "game-developer": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "border-yellow-500", bullet: "bg-yellow-500" },
+    "codebase-expert": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "border-yellow-500", bullet: "bg-yellow-500" },
+    "code-archaeologist": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "border-yellow-500", bullet: "bg-yellow-500" },
+    
+    // Check - Green (Emerald)
+    "security-auditor": { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "border-emerald-500", bullet: "bg-emerald-500" },
+    "penetration-tester": { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "border-emerald-500", bullet: "bg-emerald-500" },
+    "test-engineer": { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "border-emerald-500", bullet: "bg-emerald-500" },
+    "qa-automation-engineer": { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "border-emerald-500", bullet: "bg-emerald-500" },
+    
+    // Act - Blue
+    "devops-engineer": { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", glow: "border-blue-500", bullet: "bg-blue-500" },
+    "performance-optimizer": { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", glow: "border-blue-500", bullet: "bg-blue-500" },
+    "debugger": { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", glow: "border-blue-500", bullet: "bg-blue-500" },
+  };
+
+  const theme = agentThemeMap[id] || { color: "text-white/60", bg: "bg-white/5", border: "border-white/10", glow: "border-white/20", bullet: "bg-white/20" };
   const Icon = iconMap[guide.icon] || Bot;
 
+  const googleColors = [
+    { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", bullet: "bg-red-500" },
+    { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", bullet: "bg-yellow-500" },
+    { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", bullet: "bg-emerald-500" },
+    { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", bullet: "bg-blue-500" },
+  ];
 
   return (
     <div className="page-container mt-12 pb-24 space-y-12 max-w-5xl mx-auto">
@@ -39,13 +79,13 @@ export default function AgentDetailPage({ params }: { params: Promise<{ id: stri
       {/* Header */}
       <section className="space-y-6">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-4xl">
-            <Icon className="h-10 w-10 text-purple-400" />
+          <div className={`w-16 h-16 rounded-2xl ${theme.bg} border ${theme.border} flex items-center justify-center text-4xl`}>
+            <Icon className={`h-10 w-10 ${theme.color}`} />
           </div>
           <div>
             <div className="flex items-center gap-3">
                <h1 className="text-4xl font-black text-white">{guide.name}</h1>
-               <span className="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-black border border-purple-500/20 uppercase tracking-widest">
+               <span className={`${theme.bg} ${theme.color} px-3 py-1 rounded-full text-xs font-black border ${theme.border} uppercase tracking-widest`}>
                   {guide.title}
                </span>
             </div>
@@ -59,7 +99,7 @@ export default function AgentDetailPage({ params }: { params: Promise<{ id: stri
         <div className="lg:col-span-2 space-y-12">
           {/* Role */}
           <section className="space-y-4">
-             <h2 className="text-2xl font-black text-white border-l-4 border-purple-500 pl-4 uppercase tracking-wider">Vai đóng & Trách nhiệm</h2>
+             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Vai đóng & Trách nhiệm</h2>
              <div className="card-glass p-8 bg-white/[0.02]">
                 <p className="text-white/70 leading-relaxed text-lg">
                    {guide.role}
@@ -70,7 +110,7 @@ export default function AgentDetailPage({ params }: { params: Promise<{ id: stri
           {/* Philosophy / Mindset */}
           {(guide.philosophy || guide.mindset) && (
              <section className="space-y-6">
-                <h2 className="text-2xl font-black text-white border-l-4 border-purple-500 pl-4 uppercase tracking-wider">Mindset & Triết lý</h2>
+                <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Mindset & Triết lý</h2>
                 {guide.philosophy && (
                    <p className="text-white/40 italic text-lg pl-8 border-l border-white/10 mb-8">
                      "{guide.philosophy}"
@@ -78,12 +118,15 @@ export default function AgentDetailPage({ params }: { params: Promise<{ id: stri
                 )}
                 {guide.mindset && (
                    <div className="grid md:grid-cols-2 gap-4">
-                      {guide.mindset.map((m: string, idx: number) => (
-                         <div key={idx} className="flex gap-4 p-4 rounded-xl bg-black/40 border border-white/5">
-                            <CheckCircle2 className="h-5 w-5 text-purple-400 flex-shrink-0" />
-                            <span className="text-sm text-white/70">{m}</span>
-                         </div>
-                      ))}
+                      {guide.mindset.map((m: string, idx: number) => {
+                         const itemTheme = googleColors[idx % googleColors.length];
+                         return (
+                            <div key={idx} className={`flex gap-4 p-4 rounded-xl bg-black/40 border border-white/5 group hover:${itemTheme.border} transition-all`}>
+                               <CheckCircle2 className={`h-5 w-5 ${itemTheme.color} flex-shrink-0`} />
+                               <span className="text-sm text-white/70">{m}</span>
+                            </div>
+                         );
+                      })}
                    </div>
                 )}
              </section>
@@ -92,22 +135,25 @@ export default function AgentDetailPage({ params }: { params: Promise<{ id: stri
           {/* Workflow Phases */}
           {guide.workflowPhases && (
              <section className="space-y-6">
-                <h2 className="text-2xl font-black text-white border-l-4 border-purple-500 pl-4 uppercase tracking-wider">Quy trình làm việc</h2>
+                <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Quy trình làm việc</h2>
                 <div className="space-y-4">
-                   {guide.workflowPhases.map((phase: any, idx: number) => (
-                      <div key={idx} className="flex gap-6 relative">
-                         <div className="flex flex-col items-center gap-2">
-                            <div className="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center font-black text-purple-400 text-sm">
-                               {idx}
+                   {guide.workflowPhases.map((phase: any, idx: number) => {
+                      const itemTheme = googleColors[idx % googleColors.length];
+                      return (
+                         <div key={idx} className="flex gap-6 relative">
+                            <div className="flex flex-col items-center gap-2">
+                               <div className={`w-10 h-10 rounded-full ${itemTheme.bg} border ${itemTheme.border} flex items-center justify-center font-black ${itemTheme.color} text-sm`}>
+                                  {idx}
+                               </div>
+                               {idx < guide.workflowPhases.length - 1 && <div className="w-0.5 h-full bg-white/5" />}
                             </div>
-                            {idx < guide.workflowPhases.length - 1 && <div className="w-0.5 h-full bg-white/5" />}
+                            <div className="pb-8 flex-1">
+                               <h3 className={`font-black text-lg ${itemTheme.color}`}>{phase.name}</h3>
+                               <p className="text-white/40 text-sm">{phase.desc}</p>
+                            </div>
                          </div>
-                         <div className="pb-8 flex-1">
-                            <h3 className="text-white font-black text-lg">{phase.name}</h3>
-                            <p className="text-white/40 text-sm">{phase.desc}</p>
-                         </div>
-                      </div>
-                   ))}
+                      );
+                   })}
                 </div>
              </section>
           )}
@@ -116,13 +162,13 @@ export default function AgentDetailPage({ params }: { params: Promise<{ id: stri
         {/* Right Column: Skills & Expertises */}
         <div className="space-y-8">
            {/* Skills */}
-           <section className="card-glass p-6 bg-purple-500/5 border-purple-500/10 space-y-4">
-              <div className="flex items-center gap-2 text-purple-400 font-black uppercase text-sm">
+           <section className={`card-glass p-6 ${theme.bg} border ${theme.border} space-y-4`}>
+              <div className={`flex items-center gap-2 ${theme.color} font-black uppercase text-sm`}>
                  <Zap className="h-4 w-4" />
                  Bộ Kỹ Năng (Skills)
               </div>
               <div className="flex flex-wrap gap-2">
-                 {guide.skills.map((skill: string, idx: number) => (
+                 {(guide.skills || []).map((skill: string, idx: number) => (
                     <span key={idx} className="text-[10px] font-mono bg-black/40 border border-white/5 px-2 py-1 rounded text-white/40">
                        {skill}
                     </span>
@@ -133,12 +179,12 @@ export default function AgentDetailPage({ params }: { params: Promise<{ id: stri
            {/* Expertise Areas */}
            {guide.expertiseAreas && (
               <section className="space-y-6">
-                 <h2 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] px-2">Expertise Areas</h2>
+                 <h2 className={`text-xs font-black ${theme.color} uppercase tracking-[0.2em] px-2 opacity-60`}>Expertise Areas</h2>
                  <div className="space-y-4">
                     {guide.expertiseAreas.map((exp: any, idx: number) => (
-                       <div key={idx} className="card-glass p-5 bg-black/60 border-white/5 space-y-3">
+                       <div key={idx} className="card-glass p-5 bg-black/60 border border-white/5 space-y-3">
                           <h4 className="text-white font-bold text-sm flex items-center gap-2">
-                             <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                             <div className={`w-1.5 h-1.5 rounded-full ${theme.bullet}`} />
                              {exp.area}
                           </h4>
                           <div className="flex flex-wrap gap-1.5">
@@ -161,7 +207,7 @@ export default function AgentDetailPage({ params }: { params: Promise<{ id: stri
                  <ul className="space-y-2">
                     {guide.expertise.map((exp: string, idx: number) => (
                        <li key={idx} className="text-xs text-white/60 flex gap-2">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0" />
+                          <CheckCircle2 className={`h-3.5 w-3.5 ${theme.color} flex-shrink-0`} />
                           {exp}
                        </li>
                     ))}

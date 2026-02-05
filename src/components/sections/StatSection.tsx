@@ -23,7 +23,7 @@ interface StatSectionProps {
 
 export function StatSection({ data }: StatSectionProps) {
   return (
-    <section className="w-full py-16 px-4">
+    <section className="w-full pt-16 pb-8 px-4">
       <div className="w-[90%] max-w-7xl mx-auto grid gap-6 md:grid-cols-3">
         {data.map((item, idx) => (
           <StatCard 

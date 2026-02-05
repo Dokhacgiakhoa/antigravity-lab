@@ -70,7 +70,7 @@ function FeatureCard({ feature, index }: { feature: any, index: number }) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       className={cn(
-        "group relative p-8 rounded-[2rem] border border-white/10 bg-[#0A0A0A] overflow-hidden transition-all duration-500",
+        "group relative p-8 rounded-[2rem] border border-white/10 bg-black/40 hover:bg-black/70 backdrop-blur-3xl overflow-hidden transition-all duration-500",
         colorMap[feature.color],
         feature.colSpan
       )}

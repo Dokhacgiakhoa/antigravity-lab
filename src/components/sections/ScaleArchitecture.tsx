@@ -32,7 +32,7 @@ export function ScaleArchitecture({ data }: ArchitectureProps) {
   const [activeMode, setActiveMode] = useState(0);
 
   return (
-    <section className="w-full py-24 px-4 relative">
+    <section className="w-full pt-8 pb-24 px-4 relative">
       <div className="w-[90%] max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         {/* Left: Text Content */}
         <div className="space-y-10">
@@ -65,7 +65,7 @@ export function ScaleArchitecture({ data }: ArchitectureProps) {
         <div className="relative h-[650px] w-full flex items-center justify-center">
           <div className="absolute inset-0 bg-gradient-to-tr from-[#4285F4]/5 via-transparent to-[#EA4335]/5 rounded-full blur-3xl opacity-30" />
            
-           <div className="relative z-10 w-full h-full border border-white/10 bg-[#0A0A0A]/80 backdrop-blur-md rounded-[2.5rem] p-8 flex flex-col shadow-2xl overflow-hidden">
+           <div className="relative z-10 w-full h-full border border-white/10 bg-black/40 backdrop-blur-3xl rounded-[2.5rem] p-8 flex flex-col shadow-2xl overflow-hidden">
               {/* Header for Visualizer */}
               <div className="flex justify-between items-center mb-8 pb-6 border-b border-white/5">
                 <div className="flex gap-2 items-center">
@@ -448,8 +448,17 @@ function FactoryPacket({ pathX, pathY, delay, color }: { pathX: string[], pathY:
 
     useEffect(() => {
         const sequence = async () => {
+            const safeAnimate = async (target: any, props: any, options?: any) => {
+                if (!target) return;
+                try {
+                    await animate(target, props, options);
+                } catch (e) {
+                    // Ignore errors if component is unmounted
+                }
+            };
+
             // Initial State (Hidden)
-            await animate(scope.current, { opacity: 0, left: pathX[0], top: pathY[0] }, { duration: 0 });
+            await safeAnimate(scope.current, { opacity: 0, left: pathX[0], top: pathY[0] }, { duration: 0 });
             
             // Wait for start delay
             if (delay > 0) {
@@ -458,37 +467,43 @@ function FactoryPacket({ pathX, pathY, delay, color }: { pathX: string[], pathY:
 
             while (scope.current) { // Infinite Loop
                 // Reset to start
-                await animate(scope.current, { opacity: 0, left: pathX[0], top: pathY[0] }, { duration: 0 });
+                await safeAnimate(scope.current, { opacity: 0, left: pathX[0], top: pathY[0] }, { duration: 0 });
                 
                 // Appear
-                await animate(scope.current, { opacity: 1 }, { duration: 0.2 });
+                await safeAnimate(scope.current, { opacity: 1 }, { duration: 0.2 });
 
                 // Segment 1: Vertical Down (0 -> 1)
                 // Duration: 0.6s
                 if (pathY[1] !== pathY[0]) {
-                     await animate(scope.current, { top: pathY[1] }, { duration: 0.6, ease: "linear" });
+                     await safeAnimate(scope.current, { top: pathY[1] }, { duration: 0.6, ease: "linear" });
                 } else {
                      await new Promise(r => setTimeout(r, 600));
                 }
+
+                if (!scope.current) break;
 
                 // Segment 2: Horizontal (1 -> 2)
                 // Duration: 1.8s
                 if (pathX[2] && pathX[2] !== pathX[1]) {
-                    await animate(scope.current, { left: pathX[2] }, { duration: 1.8, ease: "linear" });
+                    await safeAnimate(scope.current, { left: pathX[2] }, { duration: 1.8, ease: "linear" });
                 } else {
                     await new Promise(r => setTimeout(r, 1800));
                 }
 
+                if (!scope.current) break;
+
                 // Segment 3: Vertical Final (2 -> 3)
                 // Duration: 0.6s
                 if (pathY[3] && pathY[3] !== pathY[2]) {
-                    await animate(scope.current, { top: pathY[3] }, { duration: 0.6, ease: "linear" });
+                    await safeAnimate(scope.current, { top: pathY[3] }, { duration: 0.6, ease: "linear" });
                 } else {
                      await new Promise(r => setTimeout(r, 600));
                 }
 
+                if (!scope.current) break;
+
                 // Disappear
-                await animate(scope.current, { opacity: 0 }, { duration: 0.2 });
+                await safeAnimate(scope.current, { opacity: 0 }, { duration: 0.2 });
                 
                 // Loop Delay
                 await new Promise(resolve => setTimeout(resolve, 1000));

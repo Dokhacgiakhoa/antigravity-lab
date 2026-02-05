@@ -1,7 +1,8 @@
 import { 
   BookOpen, Sparkles, ArrowRight, Search,
   Cpu, Layers, MessageSquare, Zap, Terminal, Globe, Shield, Activity,
-  Briefcase, Scale, Cloud, Database, Server, Brain, Rocket, FileText, CheckCircle, Palette, ShieldCheck, User, Monitor
+  Briefcase, Scale, Cloud, Database, Server, Brain, Rocket, FileText, CheckCircle, Palette, ShieldCheck, User, Monitor,
+  Link, Lock, Microscope, RefreshCw
 } from "lucide-react";
 
 export const TERMS_DATA = [
@@ -80,6 +81,26 @@ export const TERMS_DATA = [
       { id: "mod-security-armor", term: "security-armor", desc: "Giao thức bảo mật, mã hóa và kiểm soát truy cập.", icon: <ShieldCheck /> },
       { id: "mod-infra", term: "infra-blueprints", desc: "Mẫu kiến trúc hạ tầng Terraform/Docker chuẩn Enterprise.", icon: <Server /> },
       { id: "mod-vitals", term: "vitals-templates", desc: "Tiêu chuẩn hiệu năng và Core Web Vitals.", icon: <Activity /> }
+    ]
+  },
+  {
+    category: "Advanced Tech",
+    icon: <Cpu className="h-4 w-4" />,
+    items: [
+      { id: "mcp", term: "MCP (Model Context Protocol)", desc: "Giao thức kết nối AI Agent với các nguồn dữ liệu bên ngoài (File system, DB, API) một cách an toàn và chuẩn hóa.", icon: <Link /> },
+      { id: "agentic-workflow", term: "Agentic Workflow", desc: "Quy trình làm việc tự trị của AI: Tự lập kế hoạch, tự gọi công cụ và tự kiểm tra kết quả.", icon: <RefreshCw /> },
+      { id: "rag", term: "RAG (Retrieval-Augmented Generation)", desc: "Kỹ thuật giúp AI truy xuất thông tin từ tài liệu nội bộ trước khi phản hồi, đảm bảo độ chính xác 100%.", icon: <Database /> },
+      { id: "geo", term: "GEO (AI Search Optimization)", desc: "Tối ưu hóa sự hiện diện của ứng dụng trên các bộ máy tìm kiếm thế hệ mới như Perplexity và ChatGPT.", icon: <Search /> },
+      { id: "sast-dast", term: "SAST/DAST", desc: "Các phương pháp kiểm thử bảo mật tĩnh và động để phát hiện lỗ hổng ngay trong lúc code và khi chạy ứng dụng.", icon: <ShieldCheck /> }
+    ]
+  },
+  {
+    category: "System Mindset",
+    icon: <Sparkles className="h-4 w-4" />,
+    items: [
+      { id: "systems-thinking", term: "Systems Thinking", desc: "Tư duy hệ thống: Nhìn nhận dự án như một thực thể nhất thể, tránh các bản vá lỗi cục bộ gây hỏng hệ thống.", icon: <Activity /> },
+      { id: "regression-prevention", term: "Regression Prevention", desc: "Giao thức phòng ngừa lỗi hồi quy: Đảm bảo các tính năng mới không làm hỏng các logic đã ổn định trước đó.", icon: <Lock /> },
+      { id: "grounding", term: "Grounding", desc: "Kỹ thuật 'neo đậu' câu trả lời của AI vào dữ liệu thực tế tại workspace, ngăn chặn sự mơ hồ hoặc ảo giác.", icon: <Microscope /> }
     ]
   }
 ];

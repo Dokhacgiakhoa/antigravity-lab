@@ -53,6 +53,10 @@ Vui lòng sử dụng các kỹ năng phù hợp nhất cho **Phát triển chun
 11. **Testing Master**: Chiến lược TDD & E2E.
 12. **UI/UX Pro Max**: Tương tác nâng cao.
 13. **Vitals Templates**: Tiêu chuẩn Hiệu năng.
+14. **Malware Protection**: Chống mã độc & Phishing.
+15. **Auto-Update**: Giao thức tự bảo trì.
+16. **Error Logging**: Hệ thống tự học từ lỗi.
+17. **Docs Sync**: Đồng bộ tài liệu.
 
 ## Hướng dẫn tùy chỉnh
 

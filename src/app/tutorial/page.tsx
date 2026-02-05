@@ -5,7 +5,7 @@ import {
   Download, Settings, User, Palette, Cpu, Monitor, Globe, FileText, 
   CheckCircle, AlertCircle, Info, Zap, Chrome, Terminal, Rocket,
   ArrowRight, ShieldCheck, Laptop, ChevronRight, PlayCircle, Brain,
-  Layers, Database, Sparkles
+  Layers, Database, Sparkles, Bot
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -16,9 +16,9 @@ import { cn } from "@/lib/utils";
 
 export default function TutorialPage() {
   return (
-    <div className="page-container mt-12 space-y-20 pb-24">
+    <div className="page-container mt-8 space-y-12 pb-16">
       {/* Header Section */}
-      <section className="text-center space-y-8">
+      <section className="text-center space-y-4">
         <motion.div
            initial={{ opacity: 0, y: -20 }}
            animate={{ opacity: 1, y: 0 }}
@@ -38,295 +38,377 @@ export default function TutorialPage() {
       </section>
 
       {/* Steps Timeline */}
-      <div className="relative w-full mx-auto space-y-20">
+      <div className="relative w-full mx-auto space-y-4">
         
-        {/* Phase 1 Header */}
-        <div className="text-center space-y-6 mt-12">
-          <div className="inline-block px-4 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-black uppercase tracking-widest border border-emerald-500/20">Phase 1</div>
-          <h2 className="text-3xl md:text-5xl font-black text-white">Cài đặt Google AntiGravity</h2>
-        </div>
+           <div className="relative z-10 pt-4 pb-1 text-center">
+             <div className="inline-block px-6 py-2 rounded-full bg-rose-500/10 text-rose-400 text-base font-black uppercase tracking-widest border border-rose-500/20 mb-3">Phase 1</div>
+             <h2 className="text-3xl md:text-4xl font-black text-rose-400 italic uppercase tracking-tighter leading-none mb-2">Cài đặt Google AntiGravity</h2>
+             <p className="text-white/70 text-lg leading-normal font-light max-w-xl mx-auto">
+               Lựa chọn phiên bản phù hợp với hệ điều hành của bạn để bắt đầu.
+             </p>
+          </div>
 
         {/* Step 1: Download IDE */}
-        <section className="space-y-8">
-          <div className="flex flex-col md:flex-row md:items-center gap-6">
-             <div className="w-16 h-16 rounded-[2rem] bg-[#FCD34D] text-black flex items-center justify-center font-black text-3xl shadow-[0_0_30px_rgba(252,211,77,0.4)] flex-shrink-0">1</div>
-             <div>
-               <h3 className="text-2xl md:text-3xl font-black text-white">Tải AntiGravity IDE</h3>
-               <p className="text-white/40 text-base leading-relaxed font-light mt-2 max-w-2xl">
-                Tải bộ cài AntiGravity chính thức. Hỗ trợ đa hệ điều hành với công nghệ nén tối ưu.
-               </p>
-             </div>
-          </div>
-
-          <div className="relative w-full rounded-3xl overflow-hidden border border-white/5 shadow-2xl">
-             <Image 
-               src="/antigravity-ide.png" 
-               alt="AntiGravity IDE Interface" 
-               width={0}
-               height={0}
-               sizes="100vw"
-               style={{ width: '100%', height: 'auto' }}
-             />
-             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-          </div>
+        <section className="space-y-6 relative">
 
           <div className="grid md:grid-cols-3 gap-6">
             <OSCard 
-              icon={<Monitor className="h-8 w-8 text-emerald-400" />} 
+              icon={<Monitor className="text-cyan-400 h-8 w-8" />} 
               name="Windows" 
-              color="emerald" 
-              downloads={[
-                { label: "Tải bản Windows (x64)", url: "https://github.com/Dokhacgiakhoa/google-antigravity/releases" },
-                { label: "Tải bản Windows (ARM64)", url: "https://github.com/Dokhacgiakhoa/google-antigravity/releases" }
-              ]}
-              steps={["Phiên bản v2.1.0-beta", "Windows 10 trở lên", "Cài đặt tự động"]} 
-            />
-            
-            <OSCard 
-              icon={<Laptop className="h-8 w-8 text-cyan-400" />} 
-              name="macOS" 
               color="cyan" 
+              steps={["Universal Windows Platform", "64-bit Architecture", "Windows AI Ready"]}
               downloads={[
-                { label: "Apple Silicon (M1/M2/M3)", url: "https://github.com/Dokhacgiakhoa/google-antigravity/releases" },
-                { label: "Intel Chip (macOS)", url: "https://github.com/Dokhacgiakhoa/google-antigravity/releases" }
+                { label: "Tải bộ cài .exe", url: "#" },
+                { label: "Portable (.zip)", url: "#" }
               ]}
-              steps={["File .dmg vạn năng", "Hỗ trợ macOS 12+", "Đã xác thực Gatekeeper"]} 
             />
-
             <OSCard 
-              icon={<Terminal className="h-8 w-8 text-[#FCD34D]" />} 
-              name="Linux" 
+              icon={<Laptop className="text-[#FCD34D] h-8 w-8" />} 
+              name="macOS" 
               color="gold" 
+              steps={["Apple Silicon (M1/M2/M3)", "Intel Chip Architecture", "Signed & Notarized"]}
               downloads={[
-                { label: "Tải bản Linux", url: "https://github.com/Dokhacgiakhoa/google-antigravity/releases" }
+                { label: "Download .dmg", url: "#" }
               ]}
-              steps={["Ubuntu / Debian (.deb)", "Fedora / RedHat (.rpm)", "Hỗ trợ binary trực tiếp"]} 
             />
+            <OSCard 
+              icon={<Globe className="text-emerald-500 h-8 w-8" />} 
+              name="Linux" 
+              color="emerald" 
+              steps={["AppImage Portable", "Debian Package (.deb)", "RPM Package (.rpm)"]}
+              downloads={[
+                { label: "Download AppImage", url: "#" }
+              ]}
+            />
+          </div>
+          
+          {/* Screenshot Preview */}
+          <div className="mt-6 relative rounded-2xl overflow-hidden border border-white/10 shadow-xl shadow-rose-500/5">
+            <Image 
+              src="/antigravity-ide.png"
+              alt="Google Antigravity IDE Interface"
+              width={1920}
+              height={1080}
+              className="w-full h-auto"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent pointer-events-none" />
           </div>
         </section>
 
-        {/* Phase 2 Header */}
-        <div className="text-center space-y-4 pt-12 border-t border-white/5">
-          <div className="inline-block px-4 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-black uppercase tracking-widest border border-cyan-500/20">Phase 2</div>
-          <h2 className="text-3xl md:text-5xl font-black text-white">Khởi tạo & Cấu hình</h2>
-        </div>
+         {/* Phase 2 Header */}
+         <div className="text-center space-y-3 pt-8 border-t border-white/5">
+           <div className="inline-block px-6 py-2 rounded-full bg-amber-500/10 text-amber-400 text-base font-black uppercase tracking-widest border border-amber-500/20">Phase 2</div>
+           <h2 className="text-3xl md:text-4xl font-black text-amber-400 italic uppercase tracking-tighter">Khởi tạo & Cấu hình</h2>
+         </div>
 
-        {/* Step 2: Clone Kit */}
-        <section className="relative grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-7 order-last lg:order-first grid gap-6">
-          <div className="lg:col-span-7 order-last lg:order-first flex flex-col gap-8">
-             {/* Main Command - New Project */}
-             <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                   <div className="w-8 h-8 rounded-full bg-cyan-400/20 flex items-center justify-center text-cyan-400 font-bold border border-cyan-400/30">1</div>
+        {/* Step 2: Khởi tạo Project */}
+        <section className="space-y-6">
+          <div className="relative z-10">
+            <h3 className="text-2xl md:text-3xl font-black text-amber-400 italic uppercase leading-tight">Khởi tạo Project</h3>
+            <p className="text-white/40 text-base leading-relaxed font-light mt-2 max-w-2xl">
+              Chọn phương thức phù hợp với trạng thái dự án của bạn để nạp hệ điều hành Antigravity.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+             {/* Way 01 - Emerald (Fresh Start) */}
+             <div className="space-y-6 p-8 rounded-3xl bg-emerald-500/5 border border-emerald-500/10 hover:bg-emerald-500/10 transition-all flex flex-col h-full">
+                <div className="space-y-4 flex-grow">
+                   <div className="px-3 py-1 inline-block rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-xs font-black border border-emerald-500/30 uppercase tracking-tighter">Cách 01</div>
                    <div>
-                      <h4 className="text-white font-bold text-lg">Khởi tạo Dự án mới (Khuyên dùng)</h4>
-                      <p className="text-white/40 text-xs">Tự động cấu trúc thư mục, cài đặt môi trường và .agent</p>
+                      <h4 className="text-emerald-400 font-black text-xl italic uppercase tracking-tight mb-2">Dự án mới</h4>
+                      <p className="text-white/60 text-sm font-medium leading-relaxed">Lý tưởng khi bắt đầu từ con số 0. Tự động cấu trúc thư mục & .agent</p>
                    </div>
                 </div>
                 <TerminalBlock command="npx antigravity-ide my_project" />
              </div>
 
-             {/* Secondary Command - Existing Project */}
-             <div className="space-y-3">
-                 <div className="flex items-center gap-3">
-                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/60 font-bold border border-white/10">2</div>
+             {/* Way 02 - Sky (Modern Integration) */}
+             <div className="space-y-6 p-8 rounded-3xl bg-sky-500/5 border border-sky-500/10 hover:bg-sky-500/10 transition-all flex flex-col h-full">
+                <div className="space-y-4 flex-grow">
+                   <div className="px-3 py-1 inline-block rounded-full bg-sky-500/20 text-sky-400 font-mono text-xs font-black border border-sky-500/30 uppercase tracking-tighter">Cách 02</div>
                    <div>
-                      <h4 className="text-white font-bold text-lg">Tích hợp vào Dự án có sẵn</h4>
-                      <p className="text-white/40 text-xs">Chạy tại thư mục gốc để nạp Brain vào dự án hiện tại</p>
+                      <h4 className="text-sky-400 font-black text-xl italic uppercase tracking-tight mb-2">Tích hợp sẵn</h4>
+                      <p className="text-white/60 text-sm font-medium leading-relaxed">Nạp Brain vào dự án hiện tại mà không làm ảnh hưởng đến code cũ.</p>
                    </div>
                 </div>
                 <TerminalBlock command="npx antigravity-ide" />
              </div>
 
-             {/* Third Command - Update */}
-             <div className="space-y-3">
-                 <div className="flex items-center gap-3">
-                   <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold border border-purple-500/30">3</div>
+             {/* Way 03 - Amber (Maintenance) */}
+             <div className="space-y-6 p-8 rounded-3xl bg-amber-500/5 border border-amber-500/10 hover:bg-amber-500/10 transition-all flex flex-col h-full">
+                <div className="space-y-4 flex-grow">
+                   <div className="px-3 py-1 inline-block rounded-full bg-amber-500/20 text-amber-400 font-mono text-xs font-black border border-amber-500/30 uppercase tracking-tighter">Cách 03</div>
                    <div>
-                      <h4 className="text-white font-bold text-lg">Cập nhật Hệ thống</h4>
-                      <p className="text-white/40 text-xs">Đồng bộ Skill & Rule mới nhất mà không mất cấu hình</p>
+                      <h4 className="text-amber-400 font-black text-xl italic uppercase tracking-tight mb-2">Cập nhật</h4>
+                      <p className="text-white/60 text-sm font-medium leading-relaxed">Đồng bộ Skill & Rule mới nhất từ Cloud Antigravity.</p>
                    </div>
                 </div>
                 <TerminalBlock command="npx antigravity-ide update" />
              </div>
-             
-             <div className="p-5 rounded-2xl bg-[#FCD34D]/5 border border-[#FCD34D]/20 space-y-4">
-                <h5 className="text-[#FCD34D] font-bold text-sm flex items-center gap-2">
-                   <Info className="w-4 h-4"/> Quy trình Setup Wizard
-                </h5>
-                <div className="space-y-3">
-                  <div className="flex gap-3 items-start">
-                    <span className="text-[#FCD34D] font-mono text-[10px] border border-[#FCD34D]/30 px-1.5 rounded mt-0.5">01</span>
-                    <div className="space-y-1">
-                      <strong className="text-white text-xs block">Quy mô (Project Scale)</strong>
-                      <p className="text-white/50 text-[10px] leading-relaxed">
-                         <span className="text-white/70">Solo-Ninja:</span> Tối ưu tốc độ cho cá nhân. <br/>
-                         <span className="text-white/70">Software-Factory:</span> Kích hoạt quy trình Audit & Compliance nghiêm ngặt.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3 items-start">
-                    <span className="text-[#FCD34D] font-mono text-[10px] border border-[#FCD34D]/30 px-1.5 rounded mt-0.5">02</span>
-                     <div className="space-y-1">
-                      <strong className="text-white text-xs block">Danh tính (Agent Identity)</strong>
-                      <p className="text-white/50 text-[10px] leading-relaxed">
-                         Đặt tên riêng cho trợ lý (ví dụ: <em>Jarvis</em>) để tạo sự kết nối chặt chẽ và cá nhân hóa trải nghiệm.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3 items-start">
-                    <span className="text-[#FCD34D] font-mono text-[10px] border border-[#FCD34D]/30 px-1.5 rounded mt-0.5">03</span>
-                     <div className="space-y-1">
-                      <strong className="text-white text-xs block">Lĩnh vực (Domain Strategy)</strong>
-                      <p className="text-white/50 text-[10px] leading-relaxed">
-                         Nạp bộ kiến thức chuyên ngành (Fintech, E-commerce, Edtech...) giúp Agent hiểu sâu ngữ cảnh kinh doanh.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3 items-start">
-                    <span className="text-[#FCD34D] font-mono text-[10px] border border-[#FCD34D]/30 px-1.5 rounded mt-0.5">04</span>
-                     <div className="space-y-1">
-                      <strong className="text-white text-xs block">Engine Mode</strong>
-                      <p className="text-white/50 text-[10px] leading-relaxed">
-                         <span className="text-white/70">Standard:</span> Môi trường Node.js thuần (Web App). <br/>
-                         <span className="text-white/70">Advanced:</span> Tích hợp Python Runner (AI/Data Science).
-                      </p>
-                    </div>
-                  </div>
-                </div>
-             </div>
-          </div>
-          </div>
-          
-          <div className="lg:col-span-5 space-y-8 lg:text-right flex flex-col items-end">
-            <div className="flex items-center gap-6 flex-row-reverse">
-              <div className="w-16 h-16 rounded-[2rem] bg-cyan-400 text-black flex items-center justify-center font-black text-3xl shadow-[0_0_30px_rgba(6,182,212,0.4)]">2</div>
-              <h3 className="text-2xl md:text-3xl font-black text-white">Khởi tạo Project</h3>
-            </div>
-            <p className="text-white/40 text-base leading-relaxed font-light max-w-md">
-              Sử dụng CLI thế hệ mới để tương tác trực tiếp với Setup Wizard. Tùy chỉnh danh tính Agent và phạm vi hoạt động.
-            </p>
-
-             <div className="card-glass p-8 border-cyan-400/20 bg-cyan-400/5 text-left w-full space-y-4">
-                <h4 className="text-white font-bold flex items-center gap-2">
-                  <Sparkles className="text-cyan-400 h-5 w-5" /> Tính năng Wizard
-                </h4>
-                <ul className="space-y-4">
-                  <li className="text-white/60 text-sm flex gap-3">
-                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0"/> 
-                    <div>
-                      <strong className="text-white block mb-1">Scale-Adaptive Selection</strong>
-                      Chọn quy mô: Solo-Ninja (Cá nhân), Agile-Squad (Nhóm) hoặc Software-Factory (Doanh nghiệp).
-                    </div>
-                  </li>
-                  <li className="text-white/60 text-sm flex gap-3">
-                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0"/> 
-                    <div>
-                      <strong className="text-white block mb-1">Context Injection</strong>
-                      Đặt tên cho Agent (ví dụ: Jarvis) và xác định lĩnh vực hoạt động (Fintech, Edtech...).
-                    </div>
-                  </li>
-                  <li className="text-white/60 text-sm flex gap-3">
-                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0"/> 
-                    <div>
-                      <strong className="text-white block mb-1">Engine Modes</strong>
-                      Tùy chọn Standard (Node.js) cho Web App hoặc Advanced (Python) cho Data Science.
-                    </div>
-                  </li>
-                </ul>
-             </div>
           </div>
         </section>
 
-        {/* Step 3: Launch */}
-        <section className="relative grid lg:grid-cols-12 gap-12 items-start pt-12 border-t border-white/5">
-          <div className="lg:col-span-12 flex flex-col items-center text-center space-y-12 mb-12">
-             <div className="w-24 h-24 rounded-[3rem] bg-emerald-400 text-black flex items-center justify-center font-black text-5xl shadow-[0_0_40px_rgba(16,185,129,0.5)]">3</div>
-             <div className="space-y-4">
-                <h2 className="text-4xl md:text-6xl font-black text-white">Khởi động</h2>
-                <p className="text-white/40 text-lg font-light">Mở IDE và kết nối với trợ lý AI của bạn.</p>
-             </div>
-          </div>
-          
-          <div className="lg:col-span-12 grid md:grid-cols-3 gap-8">
-             <LaunchStep number="01" title="Mở Workspace" body="Mở thư mục dự án vừa được khởi tạo trong Google AntiGravity IDE." />
-             <LaunchStep number="02" title="Kiểm tra Agent" body="Mở panel Agent và xác nhận model AI đã sẵn sàng hoạt động." />
-             <LaunchStep number="03" title="Kích hoạt" body="Gõ lời chào đầu tiên để AI bắt đầu quét cấu trúc dự án của bạn." />
-          </div>
+
+        {/* Full Width Setup Wizard Section Content */}
+        <section className="py-8 border-t border-white/5">
+           <div className="text-center mb-8">
+              <h3 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-rose-400 via-amber-400 to-sky-400 bg-clip-text text-transparent italic uppercase leading-tight">Vận hành Setup Wizard</h3>
+              <p className="text-white/70 text-lg font-light leading-normal mt-2 max-w-xl mx-auto">
+                 Trải nghiệm quy trình thiết lập trợ lý AI ngay tại đây.
+              </p>
+           </div>
+           
+           {/* Creative Roadmap Timeline Design */}
+           <div className="relative">
+              {/* Main Timeline Track */}
+              <div className="hidden lg:block absolute top-24 left-1/2 -translate-x-1/2 w-[90%] h-2 rounded-full bg-gradient-to-r from-rose-600 via-amber-500 via-emerald-500 to-sky-500 shadow-lg" />
+              
+              {/* Animated Glow Effect */}
+              <div className="hidden lg:block absolute top-24 left-1/2 -translate-x-1/2 w-[90%] h-2 rounded-full bg-gradient-to-r from-rose-600 via-amber-500 via-emerald-500 to-sky-500 blur-md opacity-50" />
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+                 {/* Step 01 - Bold Card */}
+                 <div className="group relative">
+                    {/* Giant Number */}
+                    <div className="absolute -top-2 -left-2 w-16 h-16 rounded-2xl bg-rose-600 flex items-center justify-center shadow-2xl shadow-rose-500/50 z-20 rotate-[-6deg] group-hover:rotate-0 transition-transform">
+                       <span className="text-white font-black text-3xl">B1</span>
+                    </div>
+                    
+                    <div className="bg-[#0a0f1a] border-2 border-rose-500/40 rounded-3xl p-6 pt-16 h-full backdrop-blur-xl shadow-2xl shadow-rose-500/10 group-hover:border-rose-400 group-hover:shadow-rose-500/30 transition-all">
+                       <h4 className="text-rose-400 font-black text-xl uppercase tracking-wider mb-4">Chọn Ngôn Ngữ</h4>
+                       <p className="text-white/50 text-sm mb-5">Chọn ngôn ngữ giao tiếp của AI Agent</p>
+                       
+                       <div className="space-y-3">
+                          <div className="flex items-center gap-3 p-3 rounded-xl bg-rose-500/20 border border-rose-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-rose-500 flex items-center justify-center shrink-0">
+                                <span className="text-black font-black text-sm">VI</span>
+                             </div>
+                             <div>
+                                <span className="text-white font-bold text-sm block">Tiếng Việt</span>
+                                <span className="text-white/60 text-xs">Comment & giải thích bằng tiếng Việt</span>
+                             </div>
+                          </div>
+                          <div className="flex items-center gap-3 p-3 rounded-xl bg-rose-500/20 border border-rose-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-rose-500 flex items-center justify-center shrink-0">
+                                <span className="text-black font-black text-sm">EN</span>
+                             </div>
+                             <div>
+                                <span className="text-white font-bold text-sm block">English</span>
+                                <span className="text-white/60 text-xs">Chuẩn quốc tế, Open Source</span>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+
+                 {/* Step 02 - Bold Card */}
+                 <div className="group relative lg:mt-12">
+                    <div className="absolute -top-2 -left-2 w-16 h-16 rounded-2xl bg-amber-500 flex items-center justify-center shadow-2xl shadow-amber-500/50 z-20 rotate-[6deg] group-hover:rotate-0 transition-transform">
+                       <span className="text-black font-black text-3xl">B2</span>
+                    </div>
+                    
+                    <div className="bg-[#0a0f1a] border-2 border-amber-500/40 rounded-3xl p-6 pt-16 h-full backdrop-blur-xl shadow-2xl shadow-amber-500/10 group-hover:border-amber-400 group-hover:shadow-amber-500/30 transition-all">
+                       <h4 className="text-amber-400 font-black text-xl uppercase tracking-wider mb-4">Chọn Quy Mô</h4>
+                       <p className="text-white/50 text-sm mb-5">Chế độ vận hành thích ứng theo quy mô</p>
+                       
+                       <div className="space-y-3">
+                          <div className="flex items-start gap-3 p-3 rounded-xl bg-amber-500/20 border border-amber-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <User className="w-5 h-5 text-black" />
+                             </div>
+                             <div>
+                                <span className="text-white font-bold text-sm block">👤 Cá nhân</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Tối ưu tốc độ. Agent đa nhiệm xử lý mọi domain. Ít bước xác nhận, code nhanh chóng.</span>
+                             </div>
+                          </div>
+                          <div className="flex items-start gap-3 p-3 rounded-xl bg-amber-500/20 border border-amber-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <Layers className="w-5 h-5 text-black" />
+                             </div>
+                             <div>
+                                <span className="text-white font-bold text-sm block">👥 Team</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Cân bằng tốc độ và chất lượng. Cần Plan trước khi code. Các Agent chuyên biệt hóa theo vai trò.</span>
+                             </div>
+                          </div>
+                          <div className="flex items-start gap-3 p-3 rounded-xl bg-amber-500/20 border border-amber-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <ShieldCheck className="w-5 h-5 text-black" />
+                             </div>
+                             <div>
+                                <span className="text-white font-bold text-sm block">🏢 Doanh nghiệp</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Chuẩn hóa Enterprise. Bắt buộc Audit bảo mật, kiểm soát chất lượng 100% trước khi deploy.</span>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+
+                 {/* Step 03 - Bold Card */}
+                 <div className="group relative">
+                    <div className="absolute -top-2 -left-2 w-16 h-16 rounded-2xl bg-emerald-500 flex items-center justify-center shadow-2xl shadow-emerald-500/50 z-20 rotate-[-6deg] group-hover:rotate-0 transition-transform">
+                       <span className="text-black font-black text-3xl">B3</span>
+                    </div>
+                    
+                    <div className="bg-[#0a0f1a] border-2 border-emerald-500/40 rounded-3xl p-6 pt-16 h-full backdrop-blur-xl shadow-2xl shadow-emerald-500/10 group-hover:border-emerald-400 group-hover:shadow-emerald-500/30 transition-all">
+                       <h4 className="text-emerald-400 font-black text-xl uppercase tracking-wider mb-4">Chọn Sản Phẩm</h4>
+                       <p className="text-white/50 text-sm mb-5">Tự động nạp bộ Skills phù hợp với dự án</p>
+                       
+                       <div className="space-y-3">
+                          <div className="flex items-start gap-3 p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <Monitor className="w-5 h-5 text-black" />
+                             </div>
+                             <div>
+                                <span className="text-white font-bold text-sm block">📱 Ứng dụng người dùng</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Web, Mobile, UI/UX, Testing. Tối ưu trải nghiệm và giao diện.</span>
+                             </div>
+                          </div>
+                          <div className="flex items-start gap-3 p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <Terminal className="w-5 h-5 text-black" />
+                             </div>
+                             <div>
+                                <span className="text-white font-bold text-sm block">🛠️ Công cụ lập trình</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">CLI, DevOps, Performance. Tối ưu hiệu năng và tự động hóa.</span>
+                             </div>
+                          </div>
+                          <div className="flex items-start gap-3 p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <Brain className="w-5 h-5 text-black" />
+                             </div>
+                             <div>
+                                <span className="text-white font-bold text-sm block">🤖 AI Agent</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">RAG, Prompt Engineering, MCP. Xây dựng trợ lý AI thông minh.</span>
+                             </div>
+                          </div>
+                          <div className="flex items-start gap-3 p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <Palette className="w-5 h-5 text-black" />
+                             </div>
+                             <div>
+                                <span className="text-white font-bold text-sm block">🎨 Tài sản số</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Game, SEO, Content. Tối ưu nội dung và sáng tạo.</span>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+
+                 {/* Step 04 - Bold Card */}
+                 <div className="group relative lg:mt-12">
+                    <div className="absolute -top-2 -left-2 w-16 h-16 rounded-2xl bg-sky-500 flex items-center justify-center shadow-2xl shadow-sky-500/50 z-20 rotate-[6deg] group-hover:rotate-0 transition-transform">
+                       <span className="text-black font-black text-3xl">B4</span>
+                    </div>
+                    
+                    <div className="bg-[#0a0f1a] border-2 border-sky-500/40 rounded-3xl p-6 pt-16 h-full backdrop-blur-xl shadow-2xl shadow-sky-500/10 group-hover:border-sky-400 group-hover:shadow-sky-500/30 transition-all">
+                       <h4 className="text-sky-400 font-black text-xl uppercase tracking-wider mb-4">Đặt Tên Agent</h4>
+                       <p className="text-white/50 text-sm mb-5">Đặt tên riêng để tạo "linh hồn" cho AI</p>
+                       
+                       <div className="space-y-3">
+                          <div className="flex items-start gap-3 p-3 rounded-xl bg-sky-500/20 border border-sky-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-sky-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <Bot className="w-5 h-5 text-black" />
+                             </div>
+                             <div>
+                                <span className="text-white font-bold text-sm block">✨ Tên tùy chỉnh</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Đặt tên như Jarvis, Friday, Em yêu... AI sẽ nhận diện và phản hồi theo tên.</span>
+                             </div>
+                          </div>
+                          <div className="flex items-start gap-3 p-3 rounded-xl bg-sky-500/20 border border-sky-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-sky-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <Layers className="w-5 h-5 text-black" />
+                             </div>
+                             <div>
+                                <span className="text-white font-bold text-sm block">🤝 Phối hợp đa Agent</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Lên đến 15 chuyên gia: Backend, Frontend, Security, Test... phối hợp cùng lúc.</span>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
         </section>
 
-        {/* Phase 4 Header */}
-        <div className="text-center space-y-4 pt-12 border-t border-white/5">
-          <div className="inline-block px-4 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-black uppercase tracking-widest border border-purple-500/20">Phase 4</div>
-          <h2 className="text-3xl md:text-5xl font-black text-white">Nạp tư duy & Kích hoạt Agent</h2>
-        </div>
+         {/* Phase 3 Header - Launch & Readiness */}
+         <div className="text-center space-y-3 pt-8 border-t border-white/5">
+            <div className="inline-block px-6 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-base font-black uppercase tracking-widest border border-emerald-500/20">Phase 3</div>
+            <h2 className="text-3xl md:text-4xl font-black text-emerald-400 italic uppercase tracking-tighter">Nạp tư duy & Vibe Coding</h2>
+         </div>
 
-        {/* Step 4: Mindset Config */}
-        <section className="relative grid lg:grid-cols-12 gap-12 items-start pb-12">
-          <div className="lg:col-span-5 space-y-8 flex flex-col items-start">
-            <div className="flex items-center gap-6">
-              <div className="w-16 h-16 rounded-[2rem] bg-purple-500 text-white flex items-center justify-center font-black text-3xl shadow-[0_0_30px_rgba(168,85,247,0.4)]">4</div>
-              <h3 className="text-2xl md:text-3xl font-black text-white">Cấu hình Rule</h3>
+         {/* Step 4: Combined Launch & Mindset */}
+         <section className="relative grid lg:grid-cols-12 gap-8 items-start pt-2 pb-8">
+            <div className="lg:col-span-5 space-y-6 flex flex-col justify-center">
+              <div>
+                <h3 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-rose-400 via-amber-400 to-sky-400 bg-clip-text text-transparent italic uppercase leading-tight">Mở Workspace &<br/>Kích hoạt Brain</h3>
+              </div>
+              <p className="text-white/40 text-base leading-relaxed font-light max-w-md">
+                Mở thư mục dự án trong IDE, sau đó gửi lệnh kích hoạt. AI sẽ tự động đọc file <code className="text-amber-400">GEMINI.md</code> và tải toàn bộ kỹ năng vào bộ nhớ.
+              </p>
+
+              <div className="space-y-4">
+                 <div className="card-glass p-1 border-white/5 bg-black/20 overflow-hidden">
+                    <div className="bg-black/40 p-6 rounded-2xl flex items-center justify-between">
+                       <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center border border-sky-500/20">
+                             <Bot className="text-sky-400 w-6 h-6" />
+                          </div>
+                          <div>
+                             <p className="text-white font-black text-sm uppercase tracking-wider">Antigravity Agent</p>
+                             <p className="text-sky-400/60 text-[10px] font-mono tracking-widest uppercase">Trạng thái: Sẵn sàng</p>
+                          </div>
+                       </div>
+                       <div className="w-3 h-3 rounded-full bg-sky-500 animate-pulse shadow-[0_0_10px_#0ea5e9]" />
+                    </div>
+                 </div>
+
+                 <div className="card-glass p-6 border-purple-400/20 bg-purple-400/5 text-left w-full space-y-4">
+                    <h4 className="text-white font-bold flex items-center gap-2">
+                      <Brain className="text-purple-400 h-5 w-5" /> Quy trình kích hoạt Agent
+                    </h4>
+                    <ul className="space-y-3">
+                      <li className="flex gap-3">
+                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0"/>
+                        <p className="text-white/60 text-sm"><strong className="text-white">Bước 1</strong>: Mở khung chat (Cursor/Windsurf/VSCode...).</p>
+                      </li>
+                      <li className="flex gap-3">
+                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0"/>
+                        <p className="text-white/60 text-sm"><strong className="text-white">Bước 2</strong>: Chọn Mode <code className="text-purple-400">Planning</code> và Model <code className="text-purple-400">Gemini 2.0</code> hoặc Claude 3.5.</p>
+                      </li>
+                      <li className="flex gap-3">
+                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0"/>
+                        <p className="text-white/60 text-sm"><strong className="text-white">Bước 3</strong>: Gửi lệnh kích hoạt ở khung bên phải.</p>
+                      </li>
+                    </ul>
+                 </div>
+              </div>
             </div>
-            <p className="text-white/40 text-base leading-relaxed font-light max-w-md">
-              Để Agent thực sự hiểu dự án, bạn không chỉ tạo file mà phải yêu cầu nó <strong>quét và áp dụng</strong> các quy tắc này vào phiên làm việc hiện tại.
-            </p>
 
-            <div className="card-glass p-8 border-purple-400/20 bg-purple-400/5 text-left w-full space-y-4">
-               <h4 className="text-white font-bold flex items-center gap-2">
-                 <Brain className="text-purple-400 h-5 w-5" /> Quy trình nạp Mindset
-               </h4>
-               <ul className="space-y-4">
-                 <li className="flex gap-3">
-                   <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0"/>
-                   <p className="text-white/60 text-sm"><strong className="text-white">Thiết lập</strong>: Chỉnh sửa các yêu cầu trong <code className="text-purple-400">GEMINI.md</code> và thư mục <code className="text-purple-400">.agent/</code>.</p>
-                 </li>
-                 <li className="flex gap-3">
-                   <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0"/>
-                   <p className="text-white/60 text-sm"><strong className="text-white">Kích hoạt</strong>: Nhắn với Agent câu lệnh ở khung bên phải để nó nạp toàn bộ tư duy vừa cấu hình.</p>
-                 </li>
-               </ul>
+            <div className="lg:col-span-7 space-y-6">
+               <div className="card-glass p-6 border-amber-500/20 bg-amber-500/5 space-y-4 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-3">
+                     <div className="flex gap-2">
+                        <div className="w-2 h-2 rounded-full bg-amber-500/40 animate-pulse" />
+                         <span className="text-xs text-amber-400/60 font-mono tracking-widest uppercase">Nhập lệnh</span>
+                     </div>
+                  </div>
+                  <h4 className="text-white/40 font-black text-xs uppercase tracking-widest italic">Lệnh Kích Hoạt</h4>
+                  <div className="bg-black/60 p-6 rounded-xl border border-white/5 font-mono text-amber-400 text-sm md:text-xl leading-relaxed shadow-inner group-hover:border-amber-500/40 transition-colors">
+                     {`"trỗi dậy đi Jarvis"`}
+                  </div>
+                   <div className="flex items-center gap-2 text-xs text-white/20 italic">
+                     <Info className="w-3 h-3" />
+                     Agent sẽ tự động nạp <code className="text-amber-400">GEMINI.md</code> & Skill-set.
+                  </div>
+               </div>
+
+               <div className="flex items-center gap-4 p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/10">
+                  <CheckCircle className="text-emerald-400 h-6 w-6 flex-shrink-0" />
+                  <p className="text-white/60 text-sm">Sau bước này, Agent sẽ hoạt động với 100% công suất và phong cách Senior Engineer.</p>
+               </div>
             </div>
-          </div>
-
-          <div className="lg:col-span-7 space-y-6">
-             <div className="card-glass p-6 border-emerald-500/20 bg-emerald-500/5 space-y-4 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-3">
-                   <div className="flex gap-2">
-                      <div className="w-2 h-2 rounded-full bg-emerald-500/40 animate-pulse" />
-                      <span className="text-[10px] text-emerald-400/60 font-mono tracking-widest uppercase">Input Command</span>
-                   </div>
-                </div>
-                <h4 className="text-white/40 font-black text-xs uppercase tracking-widest">Gửi lệnh cho Agent</h4>
-                <div className="bg-black/60 p-5 rounded-xl border border-white/5 font-mono text-emerald-400 text-sm md:text-base leading-relaxed shadow-inner">
-                   {`"Hãy đọc toàn bộ file quy tắc trong thư mục .agent và nội dung GEMINI.md, sau đó nạp tư duy này vào phiên làm việc hiện tại của bạn."`}
-                </div>
-                <div className="flex items-center gap-2 text-[10px] text-white/20 italic">
-                   <Info className="w-3 h-3" />
-                   AI sẽ xác nhận "Mindset Loaded" sau khi đọc xong.
-                </div>
-             </div>
-
-             <div className="card-glass p-1 font-mono text-[10px] overflow-hidden border-white/5 opacity-60">
-                <div className="bg-black/20 p-4 rounded-xl">
-                   <div className="space-y-1">
-                      <p className="text-purple-400/80"># GEMINI.md Content</p>
-                      <p className="text-white/40">- Role: Senior Principal Engineer</p>
-                      <p className="text-white/40">- Mindset: Systems thinking, regression-aware</p>
-                   </div>
-                </div>
-             </div>
-
-             <div className="flex items-center gap-4 p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/10">
-                <CheckCircle className="text-emerald-400 h-6 w-6 flex-shrink-0" />
-                <p className="text-white/60 text-sm">Sau bước này, Agent sẽ hoạt động với 100% công suất và đúng "nhân cách" bạn mong muốn.</p>
-             </div>
-          </div>
-        </section>
+         </section>
       </div>
 
       {/* Requirements Table - Redesigned as Bento Grid */}
@@ -340,13 +422,26 @@ export default function TutorialPage() {
         </div>
       </section>
       
-      <WorkflowExplorer />
-      
-      {/* Final CTA */}
-      <section className="text-center py-20 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#FCD34D]/5 blur-[100px] rounded-full" />
-        <h2 className="text-3xl md:text-5xl font-black mb-12 leading-tight">Bạn đã sẵn sàng bước vào<br/>kỷ nguyên <span className="text-[#FCD34D]">Agentic Coding?</span></h2>
-        <button className="btn-emerald h-20 px-16 text-xl rounded-full">Bắt đầu hành trình miễn phí</button>
+      <section className="text-center py-32 relative overflow-hidden rounded-[3rem] border border-white/5 bg-black/40 backdrop-blur-sm">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none" />
+        <motion.div
+           initial={{ opacity: 0, y: 30 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           className="relative z-10"
+        >
+          <h2 className="text-3xl md:text-5xl font-black mb-12 flex flex-col items-center gap-2 uppercase italic">
+            <span className="leading-tight">Bạn đã sẵn sàng bước vào</span>
+            <span className="leading-tight">kỷ nguyên <span className="text-emerald-400 drop-shadow-[0_0_20px_rgba(52,168,83,0.4)]">Agentic Coding?</span></span>
+          </h2>
+          
+          <Link href="/">
+            <button className="btn-emerald h-20 px-16 text-xl rounded-full shadow-[0_0_50px_rgba(52,168,83,0.3)] hover:shadow-[0_0_80px_rgba(52,168,83,0.5)] hover:scale-105 transition-all group flex items-center justify-center gap-3 mx-auto">
+              Bắt đầu hành trình miễn phí
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+            </button>
+          </Link>
+        </motion.div>
       </section>
     </div>
   );
@@ -423,11 +518,9 @@ function LaunchStep({ number, title, body }: { number: string, title: string, bo
 function ReqCard({ label, value, detail }: { label: string, value: string, detail: string }) {
   return (
     <div className="card-glass p-8 text-center border-white/5 space-y-2 group hover:bg-white/5 transition-colors">
-      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/20">{label}</p>
+       <p className="text-xs font-black uppercase tracking-[0.2em] text-white/20">{label}</p>
       <p className="text-xl font-black text-white">{value}</p>
       <p className="text-xs text-[#FCD34D]/50 font-medium">{detail}</p>
     </div>
   );
 }
-
-

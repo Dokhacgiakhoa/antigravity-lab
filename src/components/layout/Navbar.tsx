@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Github, Menu, Rocket, ChevronDown, ChevronRight, Book, Users, Zap, Workflow, Share2 } from "lucide-react";
+import { Github, Menu, Rocket, ChevronDown, ChevronRight, Book, Users, Zap, Workflow, Share2, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -22,7 +22,15 @@ const navItems = [
       { name: ".shared", href: "/guide/shared", desc: "DNA hệ thống", icon: Share2 },
     ]
   },
-  { name: "Thuật ngữ", href: "/dictionaries", color: "#4285F4" }, // Blue
+  { 
+    name: "Dự án mẫu", 
+    href: "/samples", 
+    color: "#0EA5E9", // Cyan/Blue (Màu Lam)
+    children: [
+       { name: "Thư viện mẫu", href: "/samples", desc: "Kho kịch bản thực tế", icon: Rocket },
+       { name: "Thuật ngữ", href: "/dictionaries", desc: "Từ điển chuyên ngành", icon: BookOpen },
+    ]
+  }, 
 ];
 
 export function Navbar() {
@@ -55,8 +63,8 @@ export function Navbar() {
         onMouseLeave={() => setHoveredIndex(null)}
         className={cn(
           "pointer-events-auto relative flex items-center h-16 rounded-full border transition-all duration-700 shadow-[0_20px_80px_rgba(0,0,0,0.6)] backdrop-blur-[40px] px-3",
-          // FIXED WIDTH: No more width changes on scroll
-          "w-full max-w-5xl bg-white/[0.03] border-white/10",
+          // FIXED WIDTH: Content-hug instead of fixed wide width
+          "w-fit bg-white/[0.03] border-white/10",
           scrolled && "bg-black/40 border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_20px_rgba(252,211,77,0.1)]"
         )}
       >
@@ -71,26 +79,8 @@ export function Navbar() {
             </span>
           </Link>
 
-          {/* Menu Items with Stable Sliding Pill */}
-          <div className="relative flex items-center h-12 p-1 bg-white/5 backdrop-blur-md rounded-full border border-white/10 z-10 mx-4 flex-1 max-w-xl shadow-inner">
-            {/* Stable Moving Background */}
-            <motion.div
-              className="absolute h-[calc(100%-8px)] rounded-full"
-              initial={false}
-              animate={{
-                left: activeIndex !== -1 ? `${activeIndex * (100 / navItems.length)}%` : '0%',
-                opacity: activeIndex !== -1 ? 1 : 0,
-                backgroundColor: '#000000', // Active background is BLACK
-                boxShadow: `0 0 20px ${activeColor}60, 0 0 10px ${activeColor}40` // Neon Glow matched to color
-              }}
-              transition={{ type: "spring", stiffness: 350, damping: 35 }}
-              style={{
-                top: '4px',
-                width: `calc(${100 / navItems.length}% - 8px)`,
-                margin: '0 4px'
-              }}
-            />
-
+          {/* Menu Items with Proportional Sliding Pill */}
+          <div className="relative flex items-center h-12 p-1 bg-white/5 backdrop-blur-md rounded-full border border-white/10 z-10 mx-4 shadow-inner justify-center gap-1">
             {navItems.map((item, index) => {
               const isActive = activeIndex === index;
               const hasChildren = !!item.children;
@@ -98,13 +88,13 @@ export function Navbar() {
               return (
                 <div
                   key={item.href}
-                  className="relative z-10 flex-1 h-full"
+                  className="relative z-10 h-full flex items-center justify-center px-1"
                   onMouseEnter={() => setHoveredIndex(index)}
                 >
                   <Link
                     href={item.href}
                     className={cn(
-                      "w-full h-full rounded-full text-[10px] md:text-[11px] font-black uppercase tracking-widest transition-all duration-300 whitespace-nowrap flex items-center justify-center gap-1",
+                      "relative px-3 h-full rounded-full text-[10px] md:text-[11px] font-black uppercase tracking-widest transition-all duration-300 whitespace-nowrap flex items-center justify-center gap-1 pt-[2px]",
                        // Initial text color white/40, hover white. Active handled by style.
                       !isActive && "text-white/40 hover:text-white"
                     )}
@@ -114,6 +104,16 @@ export function Navbar() {
                        textShadow: isActive ? `0 0 15px ${item.color}80` : undefined
                     }}
                   >
+                    {isActive && (
+                      <motion.div
+                        layoutId="navbar-pill"
+                        className="absolute inset-0 rounded-full bg-black -z-10"
+                        transition={{ type: "spring", stiffness: 350, damping: 35 }}
+                        style={{
+                          boxShadow: `0 0 20px ${item.color}60, 0 0 10px ${item.color}40`
+                        }}
+                      />
+                    )}
                     {item.name}
                     {hasChildren && <ChevronDown className="h-3 w-3" />}
                   </Link>
@@ -122,11 +122,11 @@ export function Navbar() {
                   <AnimatePresence>
                     {hasChildren && hoveredIndex === index && (
                       <motion.div
-                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        initial={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
+                        animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 p-2 rounded-2xl bg-[#0a0a0a]/90 backdrop-blur-3xl border border-white/10 shadow-2xl overflow-hidden"
+                        className="absolute top-full left-1/2 mt-4 w-64 p-2 rounded-2xl bg-[#0a0a0a]/90 backdrop-blur-3xl border border-white/10 shadow-2xl overflow-hidden"
                       >
                          <div className="flex flex-col gap-1">
                            {item.children!.map((child) => (
@@ -135,11 +135,13 @@ export function Navbar() {
                                href={child.href}
                                className="group flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors"
                              >
-                               <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-[#FCD34D] transition-colors">
-                                  {child.icon ? <child.icon className="h-4 w-4 text-white/60 group-hover:text-black" /> : <ChevronRight className="h-4 w-4 text-white/60 group-hover:text-black" />}
+                               <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center transition-colors" style={{ color: item.color }}>
+                                  {child.icon ? <child.icon className="h-4 w-4 text-white/60 group-hover:text-current" /> : <ChevronRight className="h-4 w-4 text-white/60 group-hover:text-current" />}
                                </div>
                                <div>
-                                 <div className="text-white text-xs font-bold group-hover:text-[#FCD34D] transition-colors">{child.name}</div>
+                                 <div className="text-white text-xs font-bold transition-colors" style={{ color: 'inherit' }}>
+                                    <span className="group-hover:text-current transition-colors" style={{ color: 'white' }}>{child.name}</span>
+                                 </div>
                                  <div className="text-white/40 text-[10px]">{child.desc}</div>
                                </div>
                              </Link>

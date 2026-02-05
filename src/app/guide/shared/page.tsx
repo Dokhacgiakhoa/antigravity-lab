@@ -26,13 +26,33 @@ export default function SharedPage() {
     "⚙️": Server
   };
 
+  const colorMap: Record<string, { color: string; bg: string; border: string }> = {
+    "ai-master": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20" },
+    "api-standards": { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
+    "compliance-master": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20" },
+    "database-master": { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
+    "design-philosophy": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20" },
+    "design-system": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20" },
+    "domain-blueprints": { color: "text-cyan-400", bg: "bg-cyan-500/10", border: "border-cyan-500/20" },
+    "dx-toolkit": { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" },
+    "i18n-master": { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
+    "infra-blueprints": { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
+    "metrics": { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" },
+    "resilience-patterns": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20" },
+    "security-armor": { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20" },
+    "seo-master": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20" },
+    "testing-master": { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" },
+    "ui-ux-pro-max": { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20" },
+    "vitals-templates": { color: "text-cyan-400", bg: "bg-cyan-500/10", border: "border-cyan-500/20" },
+  };
+
   return (
     <div className="page-container mt-24 pb-24 space-y-12">
       <div className="text-center space-y-4">
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
-           className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-4 py-1.5 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest"
+           className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 rounded-full text-blue-400 text-xs font-black uppercase tracking-widest"
         >
           <Share2 className="h-4 w-4" />
           The DNA System
@@ -44,21 +64,22 @@ export default function SharedPage() {
       </div>
 
       <div className="max-w-6xl mx-auto space-y-12">
-        <div className="card-glass p-8 bg-gradient-to-br from-white/[0.03] to-transparent border-emerald-500/20">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-             <div className="w-32 h-32 rounded-full border-4 border-emerald-500/20 flex items-center justify-center animate-pulse relative">
-                <div className="absolute inset-0 rounded-full border border-emerald-500/40 animate-spin-slow" />
-                <Dna className="h-12 w-12 text-emerald-400" />
+        <div className="card-glass p-10 bg-gradient-to-br from-white/[0.03] to-transparent border-blue-500/20 rounded-[2rem] shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-64 h-64 bg-blue-500/5 blur-[80px] rounded-full" />
+          <div className="flex flex-col md:flex-row items-center gap-10 relative z-10">
+             <div className="w-40 h-40 rounded-full border-4 border-blue-500/10 flex items-center justify-center animate-pulse relative shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+                <div className="absolute inset-0 rounded-full border border-blue-500/40 animate-spin-slow" />
+                <Dna className="h-16 w-16 text-blue-400" />
              </div>
-             <div className="flex-1 space-y-4 text-center md:text-left">
-                <h3 className="text-2xl font-black text-white">Scientific Linkage</h3>
-                <p className="text-white/60 leading-relaxed">
+             <div className="flex-1 space-y-6 text-center md:text-left">
+                <h3 className="text-3xl font-black text-white italic tracking-tight uppercase">Scientific Linkage</h3>
+                <p className="text-white/50 text-base leading-relaxed font-medium">
                   Cơ chế liên kết khoa học giúp các files và modules tự động nhận diện và tương tác với nhau mà không cần cấu hình thủ công phức tạp.
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                   <span className="px-3 py-1 rounded bg-white/5 text-xs text-white/40 font-mono">.agent/.shared</span>
-                   <span className="px-3 py-1 rounded bg-white/5 text-xs text-white/40 font-mono">metadata header</span>
-                   <span className="px-3 py-1 rounded bg-white/5 text-xs text-white/40 font-mono">auto-discovery</span>
+                   <span className="px-4 py-1.5 rounded-full bg-white/5 text-xs text-white/60 font-black tracking-widest border border-white/5 uppercase">.agent/.shared</span>
+                   <span className="px-4 py-1.5 rounded-full bg-white/5 text-xs text-white/60 font-black tracking-widest border border-white/5 uppercase">metadata header</span>
+                   <span className="px-4 py-1.5 rounded-full bg-white/5 text-xs text-white/60 font-black tracking-widest border border-white/5 uppercase">auto-discovery</span>
                 </div>
              </div>
           </div>
@@ -67,40 +88,51 @@ export default function SharedPage() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {sharedModules.map((mod, idx) => {
             const Icon = iconMap[mod.icon] || Dna;
+            const googleColors = [
+              { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20" },
+              { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20" },
+              { color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" },
+              { color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
+            ];
+            const theme = googleColors[idx % googleColors.length];
+            
             return (
               <Link key={mod.id} href={`/guide/shared/${mod.id}`}>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: Math.min(idx * 0.05, 1) }}
-                  className="group p-6 rounded-2xl bg-black/40 border border-white/5 hover:border-emerald-500/30 transition-all space-y-4 cursor-pointer h-full flex flex-col"
+                  whileHover={{ y: -8 }}
+                  transition={{ delay: idx * 0.05 }}
+                  className={`group card-glass p-8 flex flex-col gap-6 relative overflow-hidden border ${theme.border} h-full hover:bg-white/[0.05] transition-all rounded-3xl shadow-lg`}
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-emerald-500/10 transition-colors">
-                      <Icon className="h-6 w-6 text-white/60 group-hover:text-emerald-400" />
+                  <div className={`absolute -top-10 -right-10 w-32 h-32 ${theme.bg} blur-[40px] opacity-0 group-hover:opacity-40 transition-opacity`} />
+                  
+                  <div className="flex items-start justify-between relative z-10">
+                    <div className={`w-14 h-14 rounded-2xl ${theme.bg} border border-white/5 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
+                      <Icon className={`h-7 w-7 ${theme.color}`} />
                     </div>
-                    <span className="text-[8px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded uppercase font-bold border border-emerald-500/20">
-                      {mod.status}
+                    <span className={`text-[10px] font-black italic uppercase tracking-widest ${theme.color} opacity-40`}>
+                      DNA Module
                     </span>
                   </div>
                   <div>
-                    <h4 className="font-black text-white group-hover:text-emerald-400 transition-colors text-lg mb-1">{mod.name}</h4>
-                    <p className="text-xs text-white/40 leading-relaxed line-clamp-2">{mod.descriptionVi}</p>
+                    <h4 className={`font-black text-white group-hover:${theme.color} transition-colors text-lg mb-1`}>{mod.name}</h4>
+                    <p className="text-xs text-white/40 leading-relaxed line-clamp-2">{mod.description}</p>
                   </div>
                   <div className="pt-2 border-t border-white/5 mt-auto">
                     <p className="text-[10px] text-white/20 font-bold uppercase tracking-widest mb-2">Key Features</p>
                     <ul className="space-y-1">
                       {mod.features.slice(0, 3).map((f, i) => (
                         <li key={i} className="text-[10px] text-white/50 flex items-center gap-1.5">
-                          <div className="w-1 h-1 rounded-full bg-emerald-400/40" />
+                          <div className={`w-1 i-1 rounded-full ${theme.color} opacity-40`} />
                           {f}
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div className="pt-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity">
-                     <span className="text-[10px] text-emerald-400/40 uppercase font-black tracking-widest">Detail Architecture</span>
-                     <ArrowRight className="h-4 w-4 text-emerald-400" />
+                     <span className={`text-[10px] ${theme.color} opacity-40 uppercase font-black tracking-widest`}>Detail Architecture</span>
+                     <ArrowRight className={`h-4 w-4 ${theme.color}`} />
                   </div>
                 </motion.div>
               </Link>
