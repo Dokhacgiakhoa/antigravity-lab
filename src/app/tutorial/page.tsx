@@ -441,7 +441,7 @@ export default function TutorialPage() {
   );
 }
 
-function OSCard({ icon, name, color, steps, downloads }: { icon: React.ReactNode, name: string, color: string, steps: string[], downloads?: { label: string, url: string }[] }) {
+function OSCard({ icon, name, color, steps, downloads, copyText }: { icon: React.ReactNode, name: string, color: string, steps: string[], downloads?: { label: string, url: string }[], copyText?: string }) {
   const colors: any = {
     cyan: "border-cyan-400/20 bg-cyan-400/5 hover:border-cyan-400/40",
     gold: "border-[#FCD34D]/20 bg-[#FCD34D]/5 hover:border-[#FCD34D]/40",
