@@ -4,8 +4,24 @@ import { motion } from "framer-motion";
 import { productTypes } from "@/data/product-types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function SmartAllocation() {
+    const { t } = useLanguage();
+
+    const keyMap: Record<string, string> = {
+        'user-app': 'userApp',
+        'dev-tool': 'devTool',
+        'ai-agent': 'aiAgent',
+        'digital-asset': 'digitalAsset'
+    };
+
+    const translatedProducts = productTypes.map(p => ({
+       ...p,
+       title: t(`home.smartAlloc.products.${keyMap[p.id]}.title`),
+       desc: t(`home.smartAlloc.products.${keyMap[p.id]}.desc`)
+    }));
+
     return (
         <section className="w-full py-24 px-4 bg-black/60 backdrop-blur-md relative overflow-hidden">
              {/* Background Gradients */}
@@ -16,17 +32,22 @@ export function SmartAllocation() {
 
             <div className="w-[90%] max-w-7xl mx-auto space-y-10 relative z-10">
                 <SectionHeading 
-                    badge="Smart Allocation Logic"
-                    title="ĐA DẠNG HÓA"
-                    highlight="SẢN PHẨM"
+                    badge={t('home.smartAlloc.badge')}
+                    title={t('home.smartAlloc.title')}
+                    highlight={t('home.smartAlloc.highlight')}
                     highlightColor="blue"
-                    desc="Hệ thống tự động nhận diện loại hình sản phẩm để kích hoạt các bộ Skill chuyên biệt tương ứng."
+                    desc={t('home.smartAlloc.description')}
                     align="center"
                 />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {productTypes.map((prod, i) => (
-                        <ProductCard key={i} product={prod} index={i} />
+                    {translatedProducts.map((prod, i) => (
+                        <ProductCard 
+                            key={i} 
+                            product={prod} 
+                            index={i} 
+                            activatedLabel={t('home.smartAlloc.activated')}
+                        />
                     ))}
                 </div>
             </div>
@@ -34,7 +55,7 @@ export function SmartAllocation() {
     );
 }
 
-function ProductCard({ product, index }: { product: any, index: number }) {
+function ProductCard({ product, index, activatedLabel }: { product: any, index: number, activatedLabel: string }) {
     const colorMap: Record<string, string> = {
         blue: "border-[#4285F4]/30 hover:shadow-[0_0_40px_rgba(66,133,244,0.2)]",
         red: "border-[#EA4335]/30 hover:shadow-[0_0_40px_rgba(234,67,53,0.2)]",
@@ -68,7 +89,7 @@ function ProductCard({ product, index }: { product: any, index: number }) {
             <p className="text-white/50 text-sm leading-relaxed mb-6 flex-grow">{product.desc}</p>
 
             <div className="w-full pt-6 border-t border-white/5">
-                <div className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-3">Skills Activated</div>
+                <div className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-3">{activatedLabel}</div>
                 <div className="flex flex-wrap justify-center gap-2">
                     {product.activeSkills.map((skill: string, j: number) => (
                         <span key={j} className="text-xs px-2 py-1 rounded bg-white/5 text-white/70 border border-white/5">

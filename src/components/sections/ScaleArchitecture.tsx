@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useAnimate } from "framer-motion";
 import { User, Users, Building, LucideIcon, Bot, Code2, ShieldCheck, Zap, Server, Database, Workflow } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const iconMap: Record<string, LucideIcon> = {
   User, Users, Building
@@ -30,6 +31,7 @@ interface ArchitectureProps {
 
 export function ScaleArchitecture({ data }: ArchitectureProps) {
   const [activeMode, setActiveMode] = useState(0);
+  const { t } = useLanguage();
 
   return (
     <section className="w-full pt-8 pb-24 px-4 relative">
@@ -74,7 +76,7 @@ export function ScaleArchitecture({ data }: ArchitectureProps) {
                    <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50" />
                 </div>
                 <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
-                  MÔ PHỎNG LIVE
+                  {t('home.architecture.visualizer.header')}
                 </div>
               </div>
 
@@ -153,6 +155,7 @@ function ScaleOption({
 // --- VISUALIZERS ---
 
 function SoloNinjaVisualizer() {
+  const { t } = useLanguage();
   return (
     <motion.div 
       initial={{ opacity: 0, scale: 0.9 }}
@@ -167,7 +170,7 @@ function SoloNinjaVisualizer() {
              <Bot className="w-14 h-14 text-white animate-pulse" />
              {/* Hybrid Badge */}
              <div className="absolute -top-3 -right-3 px-3 py-1 rounded-full bg-white text-[#4285F4] font-black text-[10px] border-2 border-[#4285F4] shadow-lg uppercase tracking-wider">
-               Đa năng
+               {t('home.architecture.visualizer.solo.hybrid')}
              </div>
           </div>
           <div className="text-white font-black tracking-[0.2em] text-sm uppercase bg-black/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 shadow-xl">
@@ -177,11 +180,11 @@ function SoloNinjaVisualizer() {
 
        {/* Orbiting Skills - Ferris Wheel Animation */}
        <div className="absolute inset-0">
-          <OrbitingNode startAngle={0} icon={Code2} label="LẬP TRÌNH" color="bg-cyan-500" />
-          <OrbitingNode startAngle={72} icon={Database} label="DỮ LIỆU" color="bg-emerald-500" />
-          <OrbitingNode startAngle={144} icon={Server} label="VẬN HÀNH" color="bg-purple-500" />
-          <OrbitingNode startAngle={216} icon={ShieldCheck} label="BẢO MẬT" color="bg-red-500" />
-          <OrbitingNode startAngle={288} icon={Zap} label="HIỆU NĂNG" color="bg-yellow-500" />
+          <OrbitingNode startAngle={0} icon={Code2} label={t('home.architecture.visualizer.solo.skills.0')} color="bg-cyan-500" />
+          <OrbitingNode startAngle={72} icon={Database} label={t('home.architecture.visualizer.solo.skills.1')} color="bg-emerald-500" />
+          <OrbitingNode startAngle={144} icon={Server} label={t('home.architecture.visualizer.solo.skills.2')} color="bg-purple-500" />
+          <OrbitingNode startAngle={216} icon={ShieldCheck} label={t('home.architecture.visualizer.solo.skills.3')} color="bg-red-500" />
+          <OrbitingNode startAngle={288} icon={Zap} label={t('home.architecture.visualizer.solo.skills.4')} color="bg-yellow-500" />
        </div>
 
        {/* Orbital Rings */}
@@ -194,6 +197,7 @@ function SoloNinjaVisualizer() {
 }
 
 function AgileSquadVisualizer() {
+    const { t } = useLanguage();
     return (
       <motion.div 
         initial={{ opacity: 0 }}
@@ -225,23 +229,23 @@ function AgileSquadVisualizer() {
          {/* Nodes Fixed Positions */}
          {/* Top: 30% Y - Centered on Icon (80px height -> -mt-10) */}
          <div className="absolute top-[30%] left-1/2 -translate-x-1/2 -mt-10 z-20">
-            <SquadNode color="bg-[#EA4335]" icon={Workflow} role="KẾ HOẠCH" task="Định nghĩa MVP" />
+            <SquadNode color="bg-[#EA4335]" icon={Workflow} role={t('home.architecture.visualizer.squad.planner.role')} task={t('home.architecture.visualizer.squad.planner.task')} />
          </div>
 
          {/* Left: 20% X, 70% Y - Centered on Icon */}
          <div className="absolute top-[70%] left-[20%] -translate-x-1/2 -mt-10 z-20">
-            <SquadNode color="bg-[#4285F4]" icon={Code2} role="CHUYÊN GIA" task="Thực thi" />
+            <SquadNode color="bg-[#4285F4]" icon={Code2} role={t('home.architecture.visualizer.squad.specialist.role')} task={t('home.architecture.visualizer.squad.specialist.task')} />
          </div>
 
          {/* Right: 80% X, 70% Y - Centered on Icon */}
          <div className="absolute top-[70%] left-[80%] -translate-x-1/2 -mt-10 z-20">
-            <SquadNode color="bg-[#34A853]" icon={ShieldCheck} role="KIỂM SOÁT" task="Xác thực" />
+            <SquadNode color="bg-[#34A853]" icon={ShieldCheck} role={t('home.architecture.visualizer.squad.inspector.role')} task={t('home.architecture.visualizer.squad.inspector.task')} />
          </div>
 
          {/* Connection Labels */}
-         <div className="absolute top-[46%] left-[25%] text-[10px] text-white/50 rotate-[-50deg] tracking-widest font-mono bg-[#0A0A0A] px-2 z-10"> GIAO VIỆC </div>
-         <div className="absolute top-[46%] right-[25%] text-[10px] text-white/50 rotate-[50deg] tracking-widest font-mono bg-[#0A0A0A] px-2 z-10"> KIỂM TRA </div>
-         <div className="absolute bottom-[25%] left-1/2 -translate-x-1/2 text-[10px] text-white/50 tracking-widest font-mono bg-[#0A0A0A] px-2 z-10"> BÀN GIAO </div>
+         <div className="absolute top-[46%] left-[25%] text-[10px] text-white/50 rotate-[-50deg] tracking-widest font-mono bg-[#0A0A0A] px-2 z-10"> {t('home.architecture.visualizer.squad.tasks.0')} </div>
+         <div className="absolute top-[46%] right-[25%] text-[10px] text-white/50 rotate-[50deg] tracking-widest font-mono bg-[#0A0A0A] px-2 z-10"> {t('home.architecture.visualizer.squad.tasks.1')} </div>
+         <div className="absolute bottom-[25%] left-1/2 -translate-x-1/2 text-[10px] text-white/50 tracking-widest font-mono bg-[#0A0A0A] px-2 z-10"> {t('home.architecture.visualizer.squad.tasks.2')} </div>
       </motion.div>
     );
 }
@@ -295,6 +299,7 @@ function PacketPath({ path, color, delay }: { path: string, color: string, delay
 }
 
 function SoftwareFactoryVisualizer() {
+    const { t } = useLanguage();
     return (
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
@@ -351,13 +356,13 @@ function SoftwareFactoryVisualizer() {
          <div className="z-20 relative mb-14">
             <OrgNode 
               icon={Bot} 
-              title="ĐIỀU PHỐI TỔNG" 
+              title={t('home.architecture.visualizer.factory.orchestrator')} 
               subtitle="Orchestrator"
               color="bg-yellow-500" 
               isRoot 
             />
             <div className="absolute -right-32 top-4 text-[10px] font-mono text-yellow-500 bg-yellow-500/10 px-2 py-1 rounded border border-yellow-500/20">
-               ◀ Chiến lược & Phân bổ
+               ◀ {t('home.architecture.visualizer.factory.strategy')}
             </div>
          </div>
 

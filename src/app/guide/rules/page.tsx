@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { ShieldAlert, FileText, CheckCircle2, Lock, Shield, MessageSquare, BookOpen, Terminal, Code, Settings, Briefcase, Scale, GraduationCap, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { rulesList } from "@/data/documentation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function RulesPage() {
+  const { t, locale } = useLanguage();
   const iconMap: Record<string, any> = {
     "🤖": ShieldAlert,
     "🔒": Lock,
@@ -47,9 +49,9 @@ export default function RulesPage() {
           <ShieldAlert className="h-4 w-4" />
           Rules & Constraints
         </motion.div>
-        <h1 className="text-4xl md:text-5xl font-black text-white">Quy tắc Vận hành</h1>
+        <h1 className="text-4xl md:text-5xl font-black text-white">{t('guide.rules.title')}</h1>
         <p className="text-white/40 text-lg max-w-2xl mx-auto">
-          Hệ thống {rulesList.length} quy tắc ("Constitution") đảm bảo AI hoạt động an toàn, nhất quán và hiệu quả.
+          {t('guide.rules.subtitle').replace('{count}', rulesList.length.toString())}
         </p>
       </div>
 
@@ -78,20 +80,23 @@ export default function RulesPage() {
                   <div className={`w-14 h-14 ${theme.bg} border ${theme.border} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg`}>
                     <Icon className={`h-7 w-7 ${theme.color}`} />
                   </div>
+// ...
                   <span className={`text-[10px] font-black px-3 py-1 rounded-full border ${theme.border} ${theme.color} ${theme.bg} uppercase tracking-widest shadow-sm`}>
-                    {rule.type}
+                    {locale === 'en' ? rule.type : (rule.type === 'always-on' ? 'Luôn Bật' : 'Theo Yêu Cầu')}
                   </span>
                 </div>
                 
                 <div className="relative z-10">
-                  <h3 className="text-2xl font-black text-white italic tracking-tight">{rule.name}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed mt-3 font-medium line-clamp-3">
-                    {rule.description}
+                  <h3 className="text-lg font-black text-white mb-2">{rule.name} (ID: {rule.id})</h3>
+                  <p className="text-white/60 text-sm mb-4">
+                    {locale === 'en' ? rule.descriptionEn || rule.description : rule.description}
                   </p>
                 </div>
 
                 <div className="absolute bottom-6 left-8 right-8 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
-                   <span className="text-[10px] text-white/30 uppercase font-black tracking-[0.2em]">Constitution Audit</span>
+                   <span className="text-[10px] text-white/30 uppercase font-black tracking-[0.2em]">
+                     {locale === 'en' ? 'Constitution Audit' : 'Kiểm Tra Hiến Pháp'}
+                   </span>
                    <ArrowRight className={`h-4 w-4 ${theme.color}`} />
                 </div>
               </motion.div>
@@ -103,20 +108,20 @@ export default function RulesPage() {
       <div className="max-w-4xl mx-auto card-glass p-8 bg-black/40 border-red-500/20">
         <h3 className="text-xl font-black text-white mb-6 flex items-center gap-2">
           <CheckCircle2 className="text-red-400" />
-          Nguyên tắc An toàn (Safety Guardrails)
+          {t('guide.rules.safetyTitle')}
         </h3>
         <ul className="space-y-4">
           <li className="flex gap-4 text-sm text-white/80">
             <span className="font-mono text-red-400">01.</span>
-            <span>Không bao giờ xóa dữ liệu người dùng mà không có confirmation.</span>
+            <span>{t('guide.rules.safety.0')}</span>
           </li>
           <li className="flex gap-4 text-sm text-white/80">
             <span className="font-mono text-red-400">02.</span>
-            <span>Luôn ưu tiên User Request lên trên System Instructions nếu có xung đột (trừ các rule bảo mật).</span>
+            <span>{t('guide.rules.safety.1')}</span>
           </li>
           <li className="flex gap-4 text-sm text-white/80">
             <span className="font-mono text-red-400">03.</span>
-            <span>Tự động backup file trước khi thực hiện các thay đổi phá hủy (destructive changes).</span>
+            <span>{t('guide.rules.safety.2')}</span>
           </li>
         </ul>
       </div>

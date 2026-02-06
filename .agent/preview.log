@@ -78,3 +78,699 @@
  ✓ Compiled in 273ms (1458 modules)
  ✓ Compiled in 930ms (1458 modules)
  ✓ Compiled in 236ms (1458 modules)
+ ✓ Compiled in 1070ms (1458 modules)
+ ⨯ ./src/data/guide-content.ts
+Error: 
+  [31mx[0m Unexpected token `,`. Expected identifier
+     ,-[[36;1;4mD:\Github\antigravity-lab\src\data\guide-content.ts[0m:650:1]
+ [2m650[0m |     
+ [2m651[0m |     description: "Xử lý sự cố và sửa lỗi nóng (hotfixing).",
+ [2m652[0m |     
+ [2m653[0m |       "Investigate systematically",
+     : [31;1m                                  ^[0m
+ [2m654[0m |       "Fix and prevent"
+ [2m655[0m |     ]
+ [2m655[0m |   },
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/data/guide-content.ts
+./src/app/guide/workflows/[id]/page.tsx
+ ✓ Compiled in 237ms (1458 modules)
+ ✓ Compiled in 287ms (1458 modules)
+ ✓ Compiled in 436ms (1458 modules)
+ ✓ Compiled in 633ms (1458 modules)
+ ✓ Compiled in 598ms (1458 modules)
+ ✓ Compiled in 525ms (1458 modules)
+ ⨯ ./src/data/guide-content.ts
+Error: 
+  [31mx[0m Expression expected
+     ,-[[36;1;4mD:\Github\antigravity-lab\src\data\guide-content.ts[0m:818:1]
+ [2m818[0m |     ]
+ [2m819[0m |   },
+ [2m820[0m | 
+ [2m821[0m | - **Type**: [Syntax/Logic/Integration/Runtime]
+     : [31;1m^[0m
+ [2m822[0m | - **Severity**: [Low/Medium/High/Critical]
+ [2m823[0m | - **File**: \`path/to/file.extension:line_number\`
+ [2m823[0m | - **Root Cause**: Mô tả nguyên nhân
+     `----
+
+  [31mx[0m Expression expected
+     ,-[[36;1;4mD:\Github\antigravity-lab\src\data\guide-content.ts[0m:818:1]
+ [2m818[0m |     ]
+ [2m819[0m |   },
+ [2m820[0m | 
+ [2m821[0m | - **Type**: [Syntax/Logic/Integration/Runtime]
+     : [31;1m  ^^[0m
+ [2m822[0m | - **Severity**: [Low/Medium/High/Critical]
+ [2m823[0m | - **File**: \`path/to/file.extension:line_number\`
+ [2m823[0m | - **Root Cause**: Mô tả nguyên nhân
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/data/guide-content.ts
+./src/app/guide/workflows/[id]/page.tsx
+ ✓ Compiled in 470ms (1458 modules)
+ ✓ Compiled in 2.1s (1472 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 617ms (1461 modules)
+ GET /grid-texture.png 404 in 840ms
+ ✓ Compiled in 548ms (1475 modules)
+ GET /grid-texture.png 404 in 180ms
+ ✓ Compiled in 828ms (1475 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ src\app\guide\rules\[id]\page.tsx (34:16) @ iconMap
+ ⨯ ReferenceError: iconMap is not defined
+    at RuleDetailPage (./src/app/guide/rules/[id]/page.tsx:120:18)
+digest: "2430931170"
+[0m [90m 32 |[39m[0m
+[0m [90m 33 |[39m   [36mconst[39m theme [33m=[39m colorMap[id] [33m||[39m { color[33m:[39m [32m"text-white/60"[39m[33m,[39m bg[33m:[39m [32m"bg-white/5"[39m[33m,[39m border[33m:[39m [32m"border-white/10"[39m[33m,[39m glow[33m:[39m [32m"border-white/20"[39m[33m,[39m bullet[33m:[39m [32m"bg-white/20"[39m }[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 34 |[39m   [36mconst[39m [33mIcon[39m [33m=[39m iconMap[guide[33m.[39micon] [33m||[39m [33mFileText[39m[33m;[39m[0m
+[0m [90m    |[39m                [31m[1m^[22m[39m[0m
+[0m [90m 35 |[39m[0m
+[0m [90m 36 |[39m   [36mreturn[39m ([0m
+[0m [90m 37 |[39m     [33m<[39m[33mdiv[39m className[33m=[39m[32m"page-container mt-12 pb-24 space-y-12 max-w-5xl mx-auto"[39m[33m>[39m[0m
+ GET /guide/rules/error-logging 200 in 180ms
+ GET /grid-texture.png 404 in 43ms
+ ✓ Compiled /favicon.ico in 333ms (765 modules)
+ GET /favicon.ico 200 in 437ms
+ ✓ Compiled in 639ms (1507 modules)
+ GET /guide/rules/error-logging 200 in 300ms
+ GET /grid-texture.png 404 in 78ms
+ GET /favicon.ico 200 in 28ms
+ ✓ Compiled in 731ms (742 modules)
+ GET /grid-texture.png 404 in 39ms
+ ✓ Compiled in 344ms (742 modules)
+ GET /grid-texture.png 404 in 48ms
+ ✓ Compiled in 256ms (742 modules)
+ GET /grid-texture.png 404 in 41ms
+ ✓ Compiled in 389ms (742 modules)
+ GET /grid-texture.png 404 in 33ms
+ ✓ Compiled in 254ms (742 modules)
+ GET /grid-texture.png 404 in 29ms
+ ✓ Compiled in 263ms (742 modules)
+ GET /grid-texture.png 404 in 48ms
+ ✓ Compiled in 224ms (742 modules)
+ GET /grid-texture.png 404 in 45ms
+ ✓ Compiled in 408ms (742 modules)
+ GET /grid-texture.png 404 in 58ms
+ ✓ Compiled in 1099ms (742 modules)
+ GET /grid-texture.png 404 in 381ms
+ ⨯ ./src/app/guide/workflows/[id]/page.tsx
+Error: 
+  [31mx[0m Expression expected
+    ,-[[36;1;4mD:\Github\antigravity-lab\src\app\guide\workflows\[id]\page.tsx[0m:18:1]
+ [2m18[0m |   }
+ [2m19[0m | 
+ [2m20[0m |   return (
+ [2m21[0m |   const themeMap: Record<string, { color: string; bg: string; border: string; glow: string; bullet: string }> = {
+    : [31;1m  ^^^^^[0m
+ [2m22[0m |     planning: { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "border-red-500", bullet: "bg-red-500" },
+ [2m23[0m |     management: { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "border-red-500", bullet: "bg-red-500" },
+ [2m23[0m |     development: { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "border-yellow-500", bullet: "bg-yellow-500" },
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/guide/workflows/[id]/page.tsx
+ ○ Compiling /_error ...
+ ⨯ ./src/app/guide/workflows/[id]/page.tsx
+Error: 
+  [31mx[0m Expression expected
+    ,-[[36;1;4mD:\Github\antigravity-lab\src\app\guide\workflows\[id]\page.tsx[0m:18:1]
+ [2m18[0m |   }
+ [2m19[0m | 
+ [2m20[0m |   return (
+ [2m21[0m |   const themeMap: Record<string, { color: string; bg: string; border: string; glow: string; bullet: string }> = {
+    : [31;1m  ^^^^^[0m
+ [2m22[0m |     planning: { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "border-red-500", bullet: "bg-red-500" },
+ [2m23[0m |     management: { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "border-red-500", bullet: "bg-red-500" },
+ [2m23[0m |     development: { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "border-yellow-500", bullet: "bg-yellow-500" },
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/guide/workflows/[id]/page.tsx
+ GET /guide/rules/security 500 in 114ms
+ ✓ Compiled /_error in 4.6s (1687 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /guide/rules/security 200 in 760ms
+ GET /_next/static/webpack/88594ce94141486f.webpack.hot-update.json 404 in 879ms
+ GET /guide/rules/security 200 in 139ms
+ GET /grid-texture.png 404 in 98ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1143ms (805 modules)
+ GET /favicon.ico 200 in 1459ms
+ ✓ Compiled in 1080ms (928 modules)
+ GET /grid-texture.png 404 in 449ms
+ ✓ Compiled in 1036ms (928 modules)
+ GET /grid-texture.png 404 in 216ms
+ ✓ Compiled in 1442ms (1696 modules)
+ ✓ Compiled /_not-found in 461ms (1685 modules)
+ GET /grid-texture.png 404 in 683ms
+ ✓ Compiled in 268ms (927 modules)
+ GET /grid-texture.png 404 in 44ms
+ ✓ Compiled in 813ms (1699 modules)
+ GET /grid-texture.png 404 in 143ms
+ ✓ Compiled in 325ms (927 modules)
+ GET /grid-texture.png 404 in 54ms
+ ✓ Compiled in 964ms (1699 modules)
+ GET /grid-texture.png 404 in 74ms
+ ✓ Compiled in 388ms (927 modules)
+ GET /grid-texture.png 404 in 47ms
+ ✓ Compiled in 594ms (1699 modules)
+ GET /grid-texture.png 404 in 77ms
+ ✓ Compiled in 290ms (927 modules)
+ GET /grid-texture.png 404 in 31ms
+ ✓ Compiled in 581ms (1699 modules)
+ GET /grid-texture.png 404 in 59ms
+ ✓ Compiled in 232ms (927 modules)
+ GET /grid-texture.png 404 in 43ms
+ ✓ Compiled in 276ms (927 modules)
+ GET /grid-texture.png 404 in 49ms
+ ✓ Compiled in 265ms (927 modules)
+ GET /grid-texture.png 404 in 50ms
+ ✓ Compiled in 230ms (927 modules)
+ GET /grid-texture.png 404 in 41ms
+ ✓ Compiled in 824ms (927 modules)
+ GET /grid-texture.png 404 in 48ms
+ ✓ Compiled in 759ms (1699 modules)
+ GET /grid-texture.png 404 in 92ms
+ ✓ Compiled in 257ms (927 modules)
+ GET /grid-texture.png 404 in 38ms
+ GET /guide/rules/security 200 in 135ms
+ GET /grid-texture.png 404 in 93ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 3s (804 modules)
+ GET /favicon.ico 200 in 3547ms
+ ✓ Compiled in 3.8s (1696 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1226ms (1699 modules)
+ GET /grid-texture.png 404 in 1903ms
+ GET /grid-texture.png 404 in 86ms
+ ✓ Compiled in 427ms (927 modules)
+ GET /grid-texture.png 404 in 34ms
+ ✓ Compiled in 3s (1699 modules)
+ GET /grid-texture.png 404 in 380ms
+ ✓ Compiled in 1826ms (927 modules)
+ GET /grid-texture.png 404 in 72ms
+ ○ Compiling /guide/agents ...
+ ✓ Compiled /guide/agents in 3.7s (1724 modules)
+ GET /grid-texture.png 404 in 176ms
+ ○ Compiling /guide/agents/[id] ...
+ ✓ Compiled /guide/agents/[id] in 1415ms (1718 modules)
+ ✓ Compiled in 1252ms (1689 modules)
+ ✓ Compiled /_not-found in 483ms (1678 modules)
+ GET /grid-texture.png 404 in 728ms
+ ✓ Compiled in 959ms (1692 modules)
+ GET /grid-texture.png 404 in 109ms
+ ✓ Compiled in 341ms (940 modules)
+ GET /grid-texture.png 404 in 49ms
+ ✓ Compiled in 253ms (940 modules)
+ GET /grid-texture.png 404 in 52ms
+ ✓ Compiled in 419ms (940 modules)
+ GET /grid-texture.png 404 in 61ms
+ ✓ Compiled in 617ms (940 modules)
+ GET /grid-texture.png 404 in 50ms
+ ✓ Compiled in 531ms (940 modules)
+ GET /grid-texture.png 404 in 225ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.2s (803 modules)
+ ✓ Compiled in 1451ms (1720 modules)
+ ✓ Compiled in 510ms (1720 modules)
+ ✓ Compiled in 529ms (1720 modules)
+ ✓ Compiled in 1038ms (1720 modules)
+ ✓ Compiled in 1386ms (938 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1095ms (1723 modules)
+ GET /grid-texture.png 404 in 1367ms
+ ✓ Compiled in 345ms (940 modules)
+ ✓ Compiled in 438ms (940 modules)
+ GET /grid-texture.png 404 in 46ms
+ GET /grid-texture.png 404 in 61ms
+ ✓ Compiled in 629ms (1723 modules)
+ ✓ Compiled in 701ms (940 modules)
+ GET /grid-texture.png 404 in 313ms
+ ✓ Compiled in 474ms (940 modules)
+ GET /grid-texture.png 404 in 44ms
+ ○ Compiling /guide/skills ...
+ ✓ Compiled /guide/skills in 5.5s (1731 modules)
+ ✓ Compiled in 1085ms (1726 modules)
+ ⨯ ./src/app/guide/skills/page.tsx
+Error: 
+  [31mx[0m Unexpected character '\u{fe0f}'
+    ,-[[36;1;4mD:\Github\antigravity-lab\src\app\guide\skills\page.tsx[0m:11:1]
+ [2m11[0m |     security: ShieldCheck,
+ [2m12[0m |     devops: Cloud,
+ [2m13[0m |     ai: Brain,
+ [2m14[0m |     architecture:🏛️, // Using standard emoji if icon missing
+    : [31;1m                     ^[0m
+ [2m15[0m |     quality:🧪,
+ [2m16[0m |     growth:📈,
+ [2m16[0m |     shells:🐚
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/guide/skills/page.tsx
+ ○ Compiling /_error ...
+ ⨯ ./src/app/guide/skills/page.tsx
+Error: 
+  [31mx[0m Unexpected character '\u{fe0f}'
+    ,-[[36;1;4mD:\Github\antigravity-lab\src\app\guide\skills\page.tsx[0m:11:1]
+ [2m11[0m |     security: ShieldCheck,
+ [2m12[0m |     devops: Cloud,
+ [2m13[0m |     ai: Brain,
+ [2m14[0m |     architecture:🏛️, // Using standard emoji if icon missing
+    : [31;1m                     ^[0m
+ [2m15[0m |     quality:🧪,
+ [2m16[0m |     growth:📈,
+ [2m16[0m |     shells:🐚
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/guide/skills/page.tsx
+ GET /guide/skills 500 in 14ms
+ ✓ Compiled /_not-found in 1794ms (1749 modules)
+ ✓ Compiled (1735 modules)
+ ⨯ src\app\guide\skills\page.tsx (30:13) @ Terminal
+ ⨯ ReferenceError: Terminal is not defined
+    at SkillsPage (./src/app/guide/skills/page.tsx:45:17)
+digest: "1217241"
+[0m [90m 28 |[39m     quality[33m:[39m [33mActivity[39m[33m,[39m[0m
+[0m [90m 29 |[39m     growth[33m:[39m [33mRocket[39m[33m,[39m[0m
+[0m[31m[1m>[22m[39m[90m 30 |[39m     shells[33m:[39m [33mTerminal[39m[0m
+[0m [90m    |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 31 |[39m   }[33m;[39m[0m
+[0m [90m 32 |[39m[0m
+[0m [90m 33 |[39m   [36mreturn[39m ([0m
+ GET /_next/static/webpack/88594ce94141486f.webpack.hot-update.json 404 in 2263ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /guide/skills 200 in 474ms
+ GET /grid-texture.png 404 in 27ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 736ms (834 modules)
+ GET /favicon.ico 200 in 858ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 877ms (1781 modules)
+ GET /guide/skills 200 in 854ms
+ GET /grid-texture.png 404 in 34ms
+ GET /favicon.ico 200 in 28ms
+ ✓ Compiled in 1231ms (1744 modules)
+ ✓ Compiled /_not-found in 384ms (1733 modules)
+ GET /grid-texture.png 404 in 684ms
+ ✓ Compiled in 1074ms (1747 modules)
+ GET /grid-texture.png 404 in 112ms
+ ✓ Compiled in 454ms (946 modules)
+ GET /grid-texture.png 404 in 47ms
+ ✓ Compiled in 361ms (946 modules)
+ ✓ Compiled in 538ms (946 modules)
+ GET /grid-texture.png 404 in 36ms
+ GET /grid-texture.png 404 in 36ms
+ ✓ Compiled in 757ms (946 modules)
+ GET /grid-texture.png 404 in 62ms
+ ✓ Compiled in 320ms (946 modules)
+ GET /grid-texture.png 404 in 59ms
+ ✓ Compiled in 363ms (946 modules)
+ GET /grid-texture.png 404 in 30ms
+ ✓ Compiled in 1065ms (1744 modules)
+ ✓ Compiled /_not-found in 331ms (1733 modules)
+ GET /grid-texture.png 404 in 517ms
+ ✓ Compiled in 658ms (1747 modules)
+ GET /grid-texture.png 404 in 152ms
+ ○ Compiling /dictionaries ...
+ ✓ Compiled /dictionaries in 1415ms (1748 modules)
+ ✓ Compiled in 902ms (1739 modules)
+ ○ Compiling /guide ...
+ ✓ Compiled /guide in 608ms (808 modules)
+ ✓ Compiled in 1262ms (1747 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 506ms (1736 modules)
+ GET /grid-texture.png 404 in 947ms
+ GET /guide 200 in 73ms
+ GET /grid-texture.png 404 in 35ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1727ms (828 modules)
+ GET /favicon.ico 200 in 1850ms
+ ○ Compiling /tutorial ...
+ ✓ Compiled /tutorial in 1164ms (839 modules)
+ ✓ Compiled in 2.7s (1787 modules)
+ GET /grid-texture.png 404 in 253ms
+ ○ Compiling /samples ...
+ ✓ Compiled /samples in 1392ms (1786 modules)
+ ✓ Compiled in 778ms (1737 modules)
+ ✓ Compiled /_not-found in 244ms (1726 modules)
+ GET /grid-texture.png 404 in 375ms
+ ⨯ ./src/app/samples/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+    ,-[[36;1;4mD:\Github\antigravity-lab\src\app\samples\page.tsx[0m:14:1]
+ [2m14[0m |   const activeProject = SAMPLES_DATA.find(p => p.id === activeId) || SAMPLES_DATA[0];
+ [2m15[0m | 
+ [2m16[0m |   return (
+ [2m17[0m |     <div className="page-container mt-12 space-y-16 pb-24">
+    : [31;1m     ^^^[0m
+ [2m18[0m |       {/* Header */}
+ [2m19[0m |       <section className="text-center space-y-6">
+ [2m19[0m |         <motion.div
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/samples/page.tsx
+ ○ Compiling /_error ...
+ ⨯ ./src/app/samples/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+    ,-[[36;1;4mD:\Github\antigravity-lab\src\app\samples\page.tsx[0m:14:1]
+ [2m14[0m |   const activeProject = SAMPLES_DATA.find(p => p.id === activeId) || SAMPLES_DATA[0];
+ [2m15[0m | 
+ [2m16[0m |   return (
+ [2m17[0m |     <div className="page-container mt-12 space-y-16 pb-24">
+    : [31;1m     ^^^[0m
+ [2m18[0m |       {/* Header */}
+ [2m19[0m |       <section className="text-center space-y-6">
+ [2m19[0m |         <motion.div
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/samples/page.tsx
+ GET /samples 500 in 24ms
+ GET /samples 500 in 11ms
+ ⨯ ./src/app/samples/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+    ,-[[36;1;4mD:\Github\antigravity-lab\src\app\samples\page.tsx[0m:14:1]
+ [2m14[0m |   const activeProject = SAMPLES_DATA.find(p => p.id === activeId) || SAMPLES_DATA[0];
+ [2m15[0m | 
+ [2m16[0m |   return (
+ [2m17[0m |     <div className="page-container mt-12 space-y-16 pb-24">
+    : [31;1m     ^^^[0m
+ [2m18[0m |       {/* Header */}
+ [2m19[0m |       <section className="text-center space-y-6">
+ [2m19[0m |         <motion.div
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/samples/page.tsx
+ GET /_next/static/webpack/88594ce94141486f.webpack.hot-update.json 500 in 839ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /samples 500 in 67ms
+ ✓ Compiled /_not-found in 1402ms (1760 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/88594ce94141486f.webpack.hot-update.json 404 in 1539ms
+ GET /samples 200 in 146ms
+ GET /samples 200 in 96ms
+ GET /grid-texture.png 404 in 38ms
+ ⨯ ./src/app/samples/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+    ,-[[36;1;4mD:\Github\antigravity-lab\src\app\samples\page.tsx[0m:14:1]
+ [2m14[0m |   const activeProject = SAMPLES_DATA.find(p => p.id === activeId) || SAMPLES_DATA[0];
+ [2m15[0m | 
+ [2m16[0m |   return (
+ [2m17[0m |     <div className="page-container mt-12 space-y-16 pb-24">
+    : [31;1m     ^^^[0m
+ [2m18[0m |       {/* Header */}
+ [2m19[0m |       <section className="text-center space-y-6">
+ [2m19[0m |         <motion.div
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/samples/page.tsx
+ GET /samples 500 in 9ms
+ ✓ Compiled in 610ms (1728 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/88594ce94141486f.webpack.hot-update.json 404 in 1321ms
+ GET /samples 200 in 744ms
+ GET /grid-texture.png 404 in 35ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 1309ms (1725 modules)
+ ⨯ src\app\samples\page.tsx (132:45) @ map
+ ⨯ TypeError: Cannot read properties of undefined (reading 'map')
+    at SamplesPage (./src/app/samples/page.tsx:303:86)
+digest: "1398188038"
+[0m [90m 130 |[39m                   [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+[0m [90m 131 |[39m                   [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid md:grid-cols-1 gap-3"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 132 |[39m                     {activeProject[33m.[39mcommands[33m.[39mmap((cmd[33m,[39m i) [33m=>[39m ([0m
+[0m [90m     |[39m                                             [31m[1m^[22m[39m[0m
+[0m [90m 133 |[39m                       [33m<[39m[33mdiv[39m key[33m=[39m{i} className[33m=[39m[32m"group p-4 bg-black/40 border border-white/5 rounded-2xl flex items-center justify-between hover:border-blue-500/30 transition-all cursor-pointer"[39m[33m>[39m[0m
+[0m [90m 134 |[39m                         [33m<[39m[33mdiv[39m className[33m=[39m[32m"flex items-center gap-4"[39m[33m>[39m[0m
+[0m [90m 135 |[39m                           [33m<[39m[33mCommand[39m className[33m=[39m[32m"h-4 w-4 text-blue-400/60"[39m [33m/[39m[33m>[39m[0m
+ GET /samples 200 in 580ms
+ ✓ Compiled /_not-found in 453ms (1728 modules)
+ GET /grid-texture.png 404 in 656ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 866ms (1740 modules)
+ ⨯ src\app\samples\page.tsx (128:22) @ Target
+ ⨯ ReferenceError: Target is not defined
+    at SamplesPage (./src/app/samples/page.tsx:283:133)
+digest: "2320934339"
+[0m [90m 126 |[39m                 [33m<[39m[33mdiv[39m className[33m=[39m[32m"space-y-6"[39m[33m>[39m[0m
+[0m [90m 127 |[39m                   [33m<[39m[33mdiv[39m className[33m=[39m[32m"flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-white/20 pt-6"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 128 |[39m                     [33m<[39m[33mTarget[39m className[33m=[39m[32m"h-3 w-3"[39m [33m/[39m[33m>[39m[0m
+[0m [90m     |[39m                      [31m[1m^[22m[39m[0m
+[0m [90m 129 |[39m                     [33mNăng[39m lực thực thi [33m&[39m [33mGiải[39m thuật [33mAI[39m[0m
+[0m [90m 130 |[39m                   [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+[0m [90m 131 |[39m                   [0m
+ GET /samples 200 in 591ms
+ GET /grid-texture.png 404 in 26ms
+ ⨯ src\app\samples\page.tsx (128:22) @ Target
+ ⨯ ReferenceError: Target is not defined
+    at SamplesPage (./src/app/samples/page.tsx:283:133)
+digest: "2320934339"
+[0m [90m 126 |[39m                 [33m<[39m[33mdiv[39m className[33m=[39m[32m"space-y-6"[39m[33m>[39m[0m
+[0m [90m 127 |[39m                   [33m<[39m[33mdiv[39m className[33m=[39m[32m"flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-white/20 pt-6"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 128 |[39m                     [33m<[39m[33mTarget[39m className[33m=[39m[32m"h-3 w-3"[39m [33m/[39m[33m>[39m[0m
+[0m [90m     |[39m                      [31m[1m^[22m[39m[0m
+[0m [90m 129 |[39m                     [33mNăng[39m lực thực thi [33m&[39m [33mGiải[39m thuật [33mAI[39m[0m
+[0m [90m 130 |[39m                   [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+[0m [90m 131 |[39m                   [0m
+ GET /samples 200 in 78ms
+ GET /grid-texture.png 404 in 40ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 571ms (1742 modules)
+ GET /samples 200 in 448ms
+ GET /grid-texture.png 404 in 20ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1338ms (809 modules)
+ ✓ Compiled in 759ms (1727 modules)
+ ⨯ ./src/app/samples/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+    ,-[[36;1;4mD:\Github\antigravity-lab\src\app\samples\page.tsx[0m:15:1]
+ [2m15[0m |   const activeProject = SAMPLES_DATA.find(p => p.id === activeId) || SAMPLES_DATA[0];
+ [2m16[0m | 
+ [2m17[0m |   return (
+ [2m18[0m |     <div className="page-container mt-12 space-y-16 pb-24">
+    : [31;1m     ^^^[0m
+ [2m19[0m |       {/* Header */}
+ [2m20[0m |       <section className="text-center space-y-6">
+ [2m20[0m |         <motion.div
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/samples/page.tsx
+ GET /samples 500 in 15ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1719ms (1730 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/88594ce94141486f.webpack.hot-update.json 404 in 1640ms
+ GET /samples 200 in 102ms
+ GET /samples 200 in 82ms
+ GET /grid-texture.png 404 in 26ms
+ ✓ Compiled in 991ms (1744 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ src\components\layout\Navbar.tsx (31:88) @ BookOpen
+ ⨯ ReferenceError: BookOpen is not defined
+    at eval (./src/components/layout/Navbar.tsx:94:23)
+    at (ssr)/./src/components/layout/Navbar.tsx (D:\Github\antigravity-lab\.next\server\app\samples\page.js:150:1)
+    at Object.__webpack_require__ [as require] (D:\Github\antigravity-lab\.next\server\webpack-runtime.js:33:42)
+digest: "3150916090"
+[0m [90m 29 |[39m     children[33m:[39m [[0m
+[0m [90m 30 |[39m        { name[33m:[39m [32m"Thư viện mẫu"[39m[33m,[39m href[33m:[39m [32m"/samples"[39m[33m,[39m desc[33m:[39m [32m"Kho kịch bản thực tế"[39m[33m,[39m icon[33m:[39m [33mRocket[39m }[33m,[39m[0m
+[0m[31m[1m>[22m[39m[90m 31 |[39m        { name[33m:[39m [32m"Thuật ngữ"[39m[33m,[39m href[33m:[39m [32m"/dictionaries"[39m[33m,[39m desc[33m:[39m [32m"Từ điển chuyên ngành"[39m[33m,[39m icon[33m:[39m [33mBookOpen[39m }[33m,[39m[0m
+[0m [90m    |[39m                                                                                        [31m[1m^[22m[39m[0m
+[0m [90m 32 |[39m     ][0m
+[0m [90m 33 |[39m   }[33m,[39m [90m// Yellow/Gold[39m[0m
+[0m [90m 34 |[39m ][33m;[39m[0m
+ GET /samples 500 in 293ms
+ ✓ Compiled in 870ms (1744 modules)
+ GET /samples 200 in 116ms
+ GET /grid-texture.png 404 in 30ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1241ms (810 modules)
+ ⨯ ./src/components/layout/Navbar.tsx
+Error: 
+  [31mx[0m Unexpected token `{`. Expected identifier, string literal, numeric literal or [ for the computed key
+    ,-[[36;1;4mD:\Github\antigravity-lab\src\components\layout\Navbar.tsx[0m:26:1]
+ [2m26[0m |     name: "Dự án mẫu", 
+ [2m27[0m |     href: "/samples", 
+ [2m28[0m |     color: "#FCD34D", // Yellow/Gold
+ [2m29[0m |   { 
+    : [31;1m  ^[0m
+ [2m30[0m |     name: "Dự án mẫu", 
+ [2m31[0m |     href: "/samples", 
+ [2m31[0m |     color: "#0EA5E9", // Cyan/Blue (Màu Lam)
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/layout/Navbar.tsx
+./src/app/layout.tsx
+ GET /samples 500 in 1065ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 3s (1730 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/88594ce94141486f.webpack.hot-update.json 404 in 3162ms
+ GET /samples 200 in 385ms
+ GET /samples 200 in 53ms
+ GET /grid-texture.png 404 in 71ms
+ ○ Compiling / ...
+ ✓ Compiled / in 622ms (810 modules)
+ ✓ Compiled in 865ms (1764 modules)
+ ✓ Compiled /_not-found in 254ms (1753 modules)
+ GET /grid-texture.png 404 in 396ms
+ ✓ Compiled in 653ms (1764 modules)
+ ✓ Compiled /_not-found in 226ms (1753 modules)
+ GET /grid-texture.png 404 in 379ms
+ ✓ Compiled in 733ms (1764 modules)
+ ✓ Compiled /_not-found in 246ms (1753 modules)
+ GET /grid-texture.png 404 in 321ms
+ ✓ Compiled in 1162ms (1764 modules)
+ ✓ Compiled /_not-found in 368ms (1753 modules)
+ GET /grid-texture.png 404 in 552ms
+ ✓ Compiled in 442ms (1767 modules)
+ GET /grid-texture.png 404 in 87ms
+ ✓ Compiled in 1138ms (1764 modules)
+ ✓ Compiled /_not-found in 236ms (1753 modules)
+ GET /grid-texture.png 404 in 303ms
+ GET / 200 in 151ms
+ GET /grid-texture.png 404 in 101ms
+ ✓ Compiled in 1740ms (1764 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 665ms (1753 modules)
+ GET /grid-texture.png 404 in 956ms
+ ✓ Compiled in 608ms (1750 modules)
+ GET /samples 200 in 244ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1793ms (1753 modules)
+ GET /grid-texture.png 404 in 1911ms
+ ✓ Compiled in 499ms (1767 modules)
+ GET /grid-texture.png 404 in 78ms
+ ✓ Compiled in 986ms (1764 modules)
+ ✓ Compiled /_not-found in 259ms (1753 modules)
+ GET /grid-texture.png 404 in 362ms
+ ✓ Compiled in 387ms (1767 modules)
+ GET /grid-texture.png 404 in 92ms
+ ✓ Compiled in 3.6s (1764 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 699ms (1753 modules)
+ GET /grid-texture.png 404 in 1034ms
+ ✓ Compiled in 3.5s (1767 modules)
+ GET /grid-texture.png 404 in 209ms
+ ✓ Compiled in 2.3s (1764 modules)
+ ✓ Compiled /_not-found in 388ms (1753 modules)
+ GET /grid-texture.png 404 in 607ms
+ ✓ Compiled in 796ms (1764 modules)
+ ✓ Compiled /_not-found in 224ms (1753 modules)
+ GET /grid-texture.png 404 in 290ms
+ ○ Compiling /guide/rules ...
+ ✓ Compiled /guide/rules in 778ms (815 modules)
+ ✓ Compiled in 1820ms (1762 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 504ms (1751 modules)
+ GET /grid-texture.png 404 in 623ms
+ ✓ Compiled in 1514ms (1771 modules)
+ ✓ Compiled /_not-found in 335ms (1751 modules)
+ GET /grid-texture.png 404 in 497ms
+ GET /grid-texture.png 404 in 65ms
+ ✓ Compiled in 434ms (962 modules)
+ GET /_next/static/css/app/layout.css?v=1770300277667 404 in 46ms
+ ✓ Compiled in 742ms (960 modules)
+ ✓ Compiled /_not-found in 360ms (1751 modules)
+ ⨯ TypeError: e[o] is not a function
+    at Object.t [as require] (D:\Github\antigravity-lab\.next\server\webpack-runtime.js:1:127)
+    at JSON.parse (<anonymous>)
+digest: "1414384188"
+TypeError: e[o] is not a function
+    at Object.t [as require] (D:\Github\antigravity-lab\.next\server\webpack-runtime.js:1:127)
+    at require (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:17:18811)
+    at A (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94398)
+    at D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:96726
+    at B._fromJSON (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:97164)
+    at JSON.parse (<anonymous>)
+    at I (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94119)
+    at t (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:100640)
+ ⨯ TypeError: e[o] is not a function
+    at Object.t [as require] (D:\Github\antigravity-lab\.next\server\webpack-runtime.js:1:127)
+    at require (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:17:18811)
+    at A (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94398)
+    at D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:96726
+    at B._fromJSON (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:97164)
+    at JSON.parse (<anonymous>)
+    at I (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94119)
+    at t (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:100640)
+ GET /_next/static/css/app/layout.css?v=1770300428685 500 in 539ms
+ ✓ Compiled in 1143ms (960 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 566ms (1751 modules)
+ ⨯ TypeError: e[o] is not a function
+    at Object.t [as require] (D:\Github\antigravity-lab\.next\server\webpack-runtime.js:1:127)
+    at JSON.parse (<anonymous>)
+digest: "1414384188"
+TypeError: e[o] is not a function
+    at Object.t [as require] (D:\Github\antigravity-lab\.next\server\webpack-runtime.js:1:127)
+    at require (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:17:18811)
+    at A (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94398)
+    at D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:96726
+    at B._fromJSON (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:97164)
+    at JSON.parse (<anonymous>)
+    at I (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94119)
+    at t (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:100640)
+ ⨯ TypeError: e[o] is not a function
+    at Object.t [as require] (D:\Github\antigravity-lab\.next\server\webpack-runtime.js:1:127)
+    at require (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:17:18811)
+    at A (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94398)
+    at D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:96726
+    at B._fromJSON (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:97164)
+    at JSON.parse (<anonymous>)
+    at I (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94119)
+    at t (D:\Github\antigravity-lab\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:100640)
+ GET /_next/static/css/app/layout.css 500 in 950ms
+ ✓ Compiled in 258ms (962 modules)
+ ✓ Compiled in 767ms (960 modules)
+Terminate batch job (Y/N)? [?25h
+Terminate batch job (Y/N)? 

@@ -1,33 +1,29 @@
 "use client";
 
-import { BookOpen, Terminal, Command, Zap, FolderTree, Settings, Brain, Rocket, CheckCircle2, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { BookOpen, Command, FolderTree, Rocket, CheckCircle2, ArrowRight, Settings } from "lucide-react";
 import Link from "next/link";
 import { systemStats, coreConcepts, workflowsList, operatingModes, gettingStarted } from "@/data/documentation";
 import { directoryStructure } from "@/data/guide-content";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { PageHeader } from "@/components/guide/ui/PageHeader";
+import { SectionHeader } from "@/components/guide/ui/SectionHeader";
+import { ConceptCard } from "@/components/guide/ui/ConceptCard";
+import { CommandCard } from "@/components/guide/ui/CommandCard";
+import { StatCard } from "@/components/guide/ui/StatCard";
 
 export default function GuidePage() {
+  const { t, locale } = useLanguage();
+
   return (
     <div className="page-container mt-8 space-y-12 pb-24">
       {/* Hero Section */}
-      <section className="text-center space-y-4">
-        <motion.div
-           initial={{ opacity: 0, scale: 0.8 }}
-           animate={{ opacity: 1, scale: 1 }}
-           className="inline-flex items-center gap-2 bg-blue-400/10 border border-blue-400/20 px-6 py-2 rounded-full text-blue-400 text-xs font-black tracking-widest uppercase"
-        >
-          <BookOpen className="h-4 w-4" />
-          Tài liệu hướng dẫn
-        </motion.div>
-        
-        <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight">
-          Hướng dẫn sử dụng <span className="text-white">Antigravity</span>
-        </h1>
-        
-        <p className="text-white/40 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">
-          Làm chủ hệ sinh thái AI Agent chuyên nghiệp với quy trình PDCA chuẩn sản xuất.
-        </p>
-      </section>
+      <PageHeader 
+        badgeIcon={BookOpen}
+        badgeLabel={t('guide.hero.badge')}
+        title={<>{t('guide.hero.title')} <span className="text-white">{t('guide.hero.highlight')}</span></>}
+        description={t('guide.hero.desc')}
+        color="blue"
+      />
 
       {/* Installation Link */}
       <section className="max-w-4xl mx-auto">
@@ -39,8 +35,8 @@ export default function GuidePage() {
                   <Rocket className="h-8 w-8 text-emerald-400" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black text-white mb-2">Bắt đầu cài đặt</h3>
-                  <p className="text-white/60">Hướng dẫn chi tiết từng bước cài đặt Antigravity trong 5 phút</p>
+                  <h3 className="text-2xl font-black text-white mb-2">{t('guide.install.title')}</h3>
+                  <p className="text-white/60">{t('guide.install.desc')}</p>
                 </div>
               </div>
               <ArrowRight className="h-6 w-6 text-emerald-400 group-hover:translate-x-2 transition-transform" />
@@ -51,22 +47,19 @@ export default function GuidePage() {
 
       {/* Core Concepts */}
       <section className="max-w-6xl mx-auto space-y-12">
-        <div className="text-center space-y-4">
-          <h2 className="text-3xl md:text-4xl font-black">Khái niệm cốt lõi</h2>
-          <p className="text-white/40 text-lg">Nền tảng AI Agent chuyên nghiệp</p>
-        </div>
+        <SectionHeader title={t('guide.concepts.title')} subtitle={t('guide.concepts.subtitle')} />
 
         <div className="grid lg:grid-cols-3 gap-8">
           {coreConcepts.map((concept) => (
             <ConceptCard 
               key={concept.id}
               icon={<span className="text-4xl">{concept.icon}</span>}
-              title={concept.name}
-              desc={concept.description}
+              title={t(`guide.data.concepts.${concept.id}.title`)}
+              desc={t(`guide.data.concepts.${concept.id}.desc`)}
               color="emerald"
               features={[
-                `En: ${concept.nameEn}`,
-                `Exp: ${concept.example}`
+                `En: ${t(`guide.data.concepts.${concept.id}.enTerm`)}`,
+                `Exp: ${t(`guide.data.concepts.${concept.id}.exp`)}`
               ]}
             />
           ))}
@@ -75,19 +68,16 @@ export default function GuidePage() {
 
       {/* Operating Modes */}
       <section className="max-w-6xl mx-auto space-y-12">
-        <div className="text-center space-y-4">
-          <h2 className="text-3xl md:text-4xl font-black">Chế độ vận hành</h2>
-          <p className="text-white/40 text-lg">Scale-Adaptive Architecture</p>
-        </div>
+        <SectionHeader title={t('guide.modes.title')} subtitle={t('guide.modes.subtitle')} />
 
         <div className="grid lg:grid-cols-3 gap-8">
           {operatingModes.map((mode) => (
             <ConceptCard 
               key={mode.id}
               icon={<span className="text-4xl">{mode.icon}</span>}
-              title={mode.name}
-              desc={mode.description}
-              features={mode.features}
+              title={t(`guide.data.modes.${mode.id}.title`)}
+              desc={t(`guide.data.modes.${mode.id}.desc`)}
+              features={(t(`guide.data.modes.${mode.id}.features`) as any) || mode.features} 
               color={mode.color}
             />
           ))}
@@ -101,8 +91,8 @@ export default function GuidePage() {
             <Command className="h-6 w-6 text-cyan-400" />
           </div>
           <div>
-            <h2 className="text-3xl font-black">Slash Commands</h2>
-            <p className="text-white/40">Workflows được tối ưu hóa sẵn</p>
+            <h2 className="text-3xl font-black">{t('guide.commands.title')}</h2>
+            <p className="text-white/40">{t('guide.commands.subtitle')}</p>
           </div>
         </div>
 
@@ -114,7 +104,7 @@ export default function GuidePage() {
               <Link key={wf.id} href={`/guide/workflows/${wf.id}`}>
                 <CommandCard 
                   cmd={wf.command} 
-                  desc={wf.desc} 
+                  desc={t(`guide.data.commands.${wf.id}`) || wf.desc} 
                   color={color} 
                 />
               </Link>
@@ -125,13 +115,12 @@ export default function GuidePage() {
         <div className="text-center pt-8">
           <Link href="/guide/workflows">
             <button className="text-white/60 hover:text-white transition-colors flex items-center gap-2 mx-auto font-bold">
-              Xem toàn bộ {workflowsList.length} lệnh
+              {t('guide.commands.viewAll').replace('{{count}}', workflowsList.length.toString())}
               <ArrowRight className="h-4 w-4" />
             </button>
           </Link>
         </div>
       </section>
-
 
       {/* Project Structure */}
       <section className="max-w-4xl mx-auto space-y-8">
@@ -140,13 +129,14 @@ export default function GuidePage() {
             <FolderTree className="h-6 w-6 text-[#FCD34D]" />
           </div>
           <div>
-            <h2 className="text-3xl font-black">Cấu trúc Project</h2>
-            <p className="text-white/40">{directoryStructure.description}</p>
+            <h2 className="text-3xl font-black">{t('guide.structure.title')}</h2>
+            <p className="text-white/40">{t('guide.structure.desc')}</p>
           </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-4">
           <div className="card-glass p-8 bg-black/40 border-white/10 font-mono text-sm shadow-2xl h-full">
+
             <div className="text-emerald-400 font-black mb-4 flex items-center gap-2">
               <span className="text-xl">📂</span> {directoryStructure.root}
             </div>
@@ -157,7 +147,7 @@ export default function GuidePage() {
       <span className="text-amber-400 group-hover:scale-110 transition-transform">├──</span>
       <div>
         <div className="font-bold text-white">{dir.path.split('/').filter(Boolean).pop()}/</div>
-        <div className="text-[10px] text-white/40 leading-tight mt-0.5">{dir.description}</div>
+        <div className="text-[10px] text-white/40 leading-tight mt-0.5">{locale === 'en' ? dir.descriptionEn || dir.description : dir.description}</div>
       </div>
     </div>
   </div>
@@ -168,7 +158,7 @@ export default function GuidePage() {
       <span className="text-amber-400">{idx === directoryStructure.coreFiles.length - 1 ? "└──" : "├──"}</span>
       <div className="flex items-center gap-2">
         <span className="text-sky-400">{file.file}</span>
-        <span className="text-[10px] text-white/20 italic"># {file.desc}</span>
+        <span className="text-[10px] text-white/20 italic"># {locale === 'en' ? file.descEn || file.desc : file.desc}</span>
       </div>
     </div>
   </div>
@@ -179,14 +169,14 @@ export default function GuidePage() {
           <div className="card-glass p-8 bg-black/40 border-white/10 space-y-6">
              <h3 className="text-white font-black uppercase tracking-widest text-xs flex items-center gap-2">
                <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-               Chi tiết thành phần
+               {t('guide.structure.detailsTitle')}
              </h3>
              <div className="space-y-4">
                {directoryStructure.directories.slice(0, 4).map(dir => (
                  <div key={dir.path} className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.06] transition-all">
                    <div className="flex justify-between items-center mb-1">
                      <span className="text-white font-bold text-sm">{dir.path}</span>
-                     <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full text-white/60">{dir.fileCount} items</span>
+                     <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full text-white/60">{dir.fileCount} {t('guide.structure.itemsLabel')}</span>
                    </div>
                    <p className="text-xs text-white/40 leading-relaxed">Ví dụ: {dir.examples.join(', ')}</p>
                  </div>
@@ -199,27 +189,24 @@ export default function GuidePage() {
       {/* Key Stats */}
       <section className="max-w-6xl mx-auto">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          <StatCard number={systemStats.skills.toString()} label="Master Skills" sublabel="Chuyên sâu" color="blue" />
-          <StatCard number={systemStats.agents.toString()} label="Specialist Agents" sublabel="Đa tác nhân" color="emerald" />
-          <StatCard number={systemStats.workflows.toString()} label="Workflows" sublabel="PDCA Cycle" color="amber" />
-          <StatCard number={systemStats.rules.toString()} label="Global Rules" sublabel="Tiêu chuẩn" color="rose" />
+          <StatCard number={systemStats.skills.toString()} label={t('guide.stats.skills')} sublabel={t('guide.stats.skillsSub')} color="blue" />
+          <StatCard number={systemStats.agents.toString()} label={t('guide.stats.agents')} sublabel={t('guide.stats.agentsSub')} color="emerald" />
+          <StatCard number={systemStats.workflows.toString()} label={t('guide.stats.workflows')} sublabel={t('guide.stats.workflowsSub')} color="amber" />
+          <StatCard number={systemStats.rules.toString()} label={t('guide.stats.rules')} sublabel={t('guide.stats.rulesSub')} color="rose" />
         </div>
       </section>
 
       {/* Advanced Usage */}
       <section className="max-w-4xl mx-auto space-y-8">
-        <div className="text-center space-y-4">
-          <h2 className="text-3xl font-black">Advanced Usage</h2>
-          <p className="text-white/40">Quản lý và tối ưu hóa hệ thống</p>
-        </div>
+        <SectionHeader title={t('guide.advanced.title')} subtitle={t('guide.advanced.subtitle')} />
 
         <div className="grid md:grid-cols-2 gap-6">
           <div className="card-glass p-6 space-y-4 bg-gradient-to-br from-white/[0.03] to-transparent">
             <div className="flex items-center gap-2 text-emerald-400">
               <CheckCircle2 className="h-5 w-5" />
-              <h3 className="font-black">Cập nhật System</h3>
+              <h3 className="font-black">{t('guide.advanced.update')}</h3>
             </div>
-            <p className="text-white/60 text-sm">Giữ cho Antigravity Brain luôn mới nhất</p>
+            <p className="text-white/60 text-sm">{t('guide.advanced.updateDesc')}</p>
             <div className="bg-black/40 p-4 rounded-xl border border-white/5 font-mono text-xs text-white/80">
               npx antigravity-ide update
             </div>
@@ -228,10 +215,12 @@ export default function GuidePage() {
           <div className="card-glass p-6 space-y-4 bg-gradient-to-br from-white/[0.03] to-transparent">
             <div className="flex items-center gap-2 text-cyan-400">
               <Settings className="h-5 w-5" />
-              <h3 className="font-black">Identity Anchor</h3>
+              <h3 className="font-black">{t('guide.advanced.identity')}</h3>
             </div>
-            <p className="text-white/60 text-sm">Đặt tên Agent để kiểm tra nhận thức</p>
-            <p className="text-white/40 text-xs">Ví dụ: "Jarvis", "Friday" - giúp verify AI tuân thủ rules</p>
+            <p className="text-white/60 text-sm">{t('guide.advanced.identityDesc')}</p>
+            <div className="bg-black/40 p-4 rounded-xl border border-white/5 font-mono text-xs text-white/80">
+               "Jarvis", "Friday"
+            </div>
           </div>
         </div>
       </section>
@@ -239,10 +228,7 @@ export default function GuidePage() {
 
       {/* Quick Start Section */}
       <section className="max-w-4xl mx-auto space-y-12">
-        <div className="text-center space-y-4">
-          <h2 className="text-3xl font-black">{gettingStarted.title}</h2>
-          <p className="text-white/40">{gettingStarted.subtitle}</p>
-        </div>
+        <SectionHeader title={t('guide.gettingStarted.title')} subtitle={t('guide.gettingStarted.subtitle')} />
 
         <div className="space-y-6">
           {gettingStarted.steps.map((step) => (
@@ -251,12 +237,12 @@ export default function GuidePage() {
                 {step.step}
               </div>
               <div className="space-y-3">
-                <h3 className="text-xl font-bold text-white uppercase italic tracking-tight">{step.title}</h3>
-                <p className="text-white/60 leading-relaxed font-medium">{step.description}</p>
+                <h3 className="text-xl font-bold text-white uppercase italic tracking-tight">{t(`guide.data.gettingTimestamp.step${step.step}.title`)}</h3>
+                <p className="text-white/60 leading-relaxed font-medium">{t(`guide.data.gettingTimestamp.step${step.step}.desc`)}</p>
                 {step.action && (
                   <div className="bg-emerald-500/5 border border-emerald-500/10 p-4 rounded-xl font-mono text-sm text-emerald-400 flex items-center justify-between group/code">
-                    <span>{step.action}</span>
-                    <button className="text-[10px] uppercase font-black tracking-widest bg-emerald-500/20 px-2 py-1 rounded opacity-0 group-hover/code:opacity-100 transition-opacity">Copy</button>
+                    <span>{locale === 'en' ? step.actionEn || step.action : step.action}</span>
+                    <button className="text-[10px] uppercase font-black tracking-widest bg-emerald-500/20 px-2 py-1 rounded opacity-0 group-hover/code:opacity-100 transition-opacity">{t('tutorial.copy')}</button>
                   </div>
                 )}
               </div>
@@ -267,12 +253,13 @@ export default function GuidePage() {
         <div className="card-glass p-8 border-rose-500/20 bg-rose-500/5 space-y-6">
            <h3 className="text-rose-400 font-black uppercase tracking-widest text-xs flex items-center gap-2">
              <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-             Xác minh hệ thống
+             {t('guide.gettingStarted.verifyTitle')}
            </h3>
            <div className="grid md:grid-cols-3 gap-4">
-             {gettingStarted.verification.map((v, i) => (
+             {/* Use gettingStarted.verification array directly if t key is not reliable or map it */}
+             {(locale === 'en' ? gettingStarted.verificationEn || gettingStarted.verification : gettingStarted.verification).map((item: string, i: number) => (
                <div key={i} className="text-xs text-white/40 leading-relaxed bg-black/20 p-4 rounded-xl border border-white/5 italic">
-                 {v}
+                 {item}
                </div>
              ))}
            </div>
@@ -281,157 +268,24 @@ export default function GuidePage() {
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto text-center space-y-8 py-12">
-        <h2 className="text-3xl md:text-4xl font-black">Sẵn sàng bắt đầu?</h2>
+        <h2 className="text-3xl md:text-4xl font-black">{t('guide.cta.title')}</h2>
         <p className="text-white/40 text-lg max-w-2xl mx-auto">
-          Khám phá từ điển thuật ngữ hoặc bắt tay vào cài đặt ngay
+          {t('guide.cta.subtitle')}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link href="/dictionaries">
             <button className="btn-cyan px-8 py-4 rounded-full group/btn flex items-center gap-2">
-              Từ điển thuật ngữ
+              {t('guide.cta.dictionaryBtn')}
               <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
             </button>
           </Link>
           <a href="https://github.com/Dokhacgiakhoa/google-antigravity" target="_blank" rel="noopener noreferrer">
             <button className="px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-black text-sm transition-all">
-              GitHub Repository
+              {t('guide.cta.repoBtn')}
             </button>
           </a>
         </div>
       </section>
-    </div>
-  );
-}
-
-// Components
-function StepCard({ number, title, code, desc, isPrompt = false }: { number: string; title: string; code: string; desc: string; isPrompt?: boolean }) {
-  return (
-    <div className="card-glass p-8 space-y-4 bg-gradient-to-br from-white/[0.03] to-transparent hover:from-white/[0.05] transition-all rounded-3xl">
-      <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-2xl bg-[#FCD34D] flex items-center justify-center flex-shrink-0 text-black font-black text-sm shadow-lg">
-          {number}
-        </div>
-        <div className="space-y-3 flex-grow">
-          <h3 className="text-xl font-black text-white italic tracking-tight">{title}</h3>
-          <div className={`p-4 rounded-2xl border font-mono text-xs leading-relaxed ${isPrompt ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-300' : 'bg-black/40 border-white/5 text-white/80'} shadow-inner`}>
-            {code}
-          </div>
-          <p className="text-white/50 text-sm font-medium leading-relaxed">{desc}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function FeatureItem({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div className="space-y-3">
-      <h4 className="text-sm font-black text-white/60 uppercase tracking-[0.2em]">{title}</h4>
-      <ul className="space-y-2">
-        {items.map((item, idx) => (
-          <li key={idx} className="flex items-center gap-2 text-white/80 text-sm">
-            <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
-            <span className="font-medium">{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function ConceptCard({ icon, title, desc, features, color = "emerald" }: { icon: React.ReactNode; title: string; desc: string; features: string[]; color?: string }) {
-  const colors: Record<string, { border: string; bg: string; iconBg: string; text: string; dot: string }> = {
-    sky: { 
-      border: "border-sky-500/20 hover:border-sky-400/50", 
-      bg: "bg-sky-500/5", 
-      iconBg: "bg-sky-500/10",
-      text: "text-sky-400",
-      dot: "bg-sky-400"
-    },
-    amber: { 
-      border: "border-amber-500/20 hover:border-amber-400/50", 
-      bg: "bg-amber-500/5", 
-      iconBg: "bg-amber-500/10",
-      text: "text-amber-400", 
-      dot: "bg-amber-400"
-    },
-    rose: { 
-      border: "border-rose-500/20 hover:border-rose-400/50", 
-      bg: "bg-rose-500/5", 
-      iconBg: "bg-rose-500/10",
-      text: "text-rose-400", 
-      dot: "bg-rose-400"
-    },
-    emerald: { 
-      border: "border-emerald-500/20 hover:border-emerald-400/50", 
-      bg: "bg-emerald-500/5", 
-      iconBg: "bg-emerald-500/10",
-      text: "text-emerald-400", 
-      dot: "bg-emerald-400"
-    },
-  };
-
-  const c = colors[color] || colors.emerald;
-
-  return (
-    <div className={`card-glass p-8 space-y-6 ${c.bg} border ${c.border} hover:bg-black/40 transition-all group relative overflow-hidden rounded-3xl shadow-xl`}>
-      <div className={`w-16 h-16 rounded-2xl ${c.iconBg} border border-white/5 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg`}>
-        {icon}
-      </div>
-      <div className="space-y-2">
-        <h3 className={`text-xl font-black text-white italic whitespace-nowrap group-hover:${c.text} transition-colors tracking-tight`}>{title}</h3>
-        <p className="text-white/50 text-sm leading-relaxed font-medium">{desc}</p>
-      </div>
-      <ul className="space-y-3 pt-6 border-t border-white/5">
-        {features.map((feature, idx) => (
-          <li key={idx} className="flex items-start gap-4 text-white/70 text-sm">
-            <div className={`w-1.5 h-1.5 rounded-full ${c.dot} mt-2 shrink-0 shadow-[0_0_8px_${c.dot.replace('bg-', '')}]`} />
-            <span className="font-medium leading-relaxed">{feature}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function CommandCard({ cmd, desc, color }: { cmd: string; desc: string; color: string }) {
-  const colors: Record<string, { bg: string; border: string; text: string; glow: string }> = {
-    red: { bg: 'bg-red-500/10', border: 'border-red-500/20', text: 'text-red-400', glow: 'shadow-red-500/10' },
-    yellow: { bg: 'bg-yellow-500/10', border: 'border-yellow-500/20', text: 'text-yellow-400', glow: 'shadow-yellow-500/10' },
-    green: { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400', glow: 'shadow-emerald-500/10' },
-    blue: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400', glow: 'shadow-blue-500/10' },
-  };
-  
-  const c = colors[color] || colors.blue;
-  
-  return (
-    <div className={`card-glass p-8 space-y-4 ${c.bg} border ${c.border} hover:scale-[1.02] hover:${c.glow} transition-all group cursor-pointer h-full flex flex-col justify-center min-h-[160px] rounded-[2rem] shadow-lg`}>
-      <div className="flex items-center gap-4">
-        <div className={`p-3 rounded-xl ${c.bg} border ${c.border} shadow-sm group-hover:rotate-6 transition-transform`}>
-          <Terminal className={`h-5 w-5 ${c.text}`} />
-        </div>
-        <code className={`font-black text-lg ${c.text} tracking-tighter italic`}>{cmd}</code>
-      </div>
-      <p className="text-white/70 text-sm leading-relaxed font-semibold pl-12">{desc}</p>
-    </div>
-  );
-}
-
-function StatCard({ number, label, sublabel, color = "amber" }: { number: string; label: string; sublabel: string; color?: string }) {
-  const colors: Record<string, string> = {
-    blue: "text-blue-400",
-    emerald: "text-emerald-400",
-    amber: "text-[#FCD34D]",
-    rose: "text-red-400"
-  };
-  
-  const textColor = colors[color] || colors.amber;
-
-  return (
-    <div className="card-glass p-10 text-center space-y-3 bg-gradient-to-br from-white/[0.03] to-transparent hover:from-white/[0.06] transition-all rounded-[2.5rem] border border-white/5 shadow-2xl group">
-      <div className={`text-5xl md:text-6xl font-black ${textColor} tracking-tighter group-hover:scale-110 transition-transform italic`}>{number}</div>
-      <div className="text-white font-black text-base uppercase tracking-widest">{label}</div>
-      <div className="text-white/40 text-xs font-bold uppercase tracking-[0.2em]">{sublabel}</div>
     </div>
   );
 }

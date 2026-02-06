@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import { Bot, User, BrainCircuit, MessageSquare, Shield, Laptop, Brain, Layers, GitBranch, Search, Terminal, Code, Cpu, Database, Cloud, Settings, Smartphone, Gamepad, Lock, Bug, SearchCode, FileCode, Compass, ArrowRight, PlayCircle, Zap } from "lucide-react";
 import Link from "next/link";
 import { agentsList } from "@/data/documentation";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { PageHeader } from "@/components/guide/ui/PageHeader";
 
 export default function AgentsPage() {
+  const { t, locale } = useLanguage();
   const iconMap: Record<string, any> = {
     "🎯": BrainCircuit,
     "🔍": Search,
@@ -42,20 +45,13 @@ export default function AgentsPage() {
 
   return (
     <div className="page-container mt-24 pb-24 space-y-12">
-      <div className="text-center space-y-4">
-        <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 rounded-full text-blue-400 text-xs font-black uppercase tracking-widest"
-        >
-          <Bot className="h-4 w-4" />
-          Neural Workforce
-        </motion.div>
-        <h1 className="text-4xl md:text-5xl font-black text-white">Đội ngũ Agent</h1>
-        <p className="text-white/40 text-lg max-w-2xl mx-auto">
-          {agentsList.length} chuyên gia AI ảo phối hợp làm việc như một team dev thực thụ (Scale-Adaptive Team).
-        </p>
-      </div>
+      <PageHeader
+        badgeIcon={Bot}
+        badgeLabel="Neural Workforce"
+        title={t('guide.agents.title')}
+        description={t('guide.agents.subtitle')}
+        color="blue"
+      />
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
         {agentsList.map((agent, idx) => {
@@ -87,7 +83,7 @@ export default function AgentsPage() {
                     <div className="flex flex-col">
                       <h3 className="text-xl font-black text-white italic tracking-tight">{agent.name}</h3>
                       <span className={`text-[10px] font-bold px-3 py-1 rounded-full border ${styles.border} ${styles.color} bg-black/20 uppercase tracking-widest w-fit mt-2`}>
-                        {agent.role}
+                        {locale === 'en' ? agent.roleEn || agent.role : agent.role}
                       </span>
                     </div>
                   </div>
@@ -95,7 +91,7 @@ export default function AgentsPage() {
 
                 <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
                    <div className="text-[10px] text-white/30 font-black uppercase tracking-[0.2em]">
-                      View Specialization Guide
+                      {locale === 'en' ? 'View Specialization Guide' : 'Xem Hướng Dẫn Chuyên Sâu'}
                    </div>
                    <ArrowRight className={`h-4 w-4 ${styles.color} opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all`} />
                 </div>
@@ -108,8 +104,8 @@ export default function AgentsPage() {
       {/* Interaction Model */}
       <div className="max-w-4xl mx-auto space-y-8 pt-12">
         <div className="text-center">
-          <h2 className="text-2xl font-black text-white mb-2">Mô hình Tương tác</h2>
-          <p className="text-white/40 text-sm">Cách User giao tiếp với Agent</p>
+          <h2 className="text-2xl font-black text-white mb-2">{t('guide.agents.interactionTitle')}</h2>
+          <p className="text-white/40 text-sm">{t('guide.agents.interactionDesc')}</p>
         </div>
 
         <div className="relative">

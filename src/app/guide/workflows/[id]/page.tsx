@@ -4,14 +4,26 @@ import { use } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Terminal, CheckCircle2, PlayCircle, StepForward, AlertTriangle, ListChecks } from "lucide-react";
 import Link from "next/link";
-import { workflowGuides } from "@/data/guide-content";
+import { workflowGuidesRevised as workflowGuides } from "@/data/guide-content";
+import { planWorkflowData } from "@/data/workflows/plan";
 import { notFound } from "next/navigation";
 import { useParams } from "next/navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { localize } from "@/lib/i18n";
 
 export default function WorkflowDetailPage() {
+  // Trigger re-render for data update
+  const { t, locale } = useLanguage();
   const params = useParams();
   const id = params.id as string;
-  const guide = workflowGuides[id as keyof typeof workflowGuides] as any;
+  let guide = workflowGuides[id as keyof typeof workflowGuides] as any;
+
+  // Override for plan to ensure fresh data
+  if (id === 'plan') {
+     guide = { ...guide, ...planWorkflowData };
+  }
+
+
 
   if (!guide) {
     notFound();
@@ -55,12 +67,12 @@ export default function WorkflowDetailPage() {
           </div>
           <div>
             <div className="flex items-center gap-3">
-               <h1 className="text-4xl font-black text-white">{guide.title}</h1>
+               <h1 className="text-4xl font-black text-white">{localize(guide, 'title', locale)}</h1>
                <code className={`${theme.bg} ${theme.color} px-3 py-1 rounded-full text-sm font-black border ${theme.border}`}>
                   {guide.command}
                </code>
             </div>
-            <p className="text-white/40 text-lg mt-1">{guide.description}</p>
+            <p className="text-white/40 text-lg mt-1">{localize(guide, 'description', locale)}</p>
           </div>
         </div>
       </section>
@@ -70,52 +82,55 @@ export default function WorkflowDetailPage() {
         <div className="lg:col-span-2 space-y-12">
           {/* Purpose */}
           <section className="space-y-4">
-             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Mục đích</h2>
+             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.workflow.purpose')}</h2>
              <div className="card-glass p-6 bg-white/[0.02]">
                 <p className="text-white/70 leading-relaxed text-lg italic">
-                   "{guide.purpose}"
+                   "{localize(guide, 'purpose', locale)}"
                 </p>
              </div>
           </section>
 
           {/* Steps */}
-          <section className="space-y-6">
-             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Các bước thực hiện</h2>
-             <div className="space-y-4">
-                {(guide.steps || []).map((step: any, idx: number) => {
-                   const itemTheme = googleColors[idx % googleColors.length];
-                   return (
-                      <motion.div 
-                        key={step.step}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="flex gap-6 items-start group"
-                      >
-                         <div className={`w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:${itemTheme.bg} group-hover:${itemTheme.border} transition-all font-black text-white/40 group-hover:${itemTheme.color}`}>
-                            {step.step}
-                         </div>
-                         <div className="pt-1 space-y-1 border-b border-white/5 pb-4 md:flex-1">
-                            <h3 className={`text-lg font-black ${itemTheme.color}`}>{step.title}</h3>
-                            <p className="text-white/40 text-sm">{step.desc}</p>
-                         </div>
-                      </motion.div>
-                   );
-                })}
-             </div>
-          </section>
+          {/* Steps */}
+          {localize(guide, 'steps', locale) && (
+            <section className="space-y-6">
+               <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.workflow.steps')}</h2>
+               <div className="space-y-4">
+                  {(localize(guide, 'steps', locale) || []).map((step: any, idx: number) => {
+                     const itemTheme = googleColors[idx % googleColors.length];
+                     return (
+                        <motion.div 
+                          key={step.step}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          className="flex gap-6 items-start group"
+                        >
+                           <div className={`w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:${itemTheme.bg} group-hover:${itemTheme.border} transition-all font-black text-white/40 group-hover:${itemTheme.color}`}>
+                              {step.step}
+                           </div>
+                           <div className="pt-1 space-y-1 border-b border-white/5 pb-4 md:flex-1">
+                              <h3 className={`text-lg font-black ${itemTheme.color}`}>{step.title}</h3>
+                              <p className="text-white/40 text-sm">{step.desc}</p>
+                           </div>
+                        </motion.div>
+                     );
+                  })}
+               </div>
+            </section>
+          )}
 
           {/* Extra Content (Phases for Debug/Orchestrate) */}
           {guide.phases && (
              <section className="space-y-6">
-                <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Quy trình chi tiết</h2>
+                <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.workflow.phases')}</h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                   {guide.phases.map((phase: any, idx: number) => {
+                   {(localize(guide, 'phases', locale) || []).map((phase: any, idx: number) => {
                       const itemTheme = googleColors[idx % googleColors.length];
                       return (
                          <div key={idx} className={`card-glass p-6 bg-black/40 border-white/5 space-y-3 group hover:${itemTheme.border} transition-all`}>
                             <div className={`flex items-center gap-2 ${itemTheme.color} font-black text-sm uppercase`}>
-                               <span className="opacity-40">Phase {idx + 1}:</span>
+                               <span className="opacity-40">{t('guide.workflow.phase')} {idx + 1}:</span>
                                {phase.title || phase.name}
                             </div>
                             <p className="text-white/60 text-xs">{phase.desc}</p>
@@ -135,64 +150,71 @@ export default function WorkflowDetailPage() {
           )}
         </div>
 
-        {/* Right Column: Rules, Examples, Output */}
-        <div className="space-y-8">
-           {/* Critical Rules */}
-           {guide.criticalRules && (
-              <section className="card-glass p-6 bg-red-500/5 border-red-500/10 space-y-4 shadow-[0_0_20px_rgba(255,0,0,0.05)]">
-                 <div className="flex items-center gap-2 text-red-400 font-black uppercase text-sm">
-                    <AlertTriangle className="h-4 w-4" />
-                    Bắt buộc tuân thủ
-                 </div>
-                 <ul className="space-y-3">
-                    {(guide.criticalRules || []).map((rule: string, idx: number) => (
-                       <li key={idx} className="text-xs text-white/60 flex gap-2">
-                          <span className="text-red-400">•</span>
-                          {rule}
-                       </li>
-                    ))}
-                 </ul>
-              </section>
-           )}
+        {/* Right Column: Rules & Output */}
+        <div className="space-y-12">
+          {/* Rules */}
+          <section className="space-y-4">
+              <h2 className={`text-lg font-black text-red-400 flex items-center gap-2 uppercase tracking-wide`}>
+                <AlertTriangle className="h-5 w-5" />
+                {t('guide.workflow.rules')}
+              </h2>
+              <div className="card-glass p-6 bg-red-500/5 border-red-500/20">
+                <ul className="space-y-4">
+                  {(localize(guide, 'criticalRules', locale) || []).map((rule: string, idx: number) => (
+                    <li key={idx} className="flex gap-3 text-sm text-white/70">
+                      <span className="text-red-400">•</span>
+                      {rule}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+          </section>
 
            {/* Examples */}
-           <section className={`card-glass p-6 ${theme.bg} border ${theme.border} space-y-4`}>
-              <div className={`flex items-center gap-2 ${theme.color} font-black uppercase text-sm`}>
-                 <Terminal className="h-4 w-4" />
-                 Ví dụ lệnh
-              </div>
-              <div className="space-y-3">
-                 {(guide.examples || []).map((ex: any, idx: number) => (
-                    <div key={idx} className="space-y-1.5 p-3 bg-black/40 rounded border border-white/5 font-mono text-[11px] leading-tight">
-                       <div className={`${theme.color} opacity-80`}>$ {typeof ex === 'string' ? ex : ex.command}</div>
-                       {ex.output && <div className="text-white/20"># Output: {ex.output}</div>}
-                    </div>
-                 ))}
-              </div>
-           </section>
-
-           {/* Output Info */}
-           {guide.output && (
-              <section className={`card-glass p-6 ${theme.bg} border ${theme.border} space-y-4`}>
+           {guide.examples && guide.examples.length > 0 && (
+             <section className={`card-glass p-6 ${theme.bg} border ${theme.border} space-y-4`}>
                  <div className={`flex items-center gap-2 ${theme.color} font-black uppercase text-sm`}>
-                    <ListChecks className="h-4 w-4" />
-                    Sản phẩm đầu ra
+                    <Terminal className="h-4 w-4" />
+                    {t('guide.workflow.examples')}
                  </div>
                  <div className="space-y-3">
-                    <div className="p-3 bg-black/40 rounded border border-white/5 flex flex-col gap-1">
-                       <span className="text-[10px] text-white/20 uppercase font-bold">Vị trí</span>
-                       <code className={`text-xs ${theme.color} opacity-80 truncate`}>{guide.output.location}</code>
-                    </div>
-                    <ul className="space-y-1.5">
-                       {(guide.output.content || []).map((c: string, i: number) => (
-                          <li key={i} className="text-xs text-white/60 flex items-center gap-2">
-                             <CheckCircle2 className={`h-3.3 w-3.3 ${theme.color}`} />
-                             {c}
-                          </li>
-                       ))}
-                    </ul>
+                    {guide.examples.map((ex: any, idx: number) => (
+                       <div key={idx} className="space-y-1.5 p-3 bg-black/40 rounded border border-white/5 font-mono text-[11px] leading-tight">
+                          <div className={`${theme.color} opacity-80`}>$ {typeof ex === 'string' ? ex : ex.command}</div>
+                          {typeof ex !== 'string' && ex.output && <div className="text-white/20"># Output: {ex.output}</div>}
+                       </div>
+                    ))}
                  </div>
-              </section>
+             </section>
+           )}
+
+           {/* Output */}
+           {localize(guide, 'output', locale) && (
+            <section className="space-y-4">
+               <h2 className={`text-lg font-black text-blue-400 flex items-center gap-2 uppercase tracking-wide`}>
+                 <StepForward className="h-5 w-5" />
+                 {t('guide.workflow.output')}
+               </h2>
+               <div className="card-glass p-6 bg-blue-500/5 border-blue-500/20 space-y-4">
+                 <div>
+                   <div className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">{t('guide.workflow.location')}</div>
+                   <code className="block bg-black/40 p-3 rounded text-sm font-mono text-white/80 border border-white/5">
+                     {localize(guide, 'output', locale)?.location}
+                   </code>
+                 </div>
+                 <div>
+                   <div className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">{t('guide.workflow.content')}</div>
+                   <ul className="space-y-2">
+                     {(localize(guide, 'output', locale)?.content || []).map((item: string, idx: number) => (
+                       <li key={idx} className="flex gap-2 text-sm text-white/60">
+                         <CheckCircle2 className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                         {item}
+                       </li>
+                     ))}
+                   </ul>
+                 </div>
+               </div>
+            </section>
            )}
         </div>
       </div>

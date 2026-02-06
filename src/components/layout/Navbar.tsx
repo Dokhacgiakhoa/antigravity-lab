@@ -3,35 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Github, Menu, Rocket, ChevronDown, ChevronRight, Book, Users, Zap, Workflow, Share2, BookOpen } from "lucide-react";
+import { Github, Menu, Rocket, ChevronDown, ChevronRight, Book, Users, Zap, Workflow, Share2, BookOpen, Globe } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const navItems = [
-  { name: "Trang chủ", href: "/", color: "#EA4335" }, // Red
-  { name: "Cài đặt", href: "/tutorial", color: "#FBBC04" }, // Yellow
-  { 
-    name: "Hướng dẫn", 
-    href: "/guide",
-    color: "#34A853", // Green
-    children: [
-      { name: "Rules", href: "/guide/rules", desc: "Quy tắc vận hành", icon: Book },
-      { name: "Agents", href: "/guide/agents", desc: "Nhân sự AI", icon: Users },
-      { name: "Skills", href: "/guide/skills", desc: "Thư viện kỹ năng", icon: Zap },
-      { name: "Workflows", href: "/guide/workflows", desc: "Quy trình", icon: Workflow },
-      { name: ".shared", href: "/guide/shared", desc: "DNA hệ thống", icon: Share2 },
-    ]
-  },
-  { 
-    name: "Dự án mẫu", 
-    href: "/samples", 
-    color: "#0EA5E9", // Cyan/Blue (Màu Lam)
-    children: [
-       { name: "Thư viện mẫu", href: "/samples", desc: "Kho kịch bản thực tế", icon: Rocket },
-       { name: "Thuật ngữ", href: "/dictionaries", desc: "Từ điển chuyên ngành", icon: BookOpen },
-    ]
-  }, 
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -39,6 +14,34 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mobileExpandedIndex, setMobileExpandedIndex] = useState<number | null>(null);
+  
+  const { t, locale, setLocale } = useLanguage();
+
+  const navItems = [
+    { name: t('navbar.home'), href: "/", color: "#EA4335" }, // Red
+    { name: t('navbar.install'), href: "/tutorial", color: "#FBBC04" }, // Yellow
+    { 
+      name: t('navbar.guide'), 
+      href: "/guide",
+      color: "#34A853", // Green
+      children: [
+        { name: t('navbar.guideRulesTitle'), href: "/guide/rules", desc: t('navbar.guideRules'), icon: Book },
+        { name: t('navbar.guideAgentsTitle'), href: "/guide/agents", desc: t('navbar.guideAgents'), icon: Users },
+        { name: t('navbar.guideSkillsTitle'), href: "/guide/skills", desc: t('navbar.guideSkills'), icon: Zap },
+        { name: t('navbar.guideWorkflowsTitle'), href: "/guide/workflows", desc: t('navbar.guideWorkflows'), icon: Workflow },
+        { name: t('navbar.guideSharedTitle'), href: "/guide/shared", desc: t('navbar.guideShared'), icon: Share2 },
+      ]
+    },
+    { 
+      name: t('navbar.notes'), 
+      href: "/notes", 
+      color: "#0EA5E9", // Cyan/Blue (Màu Lam)
+      children: [
+         { name: t('navbar.samples'), href: "/samples", desc: t('navbar.library'), icon: Rocket },
+         { name: t('navbar.dictionaries'), href: "/dictionaries", desc: t('navbar.dictionaries'), icon: BookOpen },
+      ]
+    }, 
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -56,6 +59,10 @@ export function Navbar() {
   const activeIndex = getActiveIndex();
   // Get active color or default to yellow if none
   const activeColor = activeIndex !== -1 ? navItems[activeIndex].color : '#FCD34D';
+
+  const toggleLanguage = () => {
+    setLocale(locale === 'vi' ? 'en' : 'vi');
+  };
 
   return (
     <div className="fixed top-8 left-0 right-0 z-50 flex justify-center px-10 pointer-events-none">
@@ -157,6 +164,15 @@ export function Navbar() {
 
           {/* Right Section Actions */}
           <div className="flex items-center gap-3 z-20 flex-shrink-0">
+            {/* Language Switcher */}
+            <button
+               onClick={toggleLanguage}
+               className="p-2.5 bg-white/5 hover:bg-white/10 rounded-full border border-white/10 transition-colors flex items-center gap-2 group"
+            >
+               <Globe className="h-4 w-4 text-white/80 group-hover:text-[#FCD34D] transition-colors" />
+               <span className="text-[10px] font-black uppercase text-white/60 group-hover:text-white transition-colors">{locale === 'vi' ? 'VN' : 'EN'}</span>
+            </button>
+
             <Link href="https://github.com/Dokhacgiakhoa/google-antigravity" target="_blank" className="hidden sm:block">
               <div className="p-2.5 bg-white/5 hover:bg-white/10 rounded-full border border-white/10 transition-colors">
                 <Github className="h-4 w-4 text-white/80" />
@@ -165,7 +181,7 @@ export function Navbar() {
             
             <div className="hidden md:flex items-center gap-2 bg-[#34A853]/10 px-3 py-1.5 rounded-full border border-[#34A853]/30">
               <div className="w-1.5 h-1.5 bg-[#34A853] rounded-full animate-pulse" />
-              <span className="text-[9px] font-black text-[#34A853] uppercase tracking-widest">v4.0.0 Gemini</span>
+              <span className="text-[9px] font-black text-[#34A853] uppercase tracking-widest">{t('common.version')}</span>
             </div>
 
             <button

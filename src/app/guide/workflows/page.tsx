@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import { Workflow, Command, ArrowRight, PlayCircle } from "lucide-react";
 import Link from "next/link";
 import { workflowsList, pdcaCycle } from "@/data/documentation";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { PageHeader } from "@/components/guide/ui/PageHeader";
 
 export default function WorkflowsPage() {
+  const { t, locale } = useLanguage();
   const categoryColorMap: Record<string, { color: string; bg: string; border: string; glow: string }> = {
     planning: { color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/20", glow: "group-hover:border-red-500/40" },
     development: { color: "text-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", glow: "group-hover:border-yellow-500/40" },
@@ -29,20 +32,13 @@ export default function WorkflowsPage() {
 
   return (
     <div className="page-container mt-24 pb-24 space-y-12">
-      <div className="text-center space-y-4">
-        <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 rounded-full text-blue-400 text-xs font-black uppercase tracking-widest"
-        >
-          <Workflow className="h-4 w-4" />
-          Automated Workflows
-        </motion.div>
-        <h1 className="text-4xl md:text-5xl font-black text-white">Quy trình PDCA</h1>
-        <p className="text-white/40 text-lg max-w-2xl mx-auto">
-          Tự động hóa chu trình phát triển phần mềm với {workflowsList.length} Slash Commands mạnh mẽ.
-        </p>
-      </div>
+      <PageHeader
+        badgeIcon={Workflow}
+        badgeLabel={t('guide.workflows.badge')}
+        title={t('guide.workflows.title')}
+        description={t('guide.workflows.subtitle').replace('{count}', workflowsList.length.toString())}
+        color="blue"
+      />
 
       {/* PDCA Cycle */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
@@ -57,8 +53,8 @@ export default function WorkflowsPage() {
               className={`p-6 rounded-2xl bg-black/40 border-2 ${style.border} text-center space-y-2`}
             >
               <h3 className={`text-3xl font-black ${style.color}`}>{item.phase}</h3>
-              <p className="text-white/60 text-xs font-bold uppercase">{item.name}</p>
-              <p className="text-white/30 text-[10px] leading-tight">{item.description}</p>
+              <p className="text-white/60 text-xs font-bold uppercase">{locale === 'en' ? item.nameEn || item.name : item.name}</p>
+              <p className="text-white/30 text-[10px] leading-tight">{locale === 'en' ? item.descriptionEn || item.description : item.description}</p>
             </motion.div>
           );
         })}
@@ -94,10 +90,12 @@ export default function WorkflowsPage() {
                     {wf.category}
                   </span>
                 </div>
-                <h4 className="text-xl font-black text-white italic uppercase tracking-tight mb-2 leading-none">{wf.name}</h4>
-                <p className="text-white/60 text-sm font-medium leading-relaxed mb-6">
-                  {wf.desc}
-                </p>
+                  <h4 className="text-xl font-black text-white italic uppercase group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/70 transition-colors">
+                    {locale === 'en' ? wf.nameEn || wf.name : wf.name}
+                  </h4>
+                  <p className="text-white/60 text-sm font-medium leading-relaxed group-hover:text-white/80 transition-colors">
+                    {locale === 'en' ? wf.descEn || wf.desc : wf.desc}
+                  </p>
                 <div className={`flex items-center gap-2 text-xs font-black uppercase tracking-widest ${theme.color} opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 text-right mt-auto pt-4 border-t border-white/5`}>
                   <PlayCircle className="h-4 w-4" />
                   Execution Roadmap

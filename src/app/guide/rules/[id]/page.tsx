@@ -6,7 +6,11 @@ import Link from "next/link";
 import { ruleGuides } from "@/data/guide-content";
 import { notFound, useParams } from "next/navigation";
 
+import { useLanguage } from "@/contexts/LanguageContext";
+import { localize } from "@/lib/i18n";
+
 export default function RuleDetailPage() {
+  const { t, locale } = useLanguage();
   const params = useParams();
   const id = params.id as string;
   const guide = ruleGuides[id as keyof typeof ruleGuides] as any;
@@ -72,10 +76,10 @@ export default function RuleDetailPage() {
             <div className="flex items-center gap-3">
                <h1 className="text-4xl font-black text-white">{guide.name}</h1>
                <span className={`${theme.bg} ${theme.color} px-3 py-1 rounded-full text-xs font-black border ${theme.border} uppercase tracking-widest`}>
-                  {guide.type}
+                  {guide.type || guide.trigger}
                </span>
             </div>
-            <p className="text-white/40 text-lg mt-1">{guide.description}</p>
+            <p className="text-white/40 text-lg mt-1">{localize(guide, 'description', locale)}</p>
           </div>
         </div>
       </section>
@@ -85,19 +89,19 @@ export default function RuleDetailPage() {
         <div className="lg:col-span-2 space-y-12">
           {/* Purpose */}
           <section className="space-y-4">
-             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Mục đích & Phạm vi</h2>
+             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.rule.purpose')}</h2>
              <div className="card-glass p-8 bg-white/[0.02]">
                 <p className="text-white/70 leading-relaxed text-lg italic">
-                   "{guide.purpose}"
+                   "{localize(guide, 'purpose', locale)}"
                 </p>
              </div>
           </section>
 
           {/* Regulations / Rules */}
           <section className="space-y-6">
-             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Các quy định chi tiết</h2>
+             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.rule.regulations')}</h2>
              <div className="space-y-4">
-                {(guide.rules || []).map((rule: any, idx: number) => {
+                {(localize(guide, 'rules', locale) || []).map((rule: any, idx: number) => {
                    const itemTheme = googleColors[idx % googleColors.length];
                    return (
                       <div key={idx} className={`p-6 rounded-2xl bg-black/40 border border-white/5 space-y-3 group hover:${itemTheme.border} transition-all`}>
@@ -113,11 +117,11 @@ export default function RuleDetailPage() {
           </section>
 
           {/* Enforcement */}
-          {guide.enforcement && (
+          {localize(guide, 'enforcement', locale) && (
              <section className="space-y-6">
-                <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Cơ chế thực thi</h2>
+                <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.rule.enforcement')}</h2>
                  <div className="grid md:grid-cols-2 gap-4">
-                    {(guide.enforcement || []).map((item: string, idx: number) => {
+                    {(localize(guide, 'enforcement', locale) || []).map((item: string, idx: number) => {
                        const itemTheme = googleColors[idx % googleColors.length];
                        return (
                           <div key={idx} className={`flex gap-4 p-4 rounded-xl ${itemTheme.bg} border ${itemTheme.border}`}>
@@ -137,7 +141,7 @@ export default function RuleDetailPage() {
            <section className={`card-glass p-6 ${theme.bg} border ${theme.border} space-y-4`}>
               <div className={`flex items-center gap-2 ${theme.color} font-black uppercase text-sm`}>
                  <FileText className="h-4 w-4" />
-                 File nguồn
+                 {t('guide.rule.files')}
               </div>
                <div className="space-y-2">
                   {(guide.files || []).map((file: string, idx: number) => (
@@ -149,11 +153,11 @@ export default function RuleDetailPage() {
            </section>
 
            {/* Exceptions */}
-           {guide.exceptions && (
+           {localize(guide, 'exceptions', locale) && (
               <section className="card-glass p-6 bg-yellow-500/5 border-yellow-500/10 space-y-4">
                  <div className={`flex items-center gap-2 ${theme.color} font-black uppercase text-sm`}>
                     <AlertTriangle className="h-4 w-4" />
-                    Trường hợp ngoại lệ
+                    {t('guide.rule.exceptions')}
                  </div>
                   <ul className="space-y-2">
                      {(guide.exceptions || []).map((ex: string, idx: number) => (
@@ -167,11 +171,11 @@ export default function RuleDetailPage() {
            )}
 
            {/* Prohibited Actions */}
-           {guide.prohibited && (
+           {localize(guide, 'prohibited', locale) && (
               <section className={`card-glass p-6 bg-black border-red-900/50 space-y-4 shadow-[0_0_20px_rgba(255,0,0,0.05)]`}>
                  <div className="flex items-center gap-2 text-red-600 font-black uppercase text-sm">
                     <ShieldAlert className="h-4 w-4" />
-                    Cấm tuyệt đối
+                    {t('guide.rule.prohibited')}
                  </div>
                   <ul className="space-y-3">
                      {(guide.prohibited || []).map((item: string, idx: number) => (

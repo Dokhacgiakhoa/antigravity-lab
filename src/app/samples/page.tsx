@@ -9,10 +9,13 @@ import {
   Target, Search, Activity
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { localize } from "@/lib/i18n";
 
 export default function SamplesPage() {
   const [activeId, setActiveId] = useState(SAMPLES_DATA[0].id);
   const activeProject = SAMPLES_DATA.find(p => p.id === activeId) || SAMPLES_DATA[0];
+  const { t, locale } = useLanguage();
 
   return (
     <div className="page-container mt-12 space-y-16 pb-24">
@@ -24,15 +27,15 @@ export default function SamplesPage() {
            className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-6 py-2 rounded-full text-blue-400 text-xs font-black tracking-widest uppercase"
         >
           <Rocket className="h-4 w-4" />
-          Kho dự án thực tế
+          {t('samples.headerTitle')}
         </motion.div>
         
         <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight">
-          Dự án <span className="text-white">mẫu & Kịch bản</span>
+          {t('samples.headerTitle')}
         </h1>
         
         <p className="text-white/40 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">
-          Khám phá cách Antigravity giải quyết các bài toán thực tế thông qua các dự án mẫu và hội thoại chuyên sâu.
+          {t('samples.headerDesc')}
         </p>
       </section>
 
@@ -40,7 +43,7 @@ export default function SamplesPage() {
         {/* Left: Project Selector */}
         <div className="lg:col-span-4 space-y-4">
           <div className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] mb-4 pl-2">
-            Chọn chủ đề dự án
+            {t('samples.chooseTopic')}
           </div>
           {SAMPLES_DATA.map((project, idx) => {
             const Icon = project.icon;
@@ -100,7 +103,9 @@ export default function SamplesPage() {
                   <Icon className="h-6 w-6" />
                 </div>
                 <div className="flex-1 min-w-0 relative z-10">
-                  <h3 className={cn("text-base font-black italic uppercase tracking-tight truncate", isActive && "text-white")}>{project.title}</h3>
+                  <h3 className={cn("text-base font-black italic uppercase tracking-tight truncate", isActive && "text-white")}>
+                    {localize(project, 'title', locale)}
+                  </h3>
                   <div className="flex gap-2 mt-1">
                      <span className="text-[8px] font-black uppercase tracking-widest opacity-40">v4.0 Ready</span>
                   </div>
@@ -148,10 +153,10 @@ export default function SamplesPage() {
                       
                       <div className="space-y-2">
                         <h2 className="text-3xl md:text-5xl font-black text-white italic tracking-tighter uppercase leading-none">
-                          {activeProject.title}
+                          {localize(activeProject, 'title', locale)}
                         </h2>
                         <p className="text-white/50 text-base md:text-lg leading-relaxed font-medium max-w-2xl">
-                           {activeProject.desc}
+                           {localize(activeProject, 'desc', locale)}
                         </p>
                       </div>
                     </div>
@@ -160,7 +165,7 @@ export default function SamplesPage() {
                     <div className="space-y-6">
                       <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-white/20 pt-6">
                         <Target className="h-3 w-3" />
-                        Năng lực thực thi & Giải thuật AI
+                         {t('samples.executionTitle')}
                       </div>
                       
                       <div className="grid gap-4">
@@ -177,7 +182,7 @@ export default function SamplesPage() {
                             <div className="relative p-6 bg-white/[0.02] border border-white/5 rounded-3xl hover:bg-white/[0.04] hover:border-white/10 transition-all flex flex-col md:flex-row gap-6">
                               <div className="flex-shrink-0">
                                 <div className="w-10 h-10 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform">
-                                  <span className={`text-xs font-black text-white/20 group-hover:${activeTheme.text}/60`}>0{i+1}</span>
+                                  <span className={`text-xs font-black ${activeTheme.text} opacity-60 group-hover:opacity-100 transition-opacity`}>0{i+1}</span>
                                 </div>
                               </div>
                               
@@ -187,12 +192,12 @@ export default function SamplesPage() {
                                     <Command className={`h-3 w-3 ${activeTheme.text}`} />
                                   </div>
                                   <code className={`text-xs md:text-sm font-black ${activeTheme.text} tracking-tight italic`}>
-                                    {item.prompt}
+                                    {localize(item, 'prompt', locale)}
                                   </code>
                                 </div>
                                 
                                 <p className="text-white/60 text-sm leading-relaxed font-medium pl-0 md:pl-8 border-l-0 md:border-l border-white/5">
-                                   {item.explanation}
+                                   {localize(item, 'explanation', locale)}
                                 </p>
                               </div>
                             </div>
@@ -205,16 +210,16 @@ export default function SamplesPage() {
                     <div className="pt-8 border-t border-white/5 flex flex-wrap gap-6 items-center justify-between text-[10px] font-black uppercase tracking-[0.2em] text-white/20">
                        <div className="flex items-center gap-6">
                           <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group">
-                             <Target className={`h-3 w-3 group-hover:${activeTheme.text}`} /> Kịch bản tối ưu
+                             <Target className={`h-3 w-3 group-hover:${activeTheme.text}`} /> {locale === 'vi' ? 'Kịch bản tối ưu' : 'Optimal Script'}
                           </div>
-                       <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group">
+                          <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group">
                              <Search className={`h-3 w-3 group-hover:${activeTheme.text}`} /> GEO Ready
                           </div>
                           <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group">
                              <Activity className={`h-3 w-3 group-hover:${activeTheme.text}`} /> Core Web Vitals
                           </div>
                        </div>
-                       <div className="italic">Standard Architecture v4.0</div>
+                       <div className="italic">{t('samples.standardArch')}</div>
                     </div>
                   </div>
                 </motion.div>

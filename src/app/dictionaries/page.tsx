@@ -7,23 +7,39 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { TERMS_DATA } from "@/data/glossary";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { localize } from "@/lib/i18n";
 
 export default function ConceptsPage() {
   const [activeId, setActiveId] = useState("agent");
   const [searchQuery, setSearchQuery] = useState("");
+  const { t, locale } = useLanguage();
 
   // Flatten items for easier searching/finding
-  const allItems = TERMS_DATA.flatMap(cat => cat.items.map(item => ({ ...item, category: cat.category })));
+  const allItems = TERMS_DATA.flatMap(cat => cat.items.map(item => ({ 
+    ...item, 
+    category: localize(cat, 'category', locale),
+    term: localize(item, 'term', locale),
+    desc: localize(item, 'desc', locale)
+  })));
   const activeItem = allItems.find(item => item.id === activeId) || allItems[0];
 
   // Filter for search
-  const filteredGroups = TERMS_DATA.map(group => ({
-    ...group,
-    items: group.items.filter(item => 
-      item.term.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      item.desc.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  })).filter(group => group.items.length > 0);
+  const filteredGroups = TERMS_DATA.map(group => {
+    const localizedCategory = localize(group, 'category', locale);
+    return {
+      ...group,
+      category: localizedCategory,
+      items: group.items.map(item => ({
+        ...item,
+        term: localize(item, 'term', locale),
+        desc: localize(item, 'desc', locale)
+      })).filter(item => 
+        item.term.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        item.desc.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    };
+  }).filter(group => group.items.length > 0);
 
   return (
     <div className="page-container mt-12 space-y-12 pb-24">
@@ -35,15 +51,15 @@ export default function ConceptsPage() {
            className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-6 py-2 rounded-full text-emerald-400 text-xs font-black tracking-widest uppercase"
         >
           <BookOpen className="h-4 w-4" />
-          Từ điển hệ thống
+          {t('dictionaries.title')}
         </motion.div>
         
         <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight">
-          Từ điển <span className="text-white">thuật ngữ</span>
+          {t('dictionaries.title')}
         </h1>
         
         <p className="text-white/40 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">
-          Tra cứu toàn bộ thuật ngữ, vai trò và công nghệ cốt lõi của hệ sinh thái AntiGravity.
+          {t('dictionaries.subTitle')}
         </p>
       </section>
 
@@ -57,7 +73,7 @@ export default function ConceptsPage() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40 group-focus-within:text-emerald-400 transition-colors z-10" />
             <input 
               type="text" 
-              placeholder="Tìm kiếm thuật ngữ..." 
+              placeholder={t('dictionaries.searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-sm text-white placeholder:text-white/30 focus:bg-black/80 focus:border-emerald-500/50 transition-all outline-none shadow-lg backdrop-blur-md"
@@ -67,7 +83,7 @@ export default function ConceptsPage() {
           {/* Terms List */}
           <div className="space-y-8 max-h-[26rem] overflow-y-auto custom-scrollbar pr-2">
             {filteredGroups.length === 0 ? (
-              <p className="text-white/30 text-center text-sm py-8">Không tìm thấy kết quả.</p>
+              <p className="text-white/30 text-center text-sm py-8">{t('dictionaries.noResult')}</p>
             ) : (
               filteredGroups.map((group, idx) => (
                 <div key={idx} className="space-y-3">
@@ -172,8 +188,8 @@ export default function ConceptsPage() {
 
               {/* Footer Metadata */}
               <div className="mt-auto w-full pt-12 border-t border-white/5 flex justify-between items-center text-white/20 text-xs font-mono uppercase tracking-widest">
-                <span>System ID: {activeItem.id}</span>
-                <span>Antigravity Protocol v2.0</span>
+                <span>{t('dictionaries.systemId')}: {activeItem.id}</span>
+                <span>{t('dictionaries.protocol')}</span>
               </div>
             </motion.div>
           </AnimatePresence>

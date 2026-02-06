@@ -4,16 +4,32 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Bot, BrainCircuit, CheckCircle2, Shield, Settings, Zap, Database, Cloud, Tablet, Gamepad, User, Laptop } from "lucide-react";
 import Link from "next/link";
 import { agentGuides } from "@/data/guide-content";
+import { orchestratorAgentData } from "@/data/agents/orchestrator";
+import { qualityInspectorAgentData } from "@/data/agents/quality-inspector";
+import { agentGuidesEn } from "@/data/agents/en-dict";
 import { notFound, useParams } from "next/navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { localize } from "@/lib/i18n";
 
 export default function AgentDetailPage() {
+  const { t, locale } = useLanguage();
   const params = useParams();
   const id = params.id as string;
-  const guide = agentGuides[id as keyof typeof agentGuides] as any;
+  let guide = agentGuides[id as keyof typeof agentGuides] as any;
+  const isEnglish = locale === 'en';
+
+  // Static overrides for complex agents
+  if (id === 'orchestrator') {
+    guide = { ...guide, ...orchestratorAgentData };
+  } else if (id === 'quality-inspector') {
+    guide = { ...guide, ...qualityInspectorAgentData };
+  }
 
   if (!guide) {
     notFound();
   }
+
+  // ... (keep maps) ...
 
   const iconMap: Record<string, any> = {
     "🎯": BrainCircuit,
@@ -85,11 +101,11 @@ export default function AgentDetailPage() {
           <div>
             <div className="flex items-center gap-3">
                <h1 className="text-4xl font-black text-white">{guide.name}</h1>
-               <span className={`${theme.bg} ${theme.color} px-3 py-1 rounded-full text-xs font-black border ${theme.border} uppercase tracking-widest`}>
-                  {guide.title}
-               </span>
+                <span className={`${theme.bg} ${theme.color} px-3 py-1 rounded-full text-xs font-black border ${theme.border} uppercase tracking-widest`}>
+                   {localize(guide, 'title', locale)}
+                </span>
             </div>
-            <p className="text-white/40 text-lg mt-1">{guide.description}</p>
+             <p className="text-white/40 text-lg mt-1">{localize(guide, 'description', locale)}</p>
           </div>
         </div>
       </section>
@@ -99,26 +115,26 @@ export default function AgentDetailPage() {
         <div className="lg:col-span-2 space-y-12">
           {/* Role */}
           <section className="space-y-4">
-             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Vai đóng & Trách nhiệm</h2>
-             <div className="card-glass p-8 bg-white/[0.02]">
-                <p className="text-white/70 leading-relaxed text-lg">
-                   {guide.role}
-                </p>
-             </div>
+              <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.agent.role')}</h2>
+              <div className="card-glass p-8 bg-white/[0.02]">
+                 <p className="text-white/70 leading-relaxed text-lg">
+                    {localize(guide, 'role', locale)}
+                 </p>
+              </div>
           </section>
 
           {/* Philosophy / Mindset */}
-          {(guide.philosophy || guide.mindset) && (
+          {(localize(guide, 'philosophy', locale) || localize(guide, 'mindset', locale)) && (
              <section className="space-y-6">
-                <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Mindset & Triết lý</h2>
-                {guide.philosophy && (
+                <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.agent.mindset')}</h2>
+                {localize(guide, 'philosophy', locale) && (
                    <p className="text-white/40 italic text-lg pl-8 border-l border-white/10 mb-8">
-                     "{guide.philosophy}"
+                      "{localize(guide, 'philosophy', locale)}"
                    </p>
                 )}
-                {guide.mindset && (
+                {localize(guide, 'mindset', locale) && (
                    <div className="grid md:grid-cols-2 gap-4">
-                      {guide.mindset.map((m: string, idx: number) => {
+                      {localize(guide, 'mindset', locale).map((m: string, idx: number) => {
                          const itemTheme = googleColors[idx % googleColors.length];
                          return (
                             <div key={idx} className={`flex gap-4 p-4 rounded-xl bg-black/40 border border-white/5 group hover:${itemTheme.border} transition-all`}>
@@ -133,11 +149,11 @@ export default function AgentDetailPage() {
           )}
 
           {/* Workflow Phases */}
-          {guide.workflowPhases && (
+          {localize(guide, 'workflowPhases', locale) && (
              <section className="space-y-6">
-                <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Quy trình làm việc</h2>
+                <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.agent.workflow')}</h2>
                 <div className="space-y-4">
-                   {guide.workflowPhases.map((phase: any, idx: number) => {
+                   {(localize(guide, 'workflowPhases', locale) || []).map((phase: any, idx: number) => {
                       const itemTheme = googleColors[idx % googleColors.length];
                       return (
                          <div key={idx} className="flex gap-6 relative">
@@ -145,7 +161,7 @@ export default function AgentDetailPage() {
                                <div className={`w-10 h-10 rounded-full ${itemTheme.bg} border ${itemTheme.border} flex items-center justify-center font-black ${itemTheme.color} text-sm`}>
                                   {idx}
                                </div>
-                               {idx < guide.workflowPhases.length - 1 && <div className="w-0.5 h-full bg-white/5" />}
+                               {idx < (localize(guide, 'workflowPhases', locale) || []).length - 1 && <div className="w-0.5 h-full bg-white/5" />}
                             </div>
                             <div className="pb-8 flex-1">
                                <h3 className={`font-black text-lg ${itemTheme.color}`}>{phase.name}</h3>
@@ -165,7 +181,7 @@ export default function AgentDetailPage() {
            <section className={`card-glass p-6 ${theme.bg} border ${theme.border} space-y-4`}>
               <div className={`flex items-center gap-2 ${theme.color} font-black uppercase text-sm`}>
                  <Zap className="h-4 w-4" />
-                 Bộ Kỹ Năng (Skills)
+                 {t('guide.agent.skills')}
               </div>
               <div className="flex flex-wrap gap-2">
                  {(guide.skills || []).map((skill: string, idx: number) => (
@@ -179,7 +195,7 @@ export default function AgentDetailPage() {
            {/* Expertise Areas */}
            {guide.expertiseAreas && (
               <section className="space-y-6">
-                 <h2 className={`text-xs font-black ${theme.color} uppercase tracking-[0.2em] px-2 opacity-60`}>Expertise Areas</h2>
+                 <h2 className={`text-xs font-black ${theme.color} uppercase tracking-[0.2em] px-2 opacity-60`}>{t('guide.agent.expertiseAreas')}</h2>
                  <div className="space-y-4">
                     {guide.expertiseAreas.map((exp: any, idx: number) => (
                        <div key={idx} className="card-glass p-5 bg-black/60 border border-white/5 space-y-3">
@@ -200,12 +216,12 @@ export default function AgentDetailPage() {
               </section>
            )}
 
-           {/* Expertise (Simple list) */}
-           {guide.expertise && (
-              <section className="space-y-6">
-                 <h2 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] px-2">Lĩnh vực chuyên môn</h2>
-                 <ul className="space-y-2">
-                    {guide.expertise.map((exp: string, idx: number) => (
+            {/* Expertise (Simple list) */}
+            {localize(guide, 'expertise', locale) && (
+               <section className="space-y-6">
+                  <h2 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] px-2">{t('guide.agent.expertise')}</h2>
+                  <ul className="space-y-2">
+                     {localize(guide, 'expertise', locale).map((exp: string, idx: number) => (
                        <li key={idx} className="text-xs text-white/60 flex gap-2">
                           <CheckCircle2 className={`h-3.5 w-3.5 ${theme.color} flex-shrink-0`} />
                           {exp}
@@ -215,15 +231,15 @@ export default function AgentDetailPage() {
               </section>
            )}
 
-           {/* Standards (Simple list) */}
-           {guide.standards && (
-              <section className="card-glass p-6 bg-emerald-500/5 border-emerald-500/10 space-y-4">
-                 <div className="flex items-center gap-2 text-emerald-400 font-black uppercase text-sm">
-                    <Shield className="h-4 w-4" />
-                    Tiêu chuẩn kỹ thuật
-                 </div>
-                 <ul className="space-y-2">
-                    {guide.standards.map((std: string, idx: number) => (
+            {/* Standards (Simple list) */}
+            {localize(guide, 'standards', locale) && (
+               <section className="card-glass p-6 bg-emerald-500/5 border-emerald-500/10 space-y-4">
+                  <div className="flex items-center gap-2 text-emerald-400 font-black uppercase text-sm">
+                     <Shield className="h-4 w-4" />
+                     {t('guide.agent.standards')}
+                  </div>
+                  <ul className="space-y-2">
+                     {localize(guide, 'standards', locale).map((std: string, idx: number) => (
                        <li key={idx} className="text-xs text-white/60 flex items-center gap-2">
                           <div className="w-1 h-1 rounded-full bg-emerald-400" />
                           {std}

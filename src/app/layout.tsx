@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   description: "Khung vận hành (Orchestration Framework) giúp biến AI thành Đội ngũ Chuyên gia chuyên nghiệp. Quy trình chuẩn PDCA.",
 };
 
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import { Footer } from "@/components/layout/Footer";
+
+// ... existing imports
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,32 +30,21 @@ export default function RootLayout({
       <body 
         className={cn(nunito.className, "min-h-screen font-sans antialiased dark bg-[#05070a]")}
       >
-        <BackgroundVideo />
-        
-        {/* Dreamy Background Elements */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
-          {/* Large Warm Glow - Top Left */}
-          <div className="glow-orb glow-warm -top-48 -left-24 opacity-30 mix-blend-screen" />
+        <LanguageProvider>
+          {/* ... background elements ... */}
+          <BackgroundVideo />
           
-          {/* Cool Glow - Bottom Right */}
-          <div className="glow-orb glow-cool top-1/2 -right-24 opacity-20 mix-blend-screen" />
-        </div>
-        
-        <div className="relative flex min-h-screen flex-col z-10">
-          <Navbar />
-          <main className="flex-1 w-full">{children}</main>
-          <footer className="w-full py-12 border-t border-white/5 bg-black/20 backdrop-blur-md">
-            <div className="max-w-5xl mx-auto px-6 flex flex-col items-center justify-between gap-6 md:flex-row">
-              <p className="text-sm text-white/40">
-                © 2026 Google Antigravity. Phát triển với ❤️ bởi Dokhacgiakhoa.
-              </p>
-              <div className="flex gap-6">
-                <a href="https://github.com/Dokhacgiakhoa/google-antigravity" target="_blank" className="text-white/40 hover:text-[#FCD34D] transition-colors">GitHub</a>
-                <a href="#" className="text-white/40 hover:text-[#FCD34D] transition-colors">Cộng đồng</a>
-              </div>
-            </div>
-          </footer>
-        </div>
+          <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+             <div className="glow-orb glow-warm -top-48 -left-24 opacity-30 mix-blend-screen" />
+             <div className="glow-orb glow-cool top-1/2 -right-24 opacity-20 mix-blend-screen" />
+          </div>
+          
+          <div className="relative flex min-h-screen flex-col z-10">
+            <Navbar />
+            <main className="flex-1 w-full">{children}</main>
+            <Footer />
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   );

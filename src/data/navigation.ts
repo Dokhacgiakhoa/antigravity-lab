@@ -15,8 +15,14 @@ export const navigation = {
         { name: ".shared", href: "/guide/shared", desc: "DNA hệ thống", icon: Share2 },
       ]
     },
-    { name: "Thuật ngữ", href: "/dictionaries" },
-    { name: "Dự án mẫu", href: "/samples" },
+    { 
+      name: "Ghi chú", 
+      href: "/notes",
+      children: [
+        { name: "Dự án mẫu", href: "/samples", desc: "Kho kịch bản thực tế", icon: Rocket },
+        { name: "Thuật ngữ", href: "/dictionaries", desc: "Từ điển chuyên ngành", icon: FileText },
+      ]
+    },
   ],
   footer: [
     {

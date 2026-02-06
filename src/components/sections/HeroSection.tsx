@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Terminal } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface HeroSectionProps {
   data: {
@@ -31,6 +32,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ data }: HeroSectionProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -71,7 +73,8 @@ export function HeroSection({ data }: HeroSectionProps) {
 
             <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-black/20 to-transparent z-10" />
             
-            <div className="absolute bottom-12 left-8 md:left-16 w-full md:w-[70%] space-y-8 z-20">
+            {/* Increased width to 90% to prevent wrapping */}
+            <div className="absolute bottom-12 left-8 md:left-16 w-full md:w-[90%] space-y-8 z-20">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -87,7 +90,8 @@ export function HeroSection({ data }: HeroSectionProps) {
                 transition={{ delay: 0.2 }}
                 className="space-y-4"
               >
-                <div className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[0.9] uppercase italic tracking-tighter drop-shadow-2xl flex flex-col gap-2">
+                {/* Reduced font size slightly from lg:text-7xl to lg:text-[5.5rem] or 6xl to ensure fit */}
+                <div className="text-4xl md:text-6xl lg:text-6xl font-black text-white leading-[0.9] uppercase italic tracking-tighter drop-shadow-2xl flex flex-col gap-2">
                   <div className="flex flex-wrap items-center gap-4">
                     <span className="drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">{data.title.line1}</span>
                     {data.title.words ? (
@@ -128,7 +132,7 @@ export function HeroSection({ data }: HeroSectionProps) {
                 </Link>
                 <div className="flex items-center gap-4 bg-white/5 backdrop-blur-md px-6 py-4 rounded-full border border-white/10 group hover:border-[#4285F4]/30 transition-all cursor-copy">
                   <Terminal className="h-5 w-5 text-[#4285F4]" />
-                  <code className="text-sm font-mono text-white/70">{data.cta.secondary}</code>
+                  <code className="text-sm font-mono text-white/70">{t('common.copyCommand')}</code>
                 </div>
               </motion.div>
 

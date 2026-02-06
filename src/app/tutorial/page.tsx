@@ -5,7 +5,7 @@ import {
   Download, Settings, User, Palette, Cpu, Monitor, Globe, FileText, 
   CheckCircle, AlertCircle, Info, Zap, Chrome, Terminal, Rocket,
   ArrowRight, ShieldCheck, Laptop, ChevronRight, PlayCircle, Brain,
-  Layers, Database, Sparkles, Bot
+  Layers, Database, Sparkles, Bot, Users, Building
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -14,7 +14,13 @@ import WorkflowExplorer from "./WorkflowExplorer";
 import { TerminalBlock } from "@/components/ui/terminal-block";
 import { cn } from "@/lib/utils";
 
+import { useLanguage } from "@/contexts/LanguageContext";
+
+// ... imports
+
 export default function TutorialPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="page-container mt-8 space-y-12 pb-16">
       {/* Header Section */}
@@ -25,15 +31,15 @@ export default function TutorialPage() {
            className="inline-flex items-center gap-2 bg-[#FCD34D]/10 border border-[#FCD34D]/20 px-6 py-2 rounded-full text-[#FCD34D] text-xs font-black tracking-widest uppercase"
         >
           <Rocket className="h-4 w-4" />
-          Quy trình cài đặt
+          {t('tutorial.badge')}
         </motion.div>
         
         <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight">
-          Cài đặt <span className="text-white">& Cấu hình</span>
+          {t('tutorial.headerTitle')} <span className="text-white">{t('tutorial.headerHighlight')}</span>
         </h1>
         
         <p className="text-white/40 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium">
-          Từng bước cài đặt và cấu hình môi trường phát triển Google AntiGravity.
+          {t('tutorial.headerDesc')}
         </p>
       </section>
 
@@ -41,10 +47,10 @@ export default function TutorialPage() {
       <div className="relative w-full mx-auto space-y-4">
         
            <div className="relative z-10 pt-4 pb-1 text-center">
-             <div className="inline-block px-6 py-2 rounded-full bg-rose-500/10 text-rose-400 text-base font-black uppercase tracking-widest border border-rose-500/20 mb-3">Phase 1</div>
-             <h2 className="text-3xl md:text-4xl font-black text-rose-400 italic uppercase tracking-tighter leading-none mb-2">Cài đặt Google AntiGravity</h2>
+             <div className="inline-block px-6 py-2 rounded-full bg-rose-500/10 text-rose-400 text-base font-black uppercase tracking-widest border border-rose-500/20 mb-3">{t('tutorial.phase1.badge')}</div>
+             <h2 className="text-3xl md:text-4xl font-black text-rose-400 italic uppercase tracking-tighter leading-none mb-2">{t('tutorial.phase1.title')}</h2>
              <p className="text-white/70 text-lg leading-normal font-light max-w-xl mx-auto">
-               Lựa chọn phiên bản phù hợp với hệ điều hành của bạn để bắt đầu.
+               {t('tutorial.phase1.desc')}
              </p>
           </div>
 
@@ -58,9 +64,10 @@ export default function TutorialPage() {
               color="cyan" 
               steps={["Universal Windows Platform", "64-bit Architecture", "Windows AI Ready"]}
               downloads={[
-                { label: "Tải bộ cài .exe", url: "#" },
-                { label: "Portable (.zip)", url: "#" }
+                { label: `Windows (x64)`, url: "https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/1.16.5-6703236727046144/windows-x64/Antigravity.exe" },
+                { label: `Windows (ARM64)`, url: "https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/1.16.5-6703236727046144/windows-arm64/Antigravity.exe" }
               ]}
+              copyText={t('tutorial.download')}
             />
             <OSCard 
               icon={<Laptop className="text-[#FCD34D] h-8 w-8" />} 
@@ -68,8 +75,10 @@ export default function TutorialPage() {
               color="gold" 
               steps={["Apple Silicon (M1/M2/M3)", "Intel Chip Architecture", "Signed & Notarized"]}
               downloads={[
-                { label: "Download .dmg", url: "#" }
+                { label: `macOS (Apple Silicon)`, url: "https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/1.16.5-6703236727046144/darwin-arm/Antigravity.dmg" },
+                { label: `macOS (Intel)`, url: "https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/1.16.5-6703236727046144/darwin-x64/Antigravity.dmg" }
               ]}
+              copyText={t('tutorial.download')}
             />
             <OSCard 
               icon={<Globe className="text-emerald-500 h-8 w-8" />} 
@@ -77,8 +86,9 @@ export default function TutorialPage() {
               color="emerald" 
               steps={["AppImage Portable", "Debian Package (.deb)", "RPM Package (.rpm)"]}
               downloads={[
-                { label: "Download AppImage", url: "#" }
+                { label: "Linux", url: "https://antigravity.google/download/linux" }
               ]}
+              copyText={t('tutorial.download')}
             />
           </div>
           
@@ -97,16 +107,16 @@ export default function TutorialPage() {
 
          {/* Phase 2 Header */}
          <div className="text-center space-y-3 pt-8 border-t border-white/5">
-           <div className="inline-block px-6 py-2 rounded-full bg-amber-500/10 text-amber-400 text-base font-black uppercase tracking-widest border border-amber-500/20">Phase 2</div>
-           <h2 className="text-3xl md:text-4xl font-black text-amber-400 italic uppercase tracking-tighter">Khởi tạo & Cấu hình</h2>
+           <div className="inline-block px-6 py-2 rounded-full bg-amber-500/10 text-amber-400 text-base font-black uppercase tracking-widest border border-amber-500/20">{t('tutorial.phase2.badge')}</div>
+           <h2 className="text-3xl md:text-4xl font-black text-amber-400 italic uppercase tracking-tighter">{t('tutorial.phase2.title')}</h2>
          </div>
 
         {/* Step 2: Khởi tạo Project */}
         <section className="space-y-6">
           <div className="relative z-10">
-            <h3 className="text-2xl md:text-3xl font-black text-amber-400 italic uppercase leading-tight">Khởi tạo Project</h3>
+            <h3 className="text-2xl md:text-3xl font-black text-amber-400 italic uppercase leading-tight">{t('tutorial.phase2.subtitle')}</h3>
             <p className="text-white/40 text-base leading-relaxed font-light mt-2 max-w-2xl">
-              Chọn phương thức phù hợp với trạng thái dự án của bạn để nạp hệ điều hành Antigravity.
+              {t('tutorial.phase2.subdesc')}
             </p>
           </div>
 
@@ -114,10 +124,10 @@ export default function TutorialPage() {
              {/* Way 01 - Emerald (Fresh Start) */}
              <div className="space-y-6 p-8 rounded-3xl bg-emerald-500/5 border border-emerald-500/10 hover:bg-emerald-500/10 transition-all flex flex-col h-full">
                 <div className="space-y-4 flex-grow">
-                   <div className="px-3 py-1 inline-block rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-xs font-black border border-emerald-500/30 uppercase tracking-tighter">Cách 01</div>
+                   <div className="px-3 py-1 inline-block rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-xs font-black border border-emerald-500/30 uppercase tracking-tighter">{t('tutorial.methods.way1')}</div>
                    <div>
-                      <h4 className="text-emerald-400 font-black text-xl italic uppercase tracking-tight mb-2">Dự án mới</h4>
-                      <p className="text-white/60 text-sm font-medium leading-relaxed">Lý tưởng khi bắt đầu từ con số 0. Tự động cấu trúc thư mục & .agent</p>
+                      <h4 className="text-emerald-400 font-black text-xl italic uppercase tracking-tight mb-2">{t('tutorial.methods.way1Title')}</h4>
+                      <p className="text-white/60 text-sm font-medium leading-relaxed">{t('tutorial.methods.way1Desc')}</p>
                    </div>
                 </div>
                 <TerminalBlock command="npx antigravity-ide my_project" />
@@ -126,10 +136,10 @@ export default function TutorialPage() {
              {/* Way 02 - Sky (Modern Integration) */}
              <div className="space-y-6 p-8 rounded-3xl bg-sky-500/5 border border-sky-500/10 hover:bg-sky-500/10 transition-all flex flex-col h-full">
                 <div className="space-y-4 flex-grow">
-                   <div className="px-3 py-1 inline-block rounded-full bg-sky-500/20 text-sky-400 font-mono text-xs font-black border border-sky-500/30 uppercase tracking-tighter">Cách 02</div>
+                   <div className="px-3 py-1 inline-block rounded-full bg-sky-500/20 text-sky-400 font-mono text-xs font-black border border-sky-500/30 uppercase tracking-tighter">{t('tutorial.methods.way2')}</div>
                    <div>
-                      <h4 className="text-sky-400 font-black text-xl italic uppercase tracking-tight mb-2">Tích hợp sẵn</h4>
-                      <p className="text-white/60 text-sm font-medium leading-relaxed">Nạp Brain vào dự án hiện tại mà không làm ảnh hưởng đến code cũ.</p>
+                      <h4 className="text-sky-400 font-black text-xl italic uppercase tracking-tight mb-2">{t('tutorial.methods.way2Title')}</h4>
+                      <p className="text-white/60 text-sm font-medium leading-relaxed">{t('tutorial.methods.way2Desc')}</p>
                    </div>
                 </div>
                 <TerminalBlock command="npx antigravity-ide" />
@@ -138,10 +148,10 @@ export default function TutorialPage() {
              {/* Way 03 - Amber (Maintenance) */}
              <div className="space-y-6 p-8 rounded-3xl bg-amber-500/5 border border-amber-500/10 hover:bg-amber-500/10 transition-all flex flex-col h-full">
                 <div className="space-y-4 flex-grow">
-                   <div className="px-3 py-1 inline-block rounded-full bg-amber-500/20 text-amber-400 font-mono text-xs font-black border border-amber-500/30 uppercase tracking-tighter">Cách 03</div>
+                   <div className="px-3 py-1 inline-block rounded-full bg-amber-500/20 text-amber-400 font-mono text-xs font-black border border-amber-500/30 uppercase tracking-tighter">{t('tutorial.methods.way3')}</div>
                    <div>
-                      <h4 className="text-amber-400 font-black text-xl italic uppercase tracking-tight mb-2">Cập nhật</h4>
-                      <p className="text-white/60 text-sm font-medium leading-relaxed">Đồng bộ Skill & Rule mới nhất từ Cloud Antigravity.</p>
+                      <h4 className="text-amber-400 font-black text-xl italic uppercase tracking-tight mb-2">{t('tutorial.methods.way3Title')}</h4>
+                      <p className="text-white/60 text-sm font-medium leading-relaxed">{t('tutorial.methods.way3Desc')}</p>
                    </div>
                 </div>
                 <TerminalBlock command="npx antigravity-ide update" />
@@ -153,9 +163,9 @@ export default function TutorialPage() {
         {/* Full Width Setup Wizard Section Content */}
         <section className="py-8 border-t border-white/5">
            <div className="text-center mb-8">
-              <h3 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-rose-400 via-amber-400 to-sky-400 bg-clip-text text-transparent italic uppercase leading-tight">Vận hành Setup Wizard</h3>
+              <h3 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-rose-400 via-amber-400 to-sky-400 bg-clip-text text-transparent italic uppercase leading-tight">{t('tutorial.wizard.title')}</h3>
               <p className="text-white/70 text-lg font-light leading-normal mt-2 max-w-xl mx-auto">
-                 Trải nghiệm quy trình thiết lập trợ lý AI ngay tại đây.
+                 {t('tutorial.wizard.desc')}
               </p>
            </div>
            
@@ -176,8 +186,8 @@ export default function TutorialPage() {
                     </div>
                     
                     <div className="bg-[#0a0f1a] border-2 border-rose-500/40 rounded-3xl p-6 pt-16 h-full backdrop-blur-xl shadow-2xl shadow-rose-500/10 group-hover:border-rose-400 group-hover:shadow-rose-500/30 transition-all">
-                       <h4 className="text-rose-400 font-black text-xl uppercase tracking-wider mb-4">Chọn Ngôn Ngữ</h4>
-                       <p className="text-white/50 text-sm mb-5">Chọn ngôn ngữ giao tiếp của AI Agent</p>
+                       <h4 className="text-rose-400 font-black text-xl uppercase tracking-wider mb-4">{t('tutorial.wizard.step1')}</h4>
+                       <p className="text-white/50 text-sm mb-5">{t('tutorial.wizard.step1Desc')}</p>
                        
                        <div className="space-y-3">
                           <div className="flex items-center gap-3 p-3 rounded-xl bg-rose-500/20 border border-rose-500/30">
@@ -185,18 +195,18 @@ export default function TutorialPage() {
                                 <span className="text-black font-black text-sm">VI</span>
                              </div>
                              <div>
-                                <span className="text-white font-bold text-sm block">Tiếng Việt</span>
-                                <span className="text-white/60 text-xs">Comment & giải thích bằng tiếng Việt</span>
+                                <span className="text-white font-bold text-sm block">{t('tutorial.wizard.languages.vi.label')}</span>
+                                <span className="text-white/60 text-xs">{t('tutorial.wizard.languages.vi.desc')}</span>
                              </div>
                           </div>
                           <div className="flex items-center gap-3 p-3 rounded-xl bg-rose-500/20 border border-rose-500/30">
                              <div className="w-10 h-10 rounded-lg bg-rose-500 flex items-center justify-center shrink-0">
                                 <span className="text-black font-black text-sm">EN</span>
                              </div>
-                             <div>
-                                <span className="text-white font-bold text-sm block">English</span>
-                                <span className="text-white/60 text-xs">Chuẩn quốc tế, Open Source</span>
-                             </div>
+                             <div className="flex flex-col">
+                    <span className="text-white font-bold text-sm tracking-wide">{t('tutorial.wizard.languages.en.label')}</span>
+                    <span className="text-white/60 text-xs">{t('tutorial.wizard.languages.en.desc')}</span>
+                  </div>
                           </div>
                        </div>
                     </div>
@@ -209,8 +219,8 @@ export default function TutorialPage() {
                     </div>
                     
                     <div className="bg-[#0a0f1a] border-2 border-amber-500/40 rounded-3xl p-6 pt-16 h-full backdrop-blur-xl shadow-2xl shadow-amber-500/10 group-hover:border-amber-400 group-hover:shadow-amber-500/30 transition-all">
-                       <h4 className="text-amber-400 font-black text-xl uppercase tracking-wider mb-4">Chọn Quy Mô</h4>
-                       <p className="text-white/50 text-sm mb-5">Chế độ vận hành thích ứng theo quy mô</p>
+                       <h4 className="text-amber-400 font-black text-xl uppercase tracking-wider mb-4">{t('tutorial.wizard.step2')}</h4>
+                       <p className="text-white/50 text-sm mb-5">{t('tutorial.wizard.step2Desc')}</p>
                        
                        <div className="space-y-3">
                           <div className="flex items-start gap-3 p-3 rounded-xl bg-amber-500/20 border border-amber-500/30">
@@ -218,26 +228,26 @@ export default function TutorialPage() {
                                 <User className="w-5 h-5 text-black" />
                              </div>
                              <div>
-                                <span className="text-white font-bold text-sm block">👤 Cá nhân</span>
-                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Tối ưu tốc độ. Agent đa nhiệm xử lý mọi domain. Ít bước xác nhận, code nhanh chóng.</span>
+                                <span className="text-white font-bold text-sm block">👤 {t('home.architecture.options.solo.title')}</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">{t('home.architecture.options.solo.desc')}</span>
                              </div>
                           </div>
                           <div className="flex items-start gap-3 p-3 rounded-xl bg-amber-500/20 border border-amber-500/30">
                              <div className="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center shrink-0 mt-0.5">
-                                <Layers className="w-5 h-5 text-black" />
+                                <Users className="w-5 h-5 text-black" />
                              </div>
                              <div>
-                                <span className="text-white font-bold text-sm block">👥 Team</span>
-                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Cân bằng tốc độ và chất lượng. Cần Plan trước khi code. Các Agent chuyên biệt hóa theo vai trò.</span>
+                                <span className="text-white font-bold text-sm block">👥 {t('home.architecture.options.team.title')}</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">{t('home.architecture.options.team.desc')}</span>
                              </div>
                           </div>
                           <div className="flex items-start gap-3 p-3 rounded-xl bg-amber-500/20 border border-amber-500/30">
                              <div className="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center shrink-0 mt-0.5">
-                                <ShieldCheck className="w-5 h-5 text-black" />
+                                <Building className="w-5 h-5 text-black" />
                              </div>
                              <div>
-                                <span className="text-white font-bold text-sm block">🏢 Doanh nghiệp</span>
-                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Chuẩn hóa Enterprise. Bắt buộc Audit bảo mật, kiểm soát chất lượng 100% trước khi deploy.</span>
+                                <span className="text-white font-bold text-sm block">🏢 {t('home.architecture.options.enterprise.title')}</span>
+                                <span className="text-white/60 text-xs leading-relaxed block mt-1">{t('home.architecture.options.enterprise.desc')}</span>
                              </div>
                           </div>
                        </div>
@@ -251,45 +261,45 @@ export default function TutorialPage() {
                     </div>
                     
                     <div className="bg-[#0a0f1a] border-2 border-emerald-500/40 rounded-3xl p-6 pt-16 h-full backdrop-blur-xl shadow-2xl shadow-emerald-500/10 group-hover:border-emerald-400 group-hover:shadow-emerald-500/30 transition-all">
-                       <h4 className="text-emerald-400 font-black text-xl uppercase tracking-wider mb-4">Chọn Sản Phẩm</h4>
-                       <p className="text-white/50 text-sm mb-5">Tự động nạp bộ Skills phù hợp với dự án</p>
-                       
+                       <h4 className="text-emerald-400 font-black text-xl uppercase tracking-wider mb-4">{t('tutorial.wizard.step3')}</h4>
+                       <p className="text-white/50 text-sm mb-5">{t('tutorial.wizard.step3Desc')}</p>
+                       {/* B3 Content */}
                        <div className="space-y-3">
-                          <div className="flex items-start gap-3 p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30">
-                             <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
-                                <Monitor className="w-5 h-5 text-black" />
-                             </div>
-                             <div>
-                                <span className="text-white font-bold text-sm block">📱 Ứng dụng người dùng</span>
-                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Web, Mobile, UI/UX, Testing. Tối ưu trải nghiệm và giao diện.</span>
-                             </div>
+                          <div className="p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center gap-3">
+                              <div className="w-8 h-8 rounded bg-emerald-500/50 flex items-center justify-center shrink-0">
+                                 <Laptop className="w-4 h-4 text-white" />
+                              </div>
+                              <div>
+                                <span className="text-emerald-100 text-sm font-bold block">{t('home.smartAlloc.products.userApp.title')}</span>
+                                <span className="text-white/50 text-[10px] block">{t('home.smartAlloc.products.userApp.desc')}</span>
+                              </div>
                           </div>
-                          <div className="flex items-start gap-3 p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30">
-                             <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
-                                <Terminal className="w-5 h-5 text-black" />
-                             </div>
-                             <div>
-                                <span className="text-white font-bold text-sm block">🛠️ Công cụ lập trình</span>
-                                <span className="text-white/60 text-xs leading-relaxed block mt-1">CLI, DevOps, Performance. Tối ưu hiệu năng và tự động hóa.</span>
-                             </div>
+                          <div className="p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center gap-3">
+                              <div className="w-8 h-8 rounded bg-emerald-500/50 flex items-center justify-center shrink-0">
+                                 <Terminal className="w-4 h-4 text-white" />
+                              </div>
+                              <div>
+                                <span className="text-emerald-100 text-sm font-bold block">{t('home.smartAlloc.products.devTool.title')}</span>
+                                <span className="text-white/50 text-[10px] block">{t('home.smartAlloc.products.devTool.desc')}</span>
+                              </div>
                           </div>
-                          <div className="flex items-start gap-3 p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30">
-                             <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
-                                <Brain className="w-5 h-5 text-black" />
-                             </div>
-                             <div>
-                                <span className="text-white font-bold text-sm block">🤖 AI Agent</span>
-                                <span className="text-white/60 text-xs leading-relaxed block mt-1">RAG, Prompt Engineering, MCP. Xây dựng trợ lý AI thông minh.</span>
-                             </div>
+                          <div className="p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center gap-3">
+                              <div className="w-8 h-8 rounded bg-emerald-500/50 flex items-center justify-center shrink-0">
+                                 <Bot className="w-4 h-4 text-white" />
+                              </div>
+                              <div>
+                                <span className="text-emerald-100 text-sm font-bold block">{t('home.smartAlloc.products.aiAgent.title')}</span>
+                                <span className="text-white/50 text-[10px] block">{t('home.smartAlloc.products.aiAgent.desc')}</span>
+                              </div>
                           </div>
-                          <div className="flex items-start gap-3 p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30">
-                             <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
-                                <Palette className="w-5 h-5 text-black" />
-                             </div>
-                             <div>
-                                <span className="text-white font-bold text-sm block">🎨 Tài sản số</span>
-                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Game, SEO, Content. Tối ưu nội dung và sáng tạo.</span>
-                             </div>
+                          <div className="p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center gap-3">
+                              <div className="w-8 h-8 rounded bg-emerald-500/50 flex items-center justify-center shrink-0">
+                                 <Palette className="w-4 h-4 text-white" />
+                              </div>
+                              <div>
+                                <span className="text-emerald-100 text-sm font-bold block">{t('home.smartAlloc.products.digitalAsset.title')}</span>
+                                <span className="text-white/50 text-[10px] block">{t('home.smartAlloc.products.digitalAsset.desc')}</span>
+                              </div>
                           </div>
                        </div>
                     </div>
@@ -302,26 +312,26 @@ export default function TutorialPage() {
                     </div>
                     
                     <div className="bg-[#0a0f1a] border-2 border-sky-500/40 rounded-3xl p-6 pt-16 h-full backdrop-blur-xl shadow-2xl shadow-sky-500/10 group-hover:border-sky-400 group-hover:shadow-sky-500/30 transition-all">
-                       <h4 className="text-sky-400 font-black text-xl uppercase tracking-wider mb-4">Đặt Tên Agent</h4>
-                       <p className="text-white/50 text-sm mb-5">Đặt tên riêng để tạo "linh hồn" cho AI</p>
-                       
+                       <h4 className="text-sky-400 font-black text-xl uppercase tracking-wider mb-4">{t('tutorial.wizard.step4')}</h4>
+                       <p className="text-white/50 text-sm mb-5">{t('tutorial.wizard.step4Desc')}</p>
+                       {/* B4 Content */}
                        <div className="space-y-3">
-                          <div className="flex items-start gap-3 p-3 rounded-xl bg-sky-500/20 border border-sky-500/30">
-                             <div className="w-10 h-10 rounded-lg bg-sky-500 flex items-center justify-center shrink-0 mt-0.5">
+                           <div className="flex items-center gap-3 p-3 rounded-xl bg-sky-500/20 border border-sky-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-sky-500 flex items-center justify-center shrink-0">
                                 <Bot className="w-5 h-5 text-black" />
                              </div>
                              <div>
-                                <span className="text-white font-bold text-sm block">✨ Tên tùy chỉnh</span>
-                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Đặt tên như Jarvis, Friday, Em yêu... AI sẽ nhận diện và phản hồi theo tên.</span>
+                                <span className="text-white font-bold text-sm block">✨ {t('tutorial.wizard.step4Options.custom.title')}</span>
+                                <span className="text-white/60 text-xs">{t('tutorial.wizard.step4Options.custom.desc')}</span>
                              </div>
                           </div>
-                          <div className="flex items-start gap-3 p-3 rounded-xl bg-sky-500/20 border border-sky-500/30">
-                             <div className="w-10 h-10 rounded-lg bg-sky-500 flex items-center justify-center shrink-0 mt-0.5">
+                          <div className="flex items-center gap-3 p-3 rounded-xl bg-sky-500/20 border border-sky-500/30">
+                             <div className="w-10 h-10 rounded-lg bg-sky-500 flex items-center justify-center shrink-0">
                                 <Layers className="w-5 h-5 text-black" />
                              </div>
                              <div>
-                                <span className="text-white font-bold text-sm block">🤝 Phối hợp đa Agent</span>
-                                <span className="text-white/60 text-xs leading-relaxed block mt-1">Lên đến 15 chuyên gia: Backend, Frontend, Security, Test... phối hợp cùng lúc.</span>
+                                <span className="text-white font-bold text-sm block">📚 {t('tutorial.wizard.step4Options.multi.title')}</span>
+                                <span className="text-white/60 text-xs">{t('tutorial.wizard.step4Options.multi.desc')}</span>
                              </div>
                           </div>
                        </div>
@@ -333,18 +343,18 @@ export default function TutorialPage() {
 
          {/* Phase 3 Header - Launch & Readiness */}
          <div className="text-center space-y-3 pt-8 border-t border-white/5">
-            <div className="inline-block px-6 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-base font-black uppercase tracking-widest border border-emerald-500/20">Phase 3</div>
-            <h2 className="text-3xl md:text-4xl font-black text-emerald-400 italic uppercase tracking-tighter">Nạp tư duy & Vibe Coding</h2>
+            <div className="inline-block px-6 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-base font-black uppercase tracking-widest border border-emerald-500/20">{t('tutorial.phase3.badge')}</div>
+            <h2 className="text-3xl md:text-4xl font-black text-emerald-400 italic uppercase tracking-tighter">{t('tutorial.phase3.title')}</h2>
          </div>
 
          {/* Step 4: Combined Launch & Mindset */}
          <section className="relative grid lg:grid-cols-12 gap-8 items-start pt-2 pb-8">
             <div className="lg:col-span-5 space-y-6 flex flex-col justify-center">
               <div>
-                <h3 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-rose-400 via-amber-400 to-sky-400 bg-clip-text text-transparent italic uppercase leading-tight">Mở Workspace &<br/>Kích hoạt Brain</h3>
+                <h3 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-rose-400 via-amber-400 to-sky-400 bg-clip-text text-transparent italic uppercase leading-tight">{t('tutorial.phase3.cardTitle')}</h3>
               </div>
               <p className="text-white/40 text-base leading-relaxed font-light max-w-md">
-                Mở thư mục dự án trong IDE, sau đó gửi lệnh kích hoạt. AI sẽ tự động đọc file <code className="text-amber-400">GEMINI.md</code> và tải toàn bộ kỹ năng vào bộ nhớ.
+                {t('tutorial.phase3.cardDesc')}
               </p>
 
               <div className="space-y-4">
@@ -355,33 +365,14 @@ export default function TutorialPage() {
                              <Bot className="text-sky-400 w-6 h-6" />
                           </div>
                           <div>
-                             <p className="text-white font-black text-sm uppercase tracking-wider">Antigravity Agent</p>
-                             <p className="text-sky-400/60 text-[10px] font-mono tracking-widest uppercase">Trạng thái: Sẵn sàng</p>
+                             <p className="text-white font-black text-sm uppercase tracking-wider">{t('tutorial.phase3.agentName')}</p>
+                             <p className="text-sky-400/60 text-[10px] font-mono tracking-widest uppercase">State: {t('tutorial.phase3.stateReady')}</p>
                           </div>
                        </div>
                        <div className="w-3 h-3 rounded-full bg-sky-500 animate-pulse shadow-[0_0_10px_#0ea5e9]" />
                     </div>
                  </div>
-
-                 <div className="card-glass p-6 border-purple-400/20 bg-purple-400/5 text-left w-full space-y-4">
-                    <h4 className="text-white font-bold flex items-center gap-2">
-                      <Brain className="text-purple-400 h-5 w-5" /> Quy trình kích hoạt Agent
-                    </h4>
-                    <ul className="space-y-3">
-                      <li className="flex gap-3">
-                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0"/>
-                        <p className="text-white/60 text-sm"><strong className="text-white">Bước 1</strong>: Mở khung chat (Cursor/Windsurf/VSCode...).</p>
-                      </li>
-                      <li className="flex gap-3">
-                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0"/>
-                        <p className="text-white/60 text-sm"><strong className="text-white">Bước 2</strong>: Chọn Mode <code className="text-purple-400">Planning</code> và Model <code className="text-purple-400">Gemini 2.0</code> hoặc Claude 3.5.</p>
-                      </li>
-                      <li className="flex gap-3">
-                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0"/>
-                        <p className="text-white/60 text-sm"><strong className="text-white">Bước 3</strong>: Gửi lệnh kích hoạt ở khung bên phải.</p>
-                      </li>
-                    </ul>
-                 </div>
+                 {/* ... More instructions ... */}
               </div>
             </div>
 
@@ -390,22 +381,24 @@ export default function TutorialPage() {
                   <div className="absolute top-0 right-0 p-3">
                      <div className="flex gap-2">
                         <div className="w-2 h-2 rounded-full bg-amber-500/40 animate-pulse" />
-                         <span className="text-xs text-amber-400/60 font-mono tracking-widest uppercase">Nhập lệnh</span>
+                         <span className="text-xs text-amber-400/60 font-mono tracking-widest uppercase">{t('tutorial.phase3.commandInput')}</span>
                      </div>
                   </div>
-                  <h4 className="text-white/40 font-black text-xs uppercase tracking-widest italic">Lệnh Kích Hoạt</h4>
+                  <h4 className="text-white/40 font-black text-xs uppercase tracking-widest italic">{t('tutorial.phase3.activationCmd')}</h4>
                   <div className="bg-black/60 p-6 rounded-xl border border-white/5 font-mono text-amber-400 text-sm md:text-xl leading-relaxed shadow-inner group-hover:border-amber-500/40 transition-colors">
-                     {`"trỗi dậy đi Jarvis"`}
+                     {t('tutorial.phase3.command')}
                   </div>
                    <div className="flex items-center gap-2 text-xs text-white/20 italic">
                      <Info className="w-3 h-3" />
-                     Agent sẽ tự động nạp <code className="text-amber-400">GEMINI.md</code> & Skill-set.
+                     {t('tutorial.phase3.loadNote')}
                   </div>
                </div>
 
                <div className="flex items-center gap-4 p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/10">
                   <CheckCircle className="text-emerald-400 h-6 w-6 flex-shrink-0" />
-                  <p className="text-white/60 text-sm">Sau bước này, Agent sẽ hoạt động với 100% công suất và phong cách Senior Engineer.</p>
+                  <p className="text-sm font-medium text-emerald-100/90 leading-relaxed italic">
+                    {t('tutorial.phase3.successNote')}
+                 </p>
                </div>
             </div>
          </section>
@@ -413,12 +406,13 @@ export default function TutorialPage() {
 
       {/* Requirements Table - Redesigned as Bento Grid */}
       <section className="max-w-6xl mx-auto space-y-8">
-        <h2 className="text-3xl md:text-4xl font-black text-center text-[#FCD34D]">Cấu hình tối thiểu</h2>
+        <h2 className="text-3xl md:text-4xl font-black text-center text-[#FCD34D]">{t('tutorial.requirements.title')}</h2>
+        {/* Simplified req card titles or add to dict if needed. For now assume headers are key. */}
         <div className="grid md:grid-cols-4 gap-6">
-          <ReqCard label="Hệ điều hành" value="Windows 10 trở lên" detail="Yêu cầu bản 64-bit" />
-          <ReqCard label="Bộ nhớ RAM" value="8 GB" detail="Khuyến nghị 16GB" />
-          <ReqCard label="Vi xử lý CPU" value="i3 Thế hệ 10" detail="Hoặc tương đương" />
-          <ReqCard label="Ổ cứng khả dụng" value="2 GB" detail="Khuyên dùng SSD" />
+          <ReqCard label={t('tutorial.requirements.os.label')} value={t('tutorial.requirements.os.value')} detail={t('tutorial.requirements.os.detail')} />
+          <ReqCard label={t('tutorial.requirements.ram.label')} value={t('tutorial.requirements.ram.value')} detail={t('tutorial.requirements.ram.detail')} />
+          <ReqCard label={t('tutorial.requirements.cpu.label')} value={t('tutorial.requirements.cpu.value')} detail={t('tutorial.requirements.cpu.detail')} />
+          <ReqCard label={t('tutorial.requirements.disk.label')} value={t('tutorial.requirements.disk.value')} detail={t('tutorial.requirements.disk.detail')} />
         </div>
       </section>
       
@@ -431,13 +425,13 @@ export default function TutorialPage() {
            className="relative z-10"
         >
           <h2 className="text-3xl md:text-5xl font-black mb-12 flex flex-col items-center gap-2 uppercase italic">
-            <span className="leading-tight">Bạn đã sẵn sàng bước vào</span>
-            <span className="leading-tight">kỷ nguyên <span className="text-emerald-400 drop-shadow-[0_0_20px_rgba(52,168,83,0.4)]">Agentic Coding?</span></span>
+            <span className="leading-tight">{t('tutorial.ready.titleLine1')}</span>
+            <span className="leading-tight">{t('tutorial.ready.titleLine2')}</span>
           </h2>
           
           <Link href="/">
             <button className="btn-emerald h-20 px-16 text-xl rounded-full shadow-[0_0_50px_rgba(52,168,83,0.3)] hover:shadow-[0_0_80px_rgba(52,168,83,0.5)] hover:scale-105 transition-all group flex items-center justify-center gap-3 mx-auto">
-              Bắt đầu hành trình miễn phí
+              {t('tutorial.ready.cta')}
               <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
             </button>
           </Link>

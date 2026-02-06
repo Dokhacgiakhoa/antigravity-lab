@@ -5,8 +5,11 @@ import { ArrowLeft, Share2, Dna, Layers, ShieldCheck, Globe, Database, Cpu, Lock
 import Link from "next/link";
 import { sharedModuleGuides } from "@/data/guide-content";
 import { notFound, useParams } from "next/navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { localize } from "@/lib/i18n";
 
 export default function SharedModuleDetailPage() {
+  const { t, locale } = useLanguage();
   const params = useParams();
   const id = params.id as string;
   const guide = sharedModuleGuides[id as keyof typeof sharedModuleGuides] as any;
@@ -85,7 +88,7 @@ export default function SharedModuleDetailPage() {
                   {guide.status}
                </span>
             </div>
-            <p className="text-white/40 text-lg mt-1">{guide.description}</p>
+            <p className="text-white/40 text-lg mt-1">{localize(guide, 'description', locale)}</p>
           </div>
         </div>
       </section>
@@ -95,19 +98,19 @@ export default function SharedModuleDetailPage() {
         <div className="lg:col-span-2 space-y-12">
           {/* Purpose */}
           <section className="space-y-4">
-             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Tầm nhìn & Mục đích</h2>
+             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.shared.vision')}</h2>
              <div className="card-glass p-8 bg-white/[0.02]">
                 <p className="text-white/70 leading-relaxed text-lg">
-                   {guide.purpose}
+                   {localize(guide, 'purpose', locale)}
                 </p>
              </div>
           </section>
 
           {/* Features */}
           <section className="space-y-6">
-             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Tính năng cốt lõi</h2>
+             <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.shared.features')}</h2>
              <div className="grid md:grid-cols-2 gap-4">
-                {(guide.features || []).map((feature: string, idx: number) => {
+                {(localize(guide, 'features', locale) || []).map((feature: string, idx: number) => {
                    const itemTheme = googleColors[idx % googleColors.length];
                    return (
                       <div key={idx} className={`p-5 rounded-2xl bg-black/40 border border-white/5 flex gap-4 items-start group hover:${itemTheme.border} transition-all`}>
@@ -120,11 +123,11 @@ export default function SharedModuleDetailPage() {
           </section>
 
           {/* Guidelines */}
-           {guide.guidelines && (
+           {(localize(guide, 'guidelines', locale) || []).length > 0 && (
               <section className="space-y-6">
-                 <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Hướng dẫn sử dụng</h2>
+                 <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.shared.guidelines')}</h2>
                  <div className="space-y-4">
-                    {(guide.guidelines || []).map((g: string, idx: number) => {
+                    {(localize(guide, 'guidelines', locale) || []).map((g: string, idx: number) => {
                        const itemTheme = googleColors[idx % googleColors.length];
                        return (
                           <div key={idx} className={`flex gap-4 p-4 rounded-xl ${itemTheme.bg} border border-white/10 group hover:${itemTheme.border} transition-all`}>
@@ -138,11 +141,11 @@ export default function SharedModuleDetailPage() {
            )}
 
           {/* Rules System */}
-          {guide.rules && (
+           {(localize(guide, 'rules', locale) || []).length > 0 && (
               <section className="space-y-6">
-                 <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Hệ thống Quy tắc</h2>
+                 <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.shared.rules')}</h2>
                  <div className="space-y-4">
-                    {guide.rules.map((rule: any, idx: number) => {
+                    {(localize(guide, 'rules', locale) || []).map((rule: any, idx: number) => {
                        const itemTheme = googleColors[idx % googleColors.length];
                        return (
                           <div key={idx} className={`card-glass p-6 bg-black/40 border-white/5 space-y-3 group hover:${itemTheme.border} transition-all`}>
@@ -162,11 +165,11 @@ export default function SharedModuleDetailPage() {
            )}
 
            {/* Industries (for Domain Blueprints) */}
-           {guide.industries && (
+           {(localize(guide, 'industries', locale) || []).length > 0 && (
               <section className="space-y-8">
-                 <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>Mô hình theo ngành</h2>
+                 <h2 className={`text-2xl font-black ${theme.color} border-l-4 ${theme.glow} pl-4 uppercase tracking-wider`}>{t('guide.shared.industries')}</h2>
                  <div className="grid gap-6">
-                    {guide.industries.map((ind: any, idx: number) => (
+                    {(localize(guide, 'industries', locale) || []).map((ind: any, idx: number) => (
                        <div key={idx} className={`card-glass p-8 bg-black/20 border-white/10 space-y-6 group hover:${theme.border} transition-all`}>
                           <div className="flex items-center gap-4">
                              <span className="text-4xl">{ind.icon}</span>
@@ -211,7 +214,7 @@ export default function SharedModuleDetailPage() {
            <section className={`card-glass p-6 ${theme.bg} border ${theme.border} space-y-6`}>
               <div className={`flex items-center gap-2 ${theme.color} font-black uppercase text-sm`}>
                  <Layers3 className="h-4 w-4" />
-                 Kiến trúc Module
+                 {t('guide.shared.architecture')}
               </div>
               <div className="space-y-4">
                  <div className="flex flex-col gap-1 items-center p-4 bg-black/40 rounded border border-white/5">
@@ -229,11 +232,11 @@ export default function SharedModuleDetailPage() {
            </section>
 
            {/* Core Protocols */}
-           {guide.protocols && (
+           {(localize(guide, 'protocols', locale) || []).length > 0 && (
               <section className="space-y-6">
                  <h2 className={`text-xs font-black ${theme.color} uppercase tracking-[0.2em] px-2 opacity-60`}>Core Protocols</h2>
                  <div className="space-y-2">
-                    {(guide.protocols || []).map((p: string, idx: number) => (
+                    {(localize(guide, 'protocols', locale) || []).map((p: string, idx: number) => (
                        <div key={idx} className={`flex items-center gap-3 p-3 bg-black/40 border border-white/5 rounded-lg group hover:${theme.border} transition-all`}>
                           <CpuIcon className={`h-3.5 w-3.5 ${theme.color} opacity-60`} />
                           <span className="text-[11px] text-white/60">{p}</span>
@@ -244,11 +247,11 @@ export default function SharedModuleDetailPage() {
            )}
 
            {/* Standard List */}
-           {guide.standards && (
+           {(localize(guide, 'standards', locale) || []).length > 0 && (
               <section className="space-y-4">
-                 <h2 className={`text-xs font-black ${theme.color} uppercase tracking-[0.2em] px-2 opacity-60`}>Kỷ luật & Tiêu chuẩn</h2>
+                 <h2 className={`text-xs font-black ${theme.color} uppercase tracking-[0.2em] px-2 opacity-60`}>{t('guide.shared.standards')}</h2>
                  <ul className="space-y-2">
-                    {(guide.standards || []).map((std: string, idx: number) => (
+                    {(localize(guide, 'standards', locale) || []).map((std: string, idx: number) => (
                        <li key={idx} className="text-[11px] text-white/40 flex gap-2">
                           <CheckCircle2 className={`h-3 w-3 ${theme.color} flex-shrink-0`} />
                           {std}
@@ -259,11 +262,11 @@ export default function SharedModuleDetailPage() {
            )}
 
            {/* Capabilities List */}
-           {guide.capabilities && (
+           {(localize(guide, 'capabilities', locale) || []).length > 0 && (
               <section className="space-y-4">
                  <h2 className={`text-xs font-black ${theme.color} uppercase tracking-[0.2em] px-2 opacity-60`}>Capabilities</h2>
                  <ul className="space-y-2">
-                    {guide.capabilities.map((cap: string, idx: number) => (
+                    {localize(guide, 'capabilities', locale).map((cap: string, idx: number) => (
                        <li key={idx} className="text-[11px] text-white/60 flex items-center gap-2 p-3 bg-white/5 rounded-lg border border-white/5 group hover:bg-white/10 transition-all">
                           <Zap className={`h-3 w-3 ${theme.color}`} />
                           {cap}
@@ -274,11 +277,11 @@ export default function SharedModuleDetailPage() {
            )}
 
            {/* Usage List */}
-           {guide.usage && (
+           {(localize(guide, 'usage', locale) || []).length > 0 && (
               <section className="space-y-4">
                  <h2 className={`text-xs font-black ${theme.color} uppercase tracking-[0.2em] px-2 opacity-60`}>Cách thức vận hành</h2>
                  <div className="space-y-2">
-                    {guide.usage.map((u: string, idx: number) => (
+                    {localize(guide, 'usage', locale).map((u: string, idx: number) => (
                        <div key={idx} className={`p-3 bg-black/40 border border-white/5 rounded-lg flex gap-3 items-start group hover:${theme.border} transition-all`}>
                           <Rocket className={`h-3.5 w-3.5 ${theme.color} opacity-60 mt-0.5`} />
                           <span className="text-[11px] text-white/60 leading-relaxed">{u}</span>

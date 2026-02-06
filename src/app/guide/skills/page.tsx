@@ -3,8 +3,12 @@
 import { motion } from "framer-motion";
 import { Zap, Wrench, Database, Layout, Shield, Server, Search, Globe, Rocket, Code, Laptop, Smartphone, Gamepad, Activity, ShieldCheck, Cpu, Cloud, Bug, Palette, Brain, Terminal } from "lucide-react";
 import { skillCategories, systemStats } from "@/data/documentation";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { PageHeader } from "@/components/guide/ui/PageHeader";
 
 export default function SkillsPage() {
+  const { t, locale } = useLanguage();
+  const isEnglish = locale === 'en';
   const iconMap: Record<string, any> = {
     web: Globe,
     backend: Server,
@@ -32,25 +36,13 @@ export default function SkillsPage() {
 
   return (
     <div className="page-container mt-24 pb-24 space-y-16">
-      <div className="text-center space-y-6">
-        <motion.div
-           initial={{ opacity: 0, scale: 0.8 }}
-           animate={{ opacity: 1, scale: 1 }}
-           className="inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/20 px-6 py-2 rounded-full text-yellow-400 text-xs font-black uppercase tracking-widest shadow-[0_0_20px_rgba(234,179,8,0.1)]"
-        >
-          <Zap className="h-4 w-4 animate-pulse" />
-          Master Skill Library
-        </motion.div>
-        
-        <h1 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-none italic uppercase">
-          Thư viện <span className="text-yellow-400">Kỹ năng</span>
-        </h1>
-        
-        <p className="text-white/40 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium">
-          Hệ thống <span className="text-white font-bold">{systemStats.skills} bộ kỹ năng</span> chuyên sâu được nạp sẵn vào Brain, 
-          cho phép Agent xử lý đa dạng các lĩnh vực từ Frontend đến Security và AI.
-        </p>
-      </div>
+      <PageHeader 
+        badgeIcon={Zap}
+        badgeLabel={t('guide.skills.masterLabel')}
+        title={t('guide.skills.title')}
+        description={t('guide.skills.subtitle').replace('{count}', systemStats.skills.toString())}
+        color="yellow"
+      />
 
       <div className="grid lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
         {skillCategories.map((cat, idx) => {
@@ -80,7 +72,9 @@ export default function SkillsPage() {
                     <Icon className={`h-8 w-8 ${styles.color}`} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black text-white uppercase tracking-tight italic leading-tight">{cat.name}</h3>
+                    <h3 className="text-2xl font-black text-white uppercase tracking-tight italic leading-tight">
+                        {isEnglish ? (cat.nameEn || cat.name) : cat.name}
+                    </h3>
                     <p className={`text-[10px] font-black uppercase tracking-widest ${styles.color} opacity-70 mt-1 bg-white/5 px-2 py-0.5 rounded-full border border-white/5 w-fit`}>
                       {cat.skills.length} Master Skills
                     </p>
@@ -108,7 +102,7 @@ export default function SkillsPage() {
                         </div>
                         
                         <p className="text-xs text-white/40 leading-relaxed font-medium">
-                          {skill.desc}
+                          {isEnglish ? (skill.descEn || skill.desc) : skill.desc}
                         </p>
 
                         {/* Detailed Features */}
@@ -138,10 +132,16 @@ export default function SkillsPage() {
         <div className="absolute inset-0 bg-yellow-400/5 blur-[100px] rounded-full pointer-events-none" />
         <div className="relative z-10 space-y-4">
           <p className="text-white/60 text-lg font-light leading-relaxed">
-            Hệ thống kỹ năng được cấu trúc dưới dạng các thư mục độc lập trong <code className="text-yellow-400 border-b border-yellow-400/20 pb-0.5">.agent/skills/</code>.
+            {isEnglish 
+              ? <>Skills are structured as independent directories in <code className="text-yellow-400 border-b border-yellow-400/20 pb-0.5">.agent/skills/</code>.</>
+              : <>Hệ thống kỹ năng được cấu trúc dưới dạng các thư mục độc lập trong <code className="text-yellow-400 border-b border-yellow-400/20 pb-0.5">.agent/skills/</code>.</>
+            }
           </p>
           <p className="text-white/30 text-xs italic uppercase tracking-[0.2em]">
-            Agent sẽ tự động đọc tệp `SKILL.md` khi bắt đầu thực thi nhiệm vụ liên quan.
+            {isEnglish 
+              ? "Agent automatically reads `SKILL.md` when executing related tasks."
+              : "Agent sẽ tự động đọc tệp `SKILL.md` khi bắt đầu thực thi nhiệm vụ liên quan."
+            }
           </p>
         </div>
       </div>
