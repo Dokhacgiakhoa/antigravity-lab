@@ -5,7 +5,7 @@ import {
   Download, Settings, User, Palette, Cpu, Monitor, Globe, FileText, 
   CheckCircle, AlertCircle, Info, Zap, Chrome, Terminal, Rocket,
   ArrowRight, ShieldCheck, Laptop, ChevronRight, PlayCircle, Brain,
-  Layers, Database, Sparkles, Bot, Users, Building
+  Layers, Database, Sparkles, Bot, Users, Building, Activity
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
