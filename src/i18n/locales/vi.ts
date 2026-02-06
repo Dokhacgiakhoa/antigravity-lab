@@ -189,17 +189,23 @@ export const vi = {
     headerDesc: "Từng bước cài đặt và cấu hình môi trường phát triển Google AntiGravity.",
     phase1: {
       badge: "Phase 1",
-      title: "CÀI ĐẶT GOOGLE ANTIGRAVITY",
+      title: "CÀI ĐẶT GOOGLE ANTIGRAVITY IDE",
       desc: "Lựa chọn phiên bản phù hợp với hệ điều hành của bạn để bắt đầu."
     },
     phase2: {
-      badge: "Phase 2", 
-      title: "KHỞI TẠO & CẤU HÌNH",
+      badge: "Phase 2",
+      title: "CÀI ĐẶT NODE.JS RUNTIME",
+      desc: "Antigravity yêu cầu Node.js (LTS khuyến nghị) để khởi chạy các tác vụ automation và CLI.",
+      action: "Tải Node.js LTS"
+    },
+    phase3: {
+      badge: "Phase 3", 
+      title: "KHỞI TẠO & CẤU HÌNH dự án",
       subtitle: "Khởi tạo Project",
       subdesc: "Chọn phương thức phù hợp với trạng thái dự án của bạn để nạp hệ điều hành Antigravity."
     },
-    phase3: {
-      badge: "Phase 3",
+    phase4: {
+      badge: "Phase 4",
       title: "NẠP TƯ DUY & VIBE CODING",
       cardTitle: "Mở Workspace & Kích hoạt Brain",
       cardDesc: "Mở thư mục dự án trong IDE, sau đó gửi lệnh kích hoạt. AI sẽ tự động đọc file GEMINI.md và tải toàn bộ kỹ năng vào bộ nhớ.",

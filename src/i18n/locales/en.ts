@@ -189,17 +189,23 @@ export const en = {
     headerDesc: "Step-by-step installation and configuration of the Google AntiGravity development environment.",
     phase1: {
       badge: "Phase 1",
-      title: "INSTALL GOOGLE ANTIGRAVITY",
+      title: "INSTALL GOOGLE ANTIGRAVITY IDE",
       desc: "Choose the version suitable for your operating system to start."
     },
     phase2: {
-      badge: "Phase 2", 
+      badge: "Phase 2",
+      title: "INSTALL NODE.JS RUNTIME",
+      desc: "Antigravity requires Node.js (LTS recommended) to run automation tasks and CLI.",
+      action: "Download Node.js LTS"
+    },
+    phase3: {
+      badge: "Phase 3", 
       title: "INITIALIZATION & CONFIGURATION",
       subtitle: "Initialize Project",
       subdesc: "Choose the method suitable for your project status to load the Antigravity OS."
     },
-    phase3: {
-      badge: "Phase 3",
+    phase4: {
+      badge: "Phase 4",
       title: "LOAD MINDSET & VIBE CODING",
       cardTitle: "Open Workspace & Activate Brain",
       cardDesc: "Open project folder in IDE, then send activation command. AI will automatically read GEMINI.md and load all skills into memory.",

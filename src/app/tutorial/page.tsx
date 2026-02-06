@@ -105,18 +105,56 @@ export default function TutorialPage() {
           </div>
         </section>
 
-         {/* Phase 2 Header */}
-         <div className="text-center space-y-3 pt-8 border-t border-white/5">
-           <div className="inline-block px-6 py-2 rounded-full bg-amber-500/10 text-amber-400 text-base font-black uppercase tracking-widest border border-amber-500/20">{t('tutorial.phase2.badge')}</div>
-           <h2 className="text-3xl md:text-4xl font-black text-amber-400 italic uppercase tracking-tighter">{t('tutorial.phase2.title')}</h2>
+        {/* Phase 2 Header - Node.js */}
+        <div className="text-center space-y-3 pt-8 border-t border-white/5">
+            <div className="inline-block px-6 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-base font-black uppercase tracking-widest border border-cyan-500/20">{t('tutorial.phase2.badge')}</div>
+            <h2 className="text-3xl md:text-4xl font-black text-cyan-400 italic uppercase tracking-tighter">{t('tutorial.phase2.title')}</h2>
+            <p className="text-white/40 text-base leading-relaxed font-light max-w-xl mx-auto">
+               {t('tutorial.phase2.desc')}
+            </p>
          </div>
 
-        {/* Step 2: Khởi tạo Project */}
+         {/* Step 2: Node.js Download */}
+         <section className="max-w-4xl mx-auto">
+            <div className="card-glass p-8 md:p-12 border-cyan-500/20 bg-cyan-500/5 flex flex-col md:flex-row items-center gap-8 group">
+               <div className="w-24 h-24 rounded-[2rem] bg-black/40 border border-white/5 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-500">
+                  <Image 
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" 
+                    alt="Node.js" 
+                    width={64} 
+                    height={64}
+                    className="brightness-110"
+                  />
+               </div>
+               <div className="flex-grow text-center md:text-left space-y-4">
+                  <h3 className="text-2xl font-black text-white">Node.js LTS (Long Term Support)</h3>
+                  <p className="text-white/50 text-sm leading-relaxed max-w-lg">
+                    {t('tutorial.phase2.desc')}
+                  </p>
+               </div>
+               <Link 
+                 href="https://nodejs.org/" 
+                 target="_blank"
+                 className="btn-emerald h-16 px-10 rounded-2xl shadow-xl hover:scale-105 transition-all shrink-0 flex items-center gap-3"
+               >
+                  <Download className="w-5 h-5" />
+                  {t('tutorial.phase2.action')}
+               </Link>
+            </div>
+         </section>
+
+         {/* Phase 3 Header */}
+         <div className="text-center space-y-3 pt-8 border-t border-white/5">
+           <div className="inline-block px-6 py-2 rounded-full bg-amber-500/10 text-amber-400 text-base font-black uppercase tracking-widest border border-amber-500/20">{t('tutorial.phase3.badge')}</div>
+           <h2 className="text-3xl md:text-4xl font-black text-amber-400 italic uppercase tracking-tighter">{t('tutorial.phase3.title')}</h2>
+         </div>
+
+        {/* Step 3: Khởi tạo Project */}
         <section className="space-y-6">
           <div className="relative z-10">
-            <h3 className="text-2xl md:text-3xl font-black text-amber-400 italic uppercase leading-tight">{t('tutorial.phase2.subtitle')}</h3>
+            <h3 className="text-2xl md:text-3xl font-black text-amber-400 italic uppercase leading-tight">{t('tutorial.phase3.subtitle')}</h3>
             <p className="text-white/40 text-base leading-relaxed font-light mt-2 max-w-2xl">
-              {t('tutorial.phase2.subdesc')}
+              {t('tutorial.phase3.subdesc')}
             </p>
           </div>
 
@@ -341,38 +379,48 @@ export default function TutorialPage() {
            </div>
         </section>
 
-         {/* Phase 3 Header - Launch & Readiness */}
+         {/* Phase 4 Header - Launch & Readiness */}
          <div className="text-center space-y-3 pt-8 border-t border-white/5">
-            <div className="inline-block px-6 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-base font-black uppercase tracking-widest border border-emerald-500/20">{t('tutorial.phase3.badge')}</div>
-            <h2 className="text-3xl md:text-4xl font-black text-emerald-400 italic uppercase tracking-tighter">{t('tutorial.phase3.title')}</h2>
+            <div className="inline-block px-6 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-base font-black uppercase tracking-widest border border-emerald-500/20">{t('tutorial.phase4.badge')}</div>
+            <h2 className="text-3xl md:text-4xl font-black text-emerald-400 italic uppercase tracking-tighter">{t('tutorial.phase4.title')}</h2>
          </div>
 
          {/* Step 4: Combined Launch & Mindset */}
+
          <section className="relative grid lg:grid-cols-12 gap-8 items-start pt-2 pb-8">
             <div className="lg:col-span-5 space-y-6 flex flex-col justify-center">
               <div>
-                <h3 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-rose-400 via-amber-400 to-sky-400 bg-clip-text text-transparent italic uppercase leading-tight">{t('tutorial.phase3.cardTitle')}</h3>
-              </div>
-              <p className="text-white/40 text-base leading-relaxed font-light max-w-md">
-                {t('tutorial.phase3.cardDesc')}
-              </p>
+                  <div className="inline-block px-5 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-black uppercase tracking-widest border border-emerald-500/20 mb-4">{t('tutorial.phase4.cardTitle')}</div>
+                  <h3 className="text-3xl md:text-5xl font-black text-white italic uppercase tracking-tighter leading-none mb-6">
+                     {t('tutorial.phase4.cardTitle')}
+                  </h3>
+                  <p className="text-white/50 text-base md:text-lg leading-relaxed font-light max-w-xl">
+                     {t('tutorial.phase4.cardDesc')}
+                  </p>
+               </div>
 
-              <div className="space-y-4">
-                 <div className="card-glass p-1 border-white/5 bg-black/20 overflow-hidden">
-                    <div className="bg-black/40 p-6 rounded-2xl flex items-center justify-between">
-                       <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center border border-sky-500/20">
-                             <Bot className="text-sky-400 w-6 h-6" />
-                          </div>
-                          <div>
-                             <p className="text-white font-black text-sm uppercase tracking-wider">{t('tutorial.phase3.agentName')}</p>
-                             <p className="text-sky-400/60 text-[10px] font-mono tracking-widest uppercase">State: {t('tutorial.phase3.stateReady')}</p>
-                          </div>
-                       </div>
-                       <div className="w-3 h-3 rounded-full bg-sky-500 animate-pulse shadow-[0_0_10px_#0ea5e9]" />
-                    </div>
-                 </div>
-                 {/* ... More instructions ... */}
+               <div className="card-glass p-8 md:p-12 border-emerald-500/20 flex flex-col gap-8">
+                  <div className="flex items-center justify-between pb-6 border-b border-white/5">
+                     <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center text-black font-black">AI</div>
+                        <div>
+                           <div className="text-white font-black">{t('tutorial.phase4.agentName')}</div>
+                           <div className="text-emerald-500 text-xs font-bold">{t('tutorial.phase4.stateReady')}</div>
+                        </div>
+                     </div>
+                     <Activity className="h-5 w-5 text-emerald-500 animate-pulse" />
+                  </div>
+
+                  <div className="space-y-4">
+                     <div className="flex items-center justify-between text-xs font-black text-white/30 uppercase tracking-widest">
+                        <span>{t('tutorial.phase4.commandInput')}</span>
+                        <span>{t('tutorial.phase4.activationCmd')}</span>
+                     </div>
+                     <TerminalBlock command={t('tutorial.phase4.command')} />
+                     <p className="text-[10px] text-white/20 italic text-center">
+                        {t('tutorial.phase4.loadNote')}
+                     </p>
+                  </div>
               </div>
             </div>
 
@@ -381,23 +429,25 @@ export default function TutorialPage() {
                   <div className="absolute top-0 right-0 p-3">
                      <div className="flex gap-2">
                         <div className="w-2 h-2 rounded-full bg-amber-500/40 animate-pulse" />
-                         <span className="text-xs text-amber-400/60 font-mono tracking-widest uppercase">{t('tutorial.phase3.commandInput')}</span>
+                         <span className="text-xs text-amber-400/60 font-mono tracking-widest uppercase">{t('tutorial.phase4.commandInput')}</span>
                      </div>
                   </div>
-                  <h4 className="text-white/40 font-black text-xs uppercase tracking-widest italic">{t('tutorial.phase3.activationCmd')}</h4>
+                  <h4 className="text-white/40 font-black text-xs uppercase tracking-widest italic">{t('tutorial.phase4.activationCmd')}</h4>
                   <div className="bg-black/60 p-6 rounded-xl border border-white/5 font-mono text-amber-400 text-sm md:text-xl leading-relaxed shadow-inner group-hover:border-amber-500/40 transition-colors">
-                     {t('tutorial.phase3.command')}
+                     {t('tutorial.phase4.command')}
                   </div>
                    <div className="flex items-center gap-2 text-xs text-white/20 italic">
                      <Info className="w-3 h-3" />
-                     {t('tutorial.phase3.loadNote')}
+                     {t('tutorial.phase4.loadNote')}
                   </div>
                </div>
+
 
                <div className="flex items-center gap-4 p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/10">
                   <CheckCircle className="text-emerald-400 h-6 w-6 flex-shrink-0" />
                   <p className="text-sm font-medium text-emerald-100/90 leading-relaxed italic">
-                    {t('tutorial.phase3.successNote')}
+                    {t('tutorial.phase4.successNote')}
+
                  </p>
                </div>
             </div>
